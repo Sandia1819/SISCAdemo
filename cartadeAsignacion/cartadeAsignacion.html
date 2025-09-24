@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Estudios</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="dark.css">
+    
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+   .backgrounfondoinicio {
+    position: fixed;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('fondoinicio.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.7; /* 50% de opacidad solo en la imagen */
+    z-index: -1;
+}
+
+   .interfaz-principal {
+    opacity: 0.9;
+    border-radius: 10px; /* Bordes suaves */
+            border: 2px solid #008f39;
+            background-color: #f0f0f0;
+            width: 100%;
+            max-width: 350px;
+            height: 500px;
+            position: absolute;
+            top: 63%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7); /* Resplandor blanco */
+        }
+
+        .encabezado-sistema {
+            border-radius: 10px; /* Bordes suaves */
+            background-color: #008f39;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+        }
+
+        .encabezado-sistema:hover {
+            background-color: #FF8000;
+        }
+        .panel-seleccion {
+            margin-top: -30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .etiqueta-instruccion {
+            color: #FF8000;
+            font-size: 22px;
+            margin-bottom: 40px;
+        }
+
+        .listado-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 80%;
+        }
+
+        .botonmatutino, .botonnocturno {
+            border-radius: 10px; /* Bordes suaves */
+            background-color: #008f39;
+            padding: 15px;
+            border: none;
+            background-color: #008f39;
+            color: #FF8000;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .botonmatutino:hover, .botonnocturno:hover {
+            background-color: #FF8000;
+            color: white;
+        }
+
+        .botonmatutino:hover {
+            border: 2px solid #00bcd4; /* Celeste */
+            box-shadow: 0 0 15px 5px rgba(0, 188, 212, 0.7);
+        }
+
+        .botonnocturno:hover {
+            border: 2px solid #ffeb3b; /* Amarillo */
+            box-shadow: 0 0 15px 5px rgba(255, 235, 59, 0.7);
+        }
+
+        /* Estilos para el modal de contraseña */
+        #passwordModalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        #passwordForm {
+            border: 4px solid #90ee90;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 40px 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.7);
+            z-index: 1000;
+            width: 450px;
+            max-width: 90%;
+            font-family: Arial, sans-serif;
+        }
+
+        #passwordForm h3 {
+            text-align: center;
+            color: #008f39;
+            margin-bottom: 20px;
+        }
+
+        #passwordForm .icon {
+            text-align: center;
+            font-size: 50px;
+            color: #008f39;
+            margin-bottom: 20px;
+        }
+
+        #passwordForm input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        #passwordForm button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #008f39;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #passwordForm button:hover {
+            background-color: #FF8000;
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px #ff8000, 0 0 20px #ff8000;
+        }
+
+        #passwordForm button:active {
+            background-color: #FF8000;
+            box-shadow: 0 4px 10px rgba(255, 128, 0, 0.8);
+        }
+
+        /* Estilos para notificaciones */
+        #notificationContainer {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            left: 41%;
+            width: 300px;
+            z-index: 1000;
+        }
+
+        .notification {
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .warning {
+            background-color: yellow;
+            color: black;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        .error {
+            background-color: red;
+            text-decoration: underline;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        .info {
+            background-color: blue;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+</style>
+            
+<body> 
+     <!-- Barra lateral -->
+     <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+<!-- Contenedor Inicial -->
+<div class="customrow">
+    <div class="logos">
+            
+        <img src="../assets/siscalogo1.PNG" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="../assets/siscalogo2.PNG" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2>  
+</div>
+<br><br><br>
+    <div class="titleCartaasgn">
+        <h2 class="texto">Carta de asignación de horas</h2>
+    </div>
+    
+    <!-- Contenedor para las notificaciones -->
+    <div id="notificationContainer"></div>
+    
+    <!-- Fondo con imagen -->
+    <div class="backgrounfondoinicio"></div>
+    
+    <div class="interfaz-principal">
+        <div class="encabezado-sistema">
+            UT CADEREYTA
+        </div>
+        <div class="panel-seleccion">
+            <div class="etiqueta-instruccion">
+                SELECCIONA EL TURNO
+            </div>
+            <div class="listado-opciones">
+                <button class="botonmatutino" onclick="showPasswordModal('MATUTINO')">MATUTINO</button>
+                <button class="botonnocturno" onclick="showPasswordModal('NOCTURNO')">NOCTURNO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Contraseña -->
+    <div id="passwordModalOverlay"></div>
+    <div id="passwordForm">
+        <div class="icon"><i class="fas fa-lock"></i></div>
+        <h3>ACCESO PROTEGIDO</h3>
+        <input type="text" id="turnoField" readonly>
+        <input type="password" id="passwordField" placeholder="Ingrese su contraseña" autofocus>
+        <button onclick="validatePassword()">INGRESAR</button>
+        <button onclick="closePasswordModal()">CANCELAR</button>
+    </div>
+
+    <!-- Interruptor de modo oscuro -->
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+    </label>
+
+    <script>
+        // Variables para el acceso
+        let currentTurno = "";
+        const passwords = {
+            "MATUTINO": "guest123",
+            "NOCTURNO": "guest234"
+        };
+        
+        // Mostrar el modal de contraseña
+        function showPasswordModal(turno) {
+            currentTurno = turno;
+            document.getElementById('turnoField').value = turno;
+            document.getElementById('passwordField').value = "";
+            document.getElementById('passwordModalOverlay').style.display = 'block';
+            document.getElementById('passwordForm').style.display = 'block';
+            document.getElementById('passwordField').focus();
+        }
+        
+        // Cerrar el modal de contraseña
+        function closePasswordModal() {
+            document.getElementById('passwordModalOverlay').style.display = 'none';
+            document.getElementById('passwordForm').style.display = 'none';
+        }
+        
+        // Validar la contraseña
+        function validatePassword() {
+            const passwordInput = document.getElementById('passwordField').value;
+            
+            // Verificar si la contraseña está vacía
+            if (!passwordInput) {
+                showNotification('info', 'POR FAVOR...<br>¡INGRESE LA CONTRASEÑA!');
+                return;
+            }
+            
+            // Verificar si la contraseña es demasiado corta
+            if (passwordInput.length < 6) {
+                showNotification('warning', '¡CONTRASEÑA DÉBIL!<br>¡DEBE TENER AL MENOS 6 CARÁCTERES!');
+                return;
+            }
+            
+            // Validar la contraseña
+            if (passwords[currentTurno] === passwordInput) {
+                // Contraseña correcta, redireccionar
+                if (currentTurno === "MATUTINO") {
+                    window.location.href = '/SISCA/siscaadministrador/cartadeAsignacion/cartadeAsignacionMatutino.html';
+                } else if (currentTurno === "NOCTURNO") {
+                    window.location.href = '/SISCA/siscaadministrador/cartadeAsignacion/cartadeAsignacionNocturno.html';
+                }
+            } else {
+                // Contraseña incorrecta
+                showNotification('error', '¡ACCESO DENEGADO!<br>CONTRASEÑA INCORRECTA.');
+            }
+        }
+        
+        // Función para mostrar notificaciones
+        function showNotification(type, message) {
+            const notificationContainer = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.classList.add('notification', type);
+            notification.innerHTML = message;
+            notificationContainer.appendChild(notification);
+            
+            // Mostrar la notificación
+            notification.style.display = 'block';
+            setTimeout(function() {
+                notification.style.display = 'none';
+                notification.remove();
+            }, 5000);
+        }
+        
+        // Escuchar el evento de tecla Enter en el campo de contraseña
+        document.getElementById('passwordField').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                validatePassword();
+            }
+        });
+        
+        // Código del modo oscuro
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        // Cierra el modal si se hace clic en el overlay
+        document.getElementById('passwordModalOverlay').addEventListener('click', closePasswordModal);
+    </script>
+</body>
+</html>
+

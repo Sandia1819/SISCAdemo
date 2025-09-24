@@ -1,0 +1,457 @@
+/*¡¡¡FORMATO DIV DE CONTAINER!!!*/
+
+
+.impresionn {
+    border: 2px solid red !important;
+
+    width: 100%; /* Asegura que el ancho máximo sea del 100% del viewport */
+    max-width: 800px; /* Limita el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 10px; /* Añade un espacio interior */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para diseño */
+    border: 1px solid #ddd; /* Límite visual */
+    box-sizing: border-box; /* Asegura que padding y border no rompan el diseño */
+}
+
+
+.container {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    width: 100%; /* Usa el 100% del espacio de .impresionn */
+    padding: 10px; /* Espaciado interno */
+    background-color: white; /* Fondo blanco para el contenido */
+    box-sizing: border-box; /* Considera bordes y padding dentro del tamaño */
+    height: 1100px; /* Altura fija para evitar que crezca */
+    overflow: hidden; /* Evita el desbordamiento y que el contenedor crezca */
+
+}
+
+
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
+.header img {
+    height: 80px;
+    margin-right: 10px;
+  
+}
+
+.header .logo {
+    filter: contrast(100%) brightness(100%) opacity(60%);
+    margin-top: 15px;
+    margin-left: 50px;
+}
+
+
+.table-container {
+    margin: 20px 0;
+    margin-right: 30px;
+    margin-left: 30px;
+    font-size: 12px;
+   margin-top: 24px;
+}
+
+.table-container h3 {
+    margin-top: -20px;
+    margin-right: 10px;
+    margin-left: 75px;
+    font-size: 14px;
+    font-weight: normal;
+    list-style-type: disc;
+    display: list-item;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 1px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table tr {
+    height: 10px;
+}
+
+th {
+    height: 23px;
+}
+
+td input {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: inherit;
+    background: transparent;
+    height: 100%;
+}
+
+#horas-column {
+    width: 20%;
+}
+
+#horas-column + tbody td:nth-child(2) input {
+    width: 100%;
+    max-width: 40px;
+    text-align: center;
+    padding: 2px;
+    font-size: inherit;
+    height: 100%;
+}
+
+#grp-column {
+    width: 30%;
+}
+
+.remitente {
+    margin: 20px 0;
+    margin-right: 10px;
+    margin-left: 50px;
+    font-size: 12px;
+
+}
+
+.docenteSelect {
+    margin-top: 5px;
+    font-size: 12px;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #555555;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+}
+
+.docenteSelect:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.docenteNombre {
+    margin-top: 15px;
+}
+
+.cargaacadem p {
+    margin: 10px;
+    margin-right: 11px;
+    margin-left: 50px;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 15px;
+}
+
+.cargaacadem input.campo-fecha {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    border: none;
+    text-align: center;
+    height: 18px;
+    box-sizing: content-box;
+    width: auto;
+}
+
+.cordial p {
+    position: relative;
+    top: -45px;
+    margin: 10px;
+    margin-right: 11px;
+    margin-left: 50px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.title h3 {
+    text-align: center;
+    font-size: 16px;
+    margin-top: -40px;
+}
+
+.ubicacion-container {
+    position: relative;
+    width: 100%;
+}
+
+.ubicacion {
+    position: absolute;
+    bottom: 1px;
+    top: 2px;
+    right: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 11px;
+}
+
+.fecha {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 1px;
+    font-size: 16px;
+    text-transform: lowercase;
+}
+
+.bttn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #008f39;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.bttn input {
+    font-size: 60px;
+    color: #008f39;
+}
+.bttn:hover {
+    background-color: #ff8000;
+    box-shadow: 0 0 10px rgba(255, 128, 0, 0.8);
+    box-shadow: 0 0 10px #ff8000, 0 0 20px #ff8000;
+}
+
+/* Efecto al hacer clic */
+.bttn:active {
+    background-color: #cc6600; /* Un tono más oscuro de #ff8000 */
+    box-shadow: 0 0 5px rgba(255, 128, 0, 0.9);
+}
+
+.bttn impr {
+    font-size: 60px;
+    color: #008f39;
+}
+
+.bttn span {
+    display: block;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.textbutton {
+    color: #008f39;
+}
+
+
+
+.signature {
+    margin-top: 100px;
+    text-align: center;
+    position: relative;
+}
+
+.signature .line {
+
+    width: 300px;
+    margin: 20px auto;
+    border-top: 1px solid black;
+}
+
+
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: gray;
+}
+
+.footer-line-container {
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #008f39;
+    padding-top: 5px;
+    width: 93%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-line-container span {
+    font-size: 10px;
+    color: #008f39;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.impr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-top: 60px;
+}
+
+.fmt {
+    display: flex; /* Activa flexbox */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Espacia uniformemente entre extremos */
+    font-size: 13px;
+    font-weight: bold;
+    color: #707070;
+    line-height: 1.5;
+    margin: 0 15px; /* Márgenes de izquierda y derecha */
+    gap: 5px; /* Espacio uniforme entre cada palabra e input */
+    white-space: nowrap; /* Evita que se rompa en varias líneas */
+    margin-left: 25px;
+}
+
+.fmt input {
+    text-align: left;
+    font-size: 13px;
+    border: none;
+    background-color: transparent;
+    color: #555555;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 5px;
+    margin: 0;
+    width: auto; /* Deja que se ajuste al contenido */
+    min-width: 50px; /* Asegura un tamaño mínimo */
+    max-width: 100px; /* Limita el ancho máximo */
+    flex-shrink: 0; /* Evita que se reduzca en tamaños pequeños */
+}
+
+.fmt input.SGC {
+    width: auto; /* Deja que este input también sea flexible */
+    min-width: 140px; /* Asegura un tamaño mínimo mayor */
+    margin-left: -28px;
+}
+
+
+.fmt input:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.campo-fecha {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: inherit;
+    background: transparent;
+    height: 100%;
+}
+
+  .importacioness {
+    position: relative;
+    top: 5px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 15px;
+    text-align: left;
+    width: 70%;
+    box-sizing: border-box;
+
+    padding: 10px;
+    height: 200px;
+    margin-left: 30px;
+    margin-right: 50px;
+    right: -20px;
+}
+
+.importacioness ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding: 10px;
+    padding-left: 0;
+    height: 180px;
+    margin: 10px;
+}
+
+.importacioness li {
+    margin-bottom: 5px; /* Espaciado más reducido entre los elementos */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduce el espacio entre los textos y campos */
+ 
+     font-size: 14px; /* Reduce el tamaño del texto */
+}
+
+
+
+.importacioness input.darkinput {
+    height: 16px; /* Ajusta la altura del input */
+    padding: 2px 5px; /* Reduce el espacio interno */
+    font-size: 15px; /* Reduce el tamaño del texto */
+    line-height: 16px; /* Asegura que el texto se alinee dentro del input */
+    border: none; /* Elimina el borde */
+    outline: none; /* Elimina el borde de enfoque */
+    box-shadow: none; /* Elimina la sombra del input */
+    border-radius: 2px; /* Bordes suavemente redondeados (opcional) */
+    background: transparent; /* Elimina cualquier fondo */
+    box-sizing: border-box; /* Evita que padding afecte el tamaño total */
+    font-family: "Arial Narrow", Arial, sans-serif;
+}
+
+/* Esto es para el contenedor de los inputs para evitar bordes o márgenes adicionales */
+.importacioness .form-group {
+    margin-bottom: 25px; /* Ajusta la separación entre los elementos */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-group h3 {
+    font-weight: normal;
+    margin: 0;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.form-group input {
+    width: 200px;
+    box-sizing: border-box;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    height: 30px;
+}
+
+
+
+
+
+
+

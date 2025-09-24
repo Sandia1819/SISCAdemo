@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Estudios</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="asign.css">
+    <link rel="stylesheet" href="dark.css">
+    <link rel="stylesheet" href="cartaasign.css">
+    <link rel="stylesheet" href="turnosCartadeAsignacion.css">
+
+    
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+</head>
+<style>
+    @media print {
+      
+            /* Ocultar todo el contenido de la página */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Mostrar solo el contenedor con la clase .impresionn */
+    .container, .container * {
+        visibility: visible;
+    }
+
+    /* Opcional: Ajustar el contenedor de impresión para que ocupe todo el espacio de la página */
+    .container {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 5%;
+        bottom: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ubicacion {
+    position: absolute;
+    bottom: 1px;
+    top: 8px;
+    right: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 11px;
+}
+
+.fecha {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 1px;
+    font-size: 16px;
+    text-transform: lowercase;
+}
+
+
+.darkinput {
+        border: none;
+        background: transparent;
+        color: black; /* Asegura que el texto sea visible */
+        font-family: inherit;
+        font-size: inherit;
+        text-align: left; /* Opcional: para alinear el texto */
+    }
+    .darkinput::placeholder {
+        color: transparent; /* Oculta el texto de placeholder */
+    }
+
+    /* Asegurarse de que los elementos de la tabla se impriman correctamente */
+    table {
+
+        table {
+        width: 75%; /* Ajusta el ancho al 75% */
+        border-collapse: collapse; /* Evita bordes dobles */
+        margin: 0 auto; /* Centra la tabla */
+        margin-bottom: 20px; /* Espaciado inferior */
+    }
+
+    table, th, td {
+        border: 1px solid black; /* Bordes uniformes */
+    }
+
+    th, td {
+        padding: 1px; /* Reduce el espacio interno */
+        text-align: center; /* Centra el contenido horizontalmente */
+        vertical-align: middle; /* Centra el contenido verticalmente */
+    }
+
+    table tr {
+        height: 10px; /* Altura de las filas */
+    }
+
+    th {
+        height: 23px; /* Altura específica para encabezados */
+    }
+
+    td input {
+        font-family: "Arial Narrow", Arial, sans-serif; /* Fuente deseada */
+        font-size: 14px; /* Tamaño del texto */
+        text-align: center; /* Texto centrado */
+        border: none; /* Sin borde para los inputs */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        box-sizing: border-box; /* Ajusta el tamaño al contenedor */
+        background: transparent; /* Fondo transparente */
+        height: 100%; /* Altura total de la celda */
+    }
+    /* Otros ajustes de estilo si es necesario */
+}
+    
+
+
+
+#selectDocente {
+                display: none;
+            }
+
+}
+
+
+    
+    /* Asegura márgenes y escalado adecuados */
+    @page {
+        size: A4; /* Tamaño de papel estándar */
+        margin: 20mm; /* Márgenes para impresión */
+    }
+
+
+            </style>
+            
+<body> 
+     <!-- Barra lateral -->
+     <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+
+    <div class="customrow">
+        <div class="logos">
+                
+            <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+            <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+    
+        </div>   
+        <h2 class="texto">Sistema de Carga Académica v1.0</h2> <hr> 
+    </div>
+    <br><br><br> 
+    <div class="titleCartaasgn">
+        <h2 class="texto">Carta de asignación de horas</h2>
+    </div>
+ 
+<br><br>
+<br>
+
+
+
+
+
+
+                    <div class="impresionn">
+
+
+
+    <div class="container">
+        <!-- Encabezado -->
+        <div class="header">
+            <img src="../assets/logout.png" alt="Logo" class="logo">
+        </div>
+        
+        <div class="title">
+             
+                <h3>CARTA DE ASIGNACIÓN DE HORAS</h3>
+            </div>
+                    
+            <div class="ubicacion-container">
+                <div class="ubicacion">
+                     
+                </div>
+            </div>
+            <br>
+
+                                <div class="remitente">
+
+                                    <h3 id="docenteNombre">MEBC.  Felipe de Jesús Ramírez Turrubiartes</h3>
+                                    
+                                    <h3>Docente</h3>
+                                    <select id="selectDocente" class="docenteSelect">
+                                        <option value="Felipe">MEBC.  Felipe de Jesús Ramírez Turrubiartes</option>
+                                        <option value="OtroDocente1">Dr. Juan Pérez</option>
+                                        <option value="OtroDocente2">Lic. Ana Gómez</option>
+                                        <option value="OtroDocente3">Mtra. Laura Sánchez</option>
+                                    </select>
+                                </div>
+
+                            <div class="cargaacadem">
+                                <p>
+                                    Por medio de la presente hemos programado para usted la siguiente carga académica de acuerdo a su perfil profesional y a las  <br>
+                                    necesidades de la Universidad para el cuatrimestre <input class="campo-fecha"> con las siguientes funciones:
+                                </p>
+                            </div>
+
+                                
+                          <br>
+
+        <!-- Tabla de Impartición de Clases -->
+        <div class="table-container">
+            <h3>Impartición de Clases</h3>
+            <table id="classTable">
+                <thead>
+                    <tr>
+                        <th class="centered">Asignatura</th>
+                        <th id="horas-column" class="centered">Horas</th>
+                        <th id="grp-column" class="centered">Grupo</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Asignatura"></td>
+                        <td><input type="number" placeholder="Horas"></td>
+                        <td><input type="text" placeholder="Grupo"></td>
+                    
+                    </tr>
+                </tbody>
+            </table>
+           <br>    
+            <!--  <button onclick="addRow()">Agregar Fila</button> -->
+
+
+        <!-- Contenedores de selección -->
+        <div class="importacioness" >
+            <ul>
+                <li class="form-group">
+                    <h3>Líder de Proyecto</h3>
+                    <input class="darkinput" type="text" placeholder="Ingrese el nombre">
+                </li>
+        
+                <li class="form-group">
+                    <h3>Tutor de Grupo</h3>
+                    <input class="darkinput"type="text" placeholder="Ingrese el nombre">
+                </li>
+        
+                <li class="form-group">
+                    <h3>PRODEP</h3>
+                    <input class="darkinput" type="text" placeholder="Ingrese información">
+                </li>
+        
+                <li class="form-group">
+                    <h3>Cuerpos Académicos</h3>
+                    <input class="darkinput" type="text" placeholder="Ingrese información">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="cordial">
+     <p>Sin más por el momento, aprovecho la ocasión para enviarle un saludo cordial.</p>
+    </div> 
+        
+
+                    
+        <!-- Firma -->
+        <div class="signature">
+            <div class="line"></div>
+            <p class="S">M.R.H. Armando de León Ramírez<br>Subdirector Académico</p>
+            <br><br> <p class="fmt"> 
+                            Clave: <input type="text" placeholder="R-02-8.5.1-FA">
+                            Fecha Elab: <input type="text" placeholder="14/02/2013">
+                            Revisión: <input type="text" size="1"  placeholder="5">
+                            Fecha Rev: <input type="text" placeholder="29/04/2024">
+                            <input class=" SGC" type="text" placeholder="UT CADEREYTA SGC">
+                      
+            
+            </p>
+        
+            <p class="footer">La presente publicación se plantea de manera incluyente y libre de estereotipos de género, por lo que al referirse a una persona como "él" significa "él o ella".</p>
+            
+        </div>
+  <br>
+
+        <!-- Línea horizontal modificable -->
+        <div class="footer-line-container">
+            <span>Carretera a Chihuahua Km 4.1 Cadereyta Jiménez, N.L. C.P. 067450 Tel. (828) 284-15-51/52 www.utcadereyta.edu.mx</span>
+            
+        </div>
+    </div>  
+</div>
+
+
+
+    <div class="impr">
+         
+        <button class="bttn" onclick="window.print()">Imprimir</button>
+    </div>
+
+
+
+<label class="switch">
+    <input type="checkbox" id="darkModeToggle">
+    <span class="slider"></span>
+</label>
+
+
+    
+    
+        <script src="/siscaadministrador/js/darkmode.js"></script>
+        <script src="/siscaadministrador/js/dateasign.js"></script>
+        <script src="/siscaadministrador/js/imprasign.js"></script>
+        <script src="inputsjs.js"></script>
+                     
+                    
+              <script>
+                // Código del modo oscuro
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        const toggleSwitch = document.getElementById('darkModeToggle');
+
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+              </script>      
+
+    </body>
+    </html>
+
+

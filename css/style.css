@@ -1,0 +1,150 @@
+#sidebar {
+    position: fixed;
+    z-index: 2;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #32a852;
+    transition: width 0.5s ease;
+}
+
+#sidebar .btn {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    text-align: left;
+    font-size: 20px;
+    transition: width 0.5s ease;
+    color: #fff !important;
+}
+
+#sidebar .btn-page {
+    background-color: #32a852;
+}
+
+.sidebar-toggle, #sidebar .btn-page:hover {
+    background-color: #248a3f;
+}
+
+.sidebar-toggle:hover {
+    background-color: #1f7035;
+}
+
+#sidebar .btn .glyphicon {
+    width: 50px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#sidebar .btn .glyphicon::before {
+    display: block;
+    margin: auto;
+    height: 20px;
+    aspect-ratio: 1/1;
+}
+
+.retract, .retract .btn {
+    width: 50px;
+}
+
+.expand, .expand .btn {
+    width: 250px;
+}
+
+#navbar {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    background-color: #32a852;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    box-sizing: unset;
+    transition: margin-left 0.5s ease;
+}
+
+.full, .full + #main-page {
+    margin-left: 50px;
+}
+
+.partial, .partial + #main-page {
+    margin-left: 250px;
+}
+
+#main-page {
+    padding-top: 70px;
+    padding-bottom: 15px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: #eee;
+    transition: margin-left 0.5s ease;
+}
+
+hr {
+    border-top: 1px solid #ccc;
+}
+
+.list-group {
+    margin-bottom: 0;
+}
+
+[class^="col"]:first-child {
+    padding-left: 0;
+}
+
+[class^="col"]:last-child {
+    padding-right: 0;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-container .btn {
+    width: 300px;
+    height: 180px;
+    margin: 15px;
+    font-size: 25px;
+    background-color: #fff;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.td-even {
+    display: flex; 
+    justify-content: space-evenly;
+}
+
+.small {
+    margin: 15px 0px;
+}
+
+.form-info {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.form-info::after, .form-info::before {
+    content: "---";
+}
+
+.bg-registro {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.bg-edicion {
+    background-color: #f0ad4e;
+    color: #fff;
+}
+
+.modal .input-group[class*=col-] {
+    float: left !important;
+}
