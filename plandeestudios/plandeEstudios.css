@@ -1,0 +1,294 @@
+/* Para dispositivos pequeños (pantallas de hasta 768px) */
+@media (max-width: 768px) {
+    /* Ajuste de botones */
+    .btn-container .btn {
+        font-size: 18px; /* Reducir tamaño del texto */
+        height: 150px; /* Reducir altura para mejor ajuste */
+        width: 90%; /* Asegurar que los botones no sean demasiado anchos */
+        margin: 10px auto; /* Centrar los botones */
+    }
+
+    /* Contenedor del switch */
+.switch {
+    position: absolute; /* Asegura su posición sin afectar otros elementos */
+    top: 20px; /* Ajusta la posición superior según tu diseño */
+    right: 20px; /* Lo alinea a la derecha */
+}
+
+
+    /* Ajuste de las columnas */
+    .col-md-4, .col-md-8 {
+        width: 100%; /* Ocupan todo el ancho disponible */
+        margin: 10px 0; /* Espacio entre columnas */
+    }
+
+    /* Ajuste del encabezado */
+    h1 {
+        font-size: 28px; /* Reducir tamaño del título */
+    }
+
+    /* Ajuste del formulario */
+    .form-container {
+        width: 95%; /* Que ocupe casi todo el ancho */
+        padding: 15px; /* Ajustar padding */
+    }
+
+    /* Ajuste de la tabla */
+    table {
+        font-size: 14px; /* Reducir tamaño de la fuente */
+    }
+
+    th, td {
+        padding: 8px; /* Ajustar espacio dentro de las celdas */
+    }
+
+    /* Ajuste del pie de página */
+    .footer {
+        text-align: center; /* Centra el texto */
+        font-size: 12px; /* Reducir tamaño de fuente */
+    }
+
+    .titleCartaasgn{
+        text-align: right; /* Centrar el título */
+        margin: 30px auto; /* Asegurar que no quede pegado a la izquierda */
+        padding: 10px 15px; /* Añadir algo de espacio interno */
+        width: 95%; /* Ajustar el ancho para que no ocupe todo el espacio */
+    }
+
+    .titleCartaasgn{
+        font-size: 50px; /* Ajustar el tamaño del texto */
+    }
+}
+
+    
+    
+@media print {
+    button {
+        display: none;
+    }
+}
+
+/* Contenedor del switch */
+.switch {
+    position: absolute; /* Asegura su posición sin afectar otros elementos */
+    top: 20px; /* Ajusta la posición superior según tu diseño */
+    right: 20px; /* Lo alinea a la derecha */
+}
+
+/* Barra superior (si es necesario, puedes agregarla más tarde) */
+.navbar .logo img {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 60px;
+    background-color: #008f39;  /* Verde */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s;
+    z-index: 999;
+    padding-top: 20px;  /* Ajuste del espacio superior para el logo */
+}
+    
+/* Aumento del tamaño del sidebar al hacer hover */
+.sidebar:hover {
+    width: 220px; /* Expande el menú */
+}
+
+/* Lista de elementos de la barra lateral */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    position: relative;
+}
+
+/* Estilos de los enlaces */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;  /* Esto elimina el subrayado */
+    padding: 15px 10px;
+}
+    
+    
+/* Estilo para los iconos */
+.sidebar i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Nombre de los elementos del menú (invisible inicialmente) */
+.menu-item {
+    opacity: 0;
+    font-size: 16px;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+/* Mostrar texto cuando se hace hover en el sidebar */
+.sidebar:hover .menu-item {
+    opacity: 1;
+    pointer-events: auto;
+}
+    
+/* Estilo al pasar el cursor sobre los enlaces */
+.sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semi-translúcido */
+    color: #ff8000;  /* Cambiar color del texto a naranja */
+}
+
+/* Contenido principal */
+.content {
+    margin-left: 60px;
+    padding: 20px;
+    padding-top: 80px; /* Espacio para la barra lateral */
+}
+
+/* Cuando el sidebar se expande */
+.sidebar:hover ~ .content {
+    margin-left: 200px; /* Ajusta el margen */
+}
+                                                    
+/*Encabezado de la pagina*/
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Cambiado de center a flex-start para alinear a la izquierda */
+    margin: 80px;
+    margin-top: 10px;
+}
+
+.logoimg {
+    margin-left: 0; /* Asegúrate de que no haya espacio no deseado */                                                        
+}
+
+.texto {
+    margin-left: 15px; /* Opcional: Espaciado entre el logo y el texto */
+}
+    
+/* Diseño para los botones dentro de la barra lateral */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-container .btn {
+    width: 300px;
+    height: 180px;
+    margin: 15px;
+    font-size: 25px;
+    background-color: #fff;
+    border-radius: 10px;  /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    color: #008f39;  /* Color verde */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.btn-container .btn:hover {
+    transform: translateY(-5px);  /* Efecto de elevación */
+    box-shadow: 0px 6px 12px rgba(255, 128, 24, 0.3); /* Sombra más fuerte */
+}
+
+.btn-container .btn i {
+    font-size: 60px;  /* Iconos más grandes */
+    color: #008f39;  /* Color de los iconos */
+}
+
+.btn-container .btn span {
+    display: block;
+    font-size: 18px;  /* Aumentar tamaño del texto */
+    margin-top: 10px;
+}
+    
+/* Asegúrate de que el logo se muestre correctamente */
+.sidebar .logo-item {
+    text-align: center;
+    margin-bottom: 20px;  /* Separación entre el logo y el menú */
+}
+
+.sidebar .logo-img {
+    width: 100%;  /* Ancho del 100% para que se ajuste al contenedor */
+    max-width: 100px; /* Ajuste máximo para el tamaño */
+    height: auto;    /* Mantener la proporción de la imagen */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre la imagen */
+    object-fit: contain;  /* Asegurarse de que la imagen se ajuste adecuadamente */
+}
+    
+.titleCartaasgn {
+    text-align: center;               /* Centra el texto horizontalmente */
+    font-size: 36px;                  /* Tamaño grande para el título */
+    font-weight: bold;                /* Texto en negrita */
+    color: #008f39;                   /* Color verde */
+    padding: 0px 0;                  /* Espacio arriba y abajo del texto */
+    margin: 0 auto;                   /* Centra el margen horizontalmente */
+    position: relative;               /* Se asegura de que siga el flujo del diseño */
+    width: 100%;                      /* Asegura que el título ocupe todo el ancho */
+    box-sizing: border-box;           /* Asegura que el padding no afecte el ancho */
+    margin-top: -150px;
+}                                 
+
+/* Línea debajo del título que ocupa todo el ancho */
+.titleCartaasgn::after {
+    content: '';                      /* Sin contenido, solo para el efecto */
+    display: block;                   /* Hace que la línea ocupe todo el ancho */
+    width: 100%;                       /* La línea que se distribuye en el ancho de la página */
+    height: 4px;                      /* Altura de la línea */
+    background-color: #ff8000;        /* Color naranja */
+    margin: 10px 0 0;                 /* Espacio encima de la línea */
+}
+
+/* Efecto cuando pasas el cursor sobre el título */
+.titleCartaasgn:hover {
+    color: #ff8000;                   /* Cambia el color del texto al pasar el cursor */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);  /* Agrega sombra al texto */
+}
+
+
+/* Diseño de las filas */
+
+.customrow {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 20px;
+    width: 100%;
+    perspective: 1000px; /* Necesario para dar profundidad al giro */
+    margin-left: 80px;
+    margin-top: 5px;
+}
+
+
+
+/* Logo 1 (Izquierda) */
+.logo-icon {
+    margin-right: auto;
+    animation: rotateCoin 5s linear infinite; /* Animación de giro tipo moneda */
+    transform-origin: center; /* Fija el punto de rotación en el centro */
+}
+
+/* Logo 2 (Derecha) */
+.logo-text {
+    margin-left: auto;
+}
+
+/* Animación de rotación tipo moneda */
+@keyframes rotateCoin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}

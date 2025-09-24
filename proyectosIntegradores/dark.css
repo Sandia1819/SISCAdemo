@@ -1,0 +1,100 @@
+ /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.5s, color 0.5s; /* Transición suave */
+}
+
+/* Modo claro (predeterminado) */
+body {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: #121212; /* Fondo oscuro */
+    color: white; /* Texto blanco por defecto */
+}
+
+/* Fondo suave para los divs en modo oscuro */
+body.dark-mode .container,
+body.dark-mode .impresion,
+body.dark-mode .header,
+body.dark-mode .title,
+body.dark-mode .table-container,
+body.dark-mode .form-group,
+body.dark-mode .signature {
+    background-color: #1e1e1e; /* Gris oscuro suave */
+    color: white; /* Texto blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 15px;
+}
+
+/* Fondo más suave para los divs en modo claro */
+body .container,
+body .impresion,
+body .header,
+body .title,
+body .table-container,
+body .form-group,
+body .signature {
+    background-color: #fff;
+    color: black; /* Texto negro */
+    padding: 15px;
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Asegurarse de que el texto dentro de un div no cambie */
+body.dark-mode .no-change-color {
+    color: black !important; /* Mantiene el texto en negro dentro de estos elementos */
+}
+
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}

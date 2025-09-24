@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupos</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="grupos.css">
+    <link rel="stylesheet" href="gruposContenido.css">
+    <link rel="stylesheet" href="gruposDarkMode.css">
+    <link rel="stylesheet" href="gruposPrint.css">
+
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="icon" href="siscalogo1.ico" type="image/x-icon">
+</head>
+<style>
+    /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Modo claro (predeterminado) */
+body {
+    color: black;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+/* Fondo para elementos específicos en modo oscuro */
+body.dark-mode .dark-container {
+    background-color: black;
+    color: white;
+}
+
+/* Fondo para elementos específicos en modo claro */
+body .light-container {
+    background-color: #f4f4f4;
+    color: black;
+
+}
+
+/* Asegurar que ciertos elementos no cambien */
+body.dark-mode .no-change-color {
+    color: black !important;
+}
+
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+body.dark-mode .container,
+body.dark-mode .darkinput,
+body.dark-mode .classTable {
+    background-color: black;
+    color: white;
+}
+</style>
+<body>
+     <!-- Barra lateral -->
+     <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+ <!-- Contenedor Inicial -->
+ <div class="customrow">
+    <div class="logos">
+            
+        <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2>  
+</div>
+<br><br><br> 
+    <br>
+
+    <div class="titleCartaasgn">
+        <h2 class="texto">Grupos</h2>
+    </div>
+    <!-- Modo oscuro -->
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+    </label>
+
+
+    <div class="main-container">
+        <div class="form-container">
+            <h2>Asignar Grupos</h2>
+            
+            <!-- Aquí se carga el select de periodos dinámicamente -->
+            <label><strong>Periodo:</strong></label>
+            <select id="periodo" onchange="mostrarGrupos()">
+                <option value="">Cargando...</option>
+            </select>
+    
+            <label><strong>Turno:</strong></label>
+            <select id="turno" onchange="actualizarVista()">
+                <option value="">Selecciona...</option>
+                <option value="Matutino">Matutino</option>
+                <option value="Nocturno">Nocturno</option>
+            </select>
+    
+            <label><strong>Nivel:</strong></label>
+            <select id="nivel">
+                <option value="">Selecciona...</option>
+                <option value="TSU">TSU</option>
+                <option value="Ingeniería">Ingeniería</option>
+            </select>
+    
+            <label><strong>Extensión:</strong></label>
+            <select id="extension">
+                <option value="">Selecciona...</option>
+                <option value="Cadereyta">Cadereyta</option>
+                <option value="China">China</option>
+                <option value="Allende">Allende</option>
+                <option value="Pesquería">Pesquería</option>
+            </select>
+    
+            <label><strong>Generación:</strong></label>
+            <input type="number" id="generacion" placeholder="Ingrese generación" oninput="actualizarVista()">
+    
+            <label><strong>Nomenclatura del PE:</strong></label>
+            <input type="text" id="nomenclatura" placeholder="Ingrese nomenclatura" oninput="actualizarVista()">
+    
+            <label><strong>Grado:</strong></label>
+            <input type="number" id="grado" placeholder="Ingrese grado" oninput="actualizarVista()">
+    
+            <label><strong>Grupo Generado:</strong></label>
+            <input type="text" id="grupoGenerado" readonly>
+    
+
+            <button id="btnGuardar" type="button" class="btnGuardar" onclick="guardarDatos()">Guardar/Actualizar</button>
+            <button class="btnGuardar" onclick="abrirModal()">Ver Registros</button>
+            <button class="btnGuardar" id="descargarBtn">Descargar Excel</button>
+            <button class="btnGuardar" onclick="imprimirTabla()">Imprimir</button>
+        </div>
+    
+        <!-- Tabla de los grupos -->
+        <div class="table-container">
+            <h3>Grupos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Periodo</th> <!-- Agregar este encabezado -->
+                        <th>Turno</th>
+                        <th>Nivel</th>
+                        <th>Extensión</th>
+                        <th>Generación</th>
+                        <th>Nomenclatura</th>
+                        <th>Grado</th>
+                        <th>Grupo</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaDatos"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <!-- Filtros -->
+            <div class="modal-filters">
+                <h3>Filtrar Registros</h3>
+                <label><strong>Turno:</strong></label>
+                <select id="modal-turno" onchange="filtrarTabla()">
+                    <option value="">Selecciona...</option>
+                    <option value="Matutino">Matutino</option>
+                    <option value="Nocturno">Nocturno</option>
+                </select>
+                <label><strong>Nivel:</strong></label>
+                <select id="modal-nivel" onchange="filtrarTabla()">
+                    <option value="">Selecciona...</option>
+                    <option value="TSU">TSU</option>
+                    <option value="Ingeniería">Ingeniería</option>
+                </select>
+                <label><strong>Extensión:</strong></label>
+                <select id="modal-extension" onchange="filtrarTabla()">
+                    <option value="">Selecciona...</option>
+                    <option value="Cadereyta">Cadereyta</option>
+                    <option value="China">China</option>
+                    <option value="Allende">Allende</option>
+                    <option value="Pesquería">Pesquería</option>
+                </select>
+                <label><strong>Grupo:</strong></label>
+                <input type="text" id="modal-grupo" oninput="filtrarTabla()">
+            </div>
+    
+            <!-- Tabla -->
+            <div class="modal-table">
+                <h3>Registros</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Periodo</th>
+                            <th>Turno</th>
+                            <th>Nivel</th>
+                            <th>Extensión</th>
+                            <th>Generación</th>
+                            <th>Nomenclatura</th>
+                            <th>Grado</th>
+                            <th>Grupo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modal-tablaDatos"></tbody>
+                </table>
+            </div>
+    
+            <!-- Botones -->
+            <div class="modal-buttons">
+                <button class="btnGuardar2" onclick="descargarPDF(true)">Descargar Datos Filtrados</button>
+                <button class="btnGuardar2" onclick="descargarPDF(false)">Descargar Todos los Datos</button>
+                <button class="btnGuardar2" onclick="rehacerTabla()">Rehacer Tabla</button>
+                <button class="btnGuardar2" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.26/jspdf.plugin.autotable.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.6/xlsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.6/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.6/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/exceljs@4.3.0/dist/exceljs.min.js"></script>
+
+
+    <script src="grupos.js"></script>
+    
+    <script>
+        
+        // Código del modo oscuro
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        const toggleSwitch = document.getElementById('darkModeToggle');
+
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+ /* Estilo para ambas tablas */
+table {
+    border-collapse: collapse;
+    width: 350px; /* Ajusta el tamaño al contenido */
+    max-width: 350px; /* Evita que crezca más allá de este tamaño */
+    margin-bottom: 1px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    align-items: center;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 0px; /* Reduce el espacio interno */
+    height: 18px; /* Ajusta la altura de las filas */
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1; /* Reduce la altura de línea */
+    max-height: 18px; /* Evita que se expandan demasiado */
+    overflow: hidden; /* Evita que el contenido se desborde */
+    word-wrap: break-word; /* Fuerza el salto de línea dentro de las celdas */
+}
+
+td:first-child {
+    width: 120px; /* Ajusta el ancho de la primera columna según lo necesites */
+    max-width: 120px; /* Evita que se expanda más */
+    overflow: hidden; /* Evita el desbordamiento de texto en la primera columna */
+    word-wrap: break-word; /* Forzar que el texto se ajuste dentro de la celda */
+}
+td:nth-child(2) {
+    width: 230px; /* Ajusta el ancho según lo necesites */
+    max-width: 230px; /* Evita que se expanda más */
+}
+
+td input {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+    text-align: center;
+    border: none;
+    background: transparent;
+    height: 15px; /* Ajusta la altura del input */
+    min-width: 80px;
+    max-width: 100%; /* Evita que los inputs se expandan más del ancho de la celda */
+    width: 100%; /* Ajusta el ancho del input al 100% del contenedor */
+    padding: 0; /* Elimina padding extra */
+    box-sizing: border-box;
+    overflow: hidden;
+    word-wrap: break-word; /* Evita que el texto se desborde en los inputs */
+}
+
+table input[type="text"] {
+    min-width: 100%; /* Impide que el input sea más pequeño que la celda */
+    max-width: 100%;
+    resize: none; /* Desactiva el redimensionamiento */
+}
+
+.table-container{
+    margin-top: -15px;
+}
+/* Estilo de filas */
+.rowtbls1, .rowtbls2, .rowtbls3, .rowtbls4, 
+.rowtbls5, .rowtbls6, .rowtbls7, .rowtbls8 {
+    text-align: center;
+    margin-top: 8px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin-left: -12px;
+}
+
+/* Estilo de inputs */
+.prd1, .prd2, .prd3, .prd4, .prd5, .prd6, .prd7, .prd8 {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    border: 2px solid transparent;
+    width: 50%;
+    max-width: 50%;
+    box-sizing: border-box;
+    background: transparent;
+    outline: none;
+    margin: 0 auto;
+}
+
+.prd1 input, .prd2 input, .prd3 input, .prd4 input, 
+.prd5 input, .prd6 input, .prd7 input, .prd8 input {
+    margin-top: 10px;
+    height: 6px;
+    width: 100%; /* Ajusta el ancho del input al 100% del contenedor */
+    max-width: 100%; /* Evita que los inputs sobrepasen su contenedor */
+    padding: 5px;
+    font-weight: bold;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    text-align: center;
+    font-size: 16px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    outline: none;
+    background: none;
+    margin-left: -20px;
+    overflow: hidden;
+}
+
+/* Efecto de borde azul al hacer hover o focus */
+.prd1 input:hover, .prd2 input:hover, .prd3 input:hover, .prd4 input:hover,
+.prd5 input:hover, .prd6 input:hover, .prd7 input:hover, .prd8 input:hover,
+.prd1 input:focus, .prd2 input:focus, .prd3 input:focus, .prd4 input:focus,
+.prd5 input:focus, .prd6 input:focus, .prd7 input:focus, .prd8 input:focus {
+    border-color: blue;
+}

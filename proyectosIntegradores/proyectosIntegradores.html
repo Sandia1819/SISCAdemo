@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Integradores</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="asign.css">
+    <link rel="stylesheet" href="bodyPI.css">
+    <link rel="stylesheet" href="dark.css">
+    <link rel="stylesheet" href="printPage.css">
+    <!--<link rel="stylesheet" href="formatoimpr.css">
+    <link rel="stylesheet" href="A4format.css">-->
+    <!-- Íconos de FontAwesome para los íconos 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">-->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    
+    <script src="switchPage.js"></script>
+
+    <style>
+
+        .table {
+            margin: 0;
+        }
+
+        .print-page .form-control {
+            height: 24px;
+            padding: 0 12px;
+            text-align: center;
+            box-shadow: none;
+            border: 0;
+            border-radius: 0;
+        }
+
+        textarea.form-control {
+            height: auto !important;
+            text-align: left !important;
+            padding: 0 4px !important;
+            resize: none;
+        }
+        
+        .print-page .form-control:focus {
+            box-shadow: none;
+        }
+
+        .print-page .input-group {
+            margin: 10px 0;
+        }
+
+        .print-page .input-group .input-group-addon {
+            padding: 0;
+            font-weight: bold;
+            font-style: italic;
+            border: 0;
+            background-color: transparent;
+            color: #000;
+        }
+
+        .print-page .input-group .form-control {
+            text-align: left;
+            border-bottom: 2px solid black;
+        }
+        
+        .form-control[readonly] {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .pi-question td {
+            padding: 0 8px !important;
+            text-align: left;
+        }
+
+        .pi-question input[type=radio], .pi-type input[type=radio], .pi-question2 input[type=radio] {
+            display: none;
+        }
+
+        .pi-question input[type=radio]:hover:not(:checked) + label::before {
+            content: "X";
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        .pi-question input[type=radio]:checked + label::before {
+            content: "X";
+        }
+
+        .pi-type label {
+            font-weight: normal;
+        }
+
+        .pi-type input[type=radio]:hover:not(:checked) + label {
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .pi-type input[type=radio]:checked + label {
+            text-decoration: line-through;
+            font-weight: bold;
+        }
+
+        .pi-question2 input[type=radio] + label {
+            min-width: 14px;
+            min-height: 14px;
+        }
+
+        .pi-question2 input[type=radio]:hover:not(:checked) + label::before {
+            content: "X";
+            color: #aaa;
+        }
+
+        .pi-question2 input[type=radio]:checked + label::before {
+            content: "X";
+            color: #000;
+            font-weight: bold;
+        }
+
+        .pi-question label {
+            width: 30px;
+            height: 30px;
+            font-size: 26px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .print-page .header {
+            padding: 0;
+        }
+
+        .header .logo {
+            margin: 0;
+            position: relative;
+            top: 5px;
+            left: -30px;
+            filter: contrast(100%) brightness(100%) opacity(100%);
+        }
+
+        .header .logo-ing {
+            margin: 0;
+            position: relative;
+            top: 5px;
+            left: 432px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            height: 100px;
+            margin-right: 10px;
+        }
+
+        .table-condensed tbody tr td {
+            padding: 0;
+        }
+
+        .table-condensed tbody tr td * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .borderless {
+            border-color: transparent;
+        }
+
+    </style>
+    
+</head>
+ 
+<body> 
+     <!-- Barra lateral -->
+     <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    
+ <!-- Contenedor Inicial -->
+ <div class="customrow">
+    <div class="logos">
+            
+        <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2>  
+</div>
+<br><br><br> 
+    <div class="titleCartaasgn">
+        <h2 class="texto">Proyectos Integradores</h2>
+    </div>
+    <!-- Modo oscuro -->
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+    </label>
+
+    <div class="container-fluid" style="width: 60%; display: block; margin: auto; margin-bottom: 32px; margin-top: 20px;">
+
+        <div style="width: 60%; float: left;">
+            <div class="input-group">
+                <span class="input-group-addon"> Grupo: </span>
+                <select id="pi-selector" class="form-control" value="0">
+                    <option value="0" hidden> -- Seleccione -- </option>
+                    <option value="1"> TIC / Mantenimiento Industrial </option>
+                    <option value="2"> Lengua Inglesa </option>
+                    <option value="3"> Química </option>
+                    <option value="4"> Mecatrónica </option>
+                </select>
+            </div>
+    
+            <br>
+    
+            <div class="input-group">
+                <span class="input-group-addon"> Nombre del Proyecto: </span>
+                <input type="text" class="form-control pi-name">
+            </div>
+        </div>
+
+        <div style="width: 5%; float: left;"> <br> </div>
+
+        <div style="width: 35%; float: left; display: grid; grid-template-columns: auto;">
+            <button class="btn btn-block bttn"> Agregar Proyecto Integrador </button>
+            <br>
+            <button class="btn btn-block bttn"> Concentrado de Proyectos </button>
+        </div>
+        
+    </div>
+
+
+    <div id="pi-tic" class="print-page" data-val="1" style="display: none; padding: 0 1cm; margin-top: 180px;">
+
+            <div class="header">
+                <img src="/siscaadministrador/assets/logout.png" alt="Logo" class="logo"> <br> <br> <br>
+            </div>
+
+            <h4 class="text-center" style="margin-bottom: 2px;"> <b> Universidad Tecnológica Cadereyta </b> </h4>
+            <p class="text-center small"> <b> Presentación de Proyecto Integradores </b> </p> <br>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td colspan="16">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Nombre del proyecto: </span>
+                                <input type="text" class="form-control pi-name" readonly>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Categoría: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Problema a atender: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" colspan="13"> <h4> <b> Criterios de Evaluación </b> </h4> </td>
+                        <td colspan="3"> <b> Puntuación </b> </td>
+                    </tr>
+                    <tr>
+                        <td> <b> E </b> </td>
+                        <td> <b> S </b> </td>
+                        <td> <b> I </b> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Define el problema y plantea un proyecto específico y concreto. Establece un título de acuerdo a lo que se desea investigar, comprobar y/o resolver. </small> </td>
+                        <td> <input id="q1_1" class="radio-q" data-grade="1" type="radio" name="q1" value="5"> <label for="q1_1"></label> </td>
+                        <td> <input id="q1_2" class="radio-q" data-grade="1" type="radio" name="q1" value="4"> <label for="q1_2"></label> </td>
+                        <td> <input id="q1_3" class="radio-q" data-grade="1" type="radio" name="q1" value="3"> <label for="q1_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta antecedentes, incluyendo un análisis de la problemática, los orígenes del problema, las iniciativas aplicadas y los resultados obtenidos, además de un análisis de contexto, especificando lugar donde se desarrolla el proyecto. </small> </td>
+                        <td> <input id="q2_1" class="radio-q" data-grade="1" type="radio" name="q2" value="5"> <label for="q2_1"></label> </td>
+                        <td> <input id="q2_2" class="radio-q" data-grade="1" type="radio" name="q2" value="4"> <label for="q2_2"></label> </td>
+                        <td> <input id="q2_3" class="radio-q" data-grade="1" type="radio" name="q2" value="3"> <label for="q2_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta al menos un objetivo para el proyecto. El objetivo es específico, medible, alcanzable, real  y con un plazo determinado. </small> </td>
+                        <td> <input id="q3_1" class="radio-q" data-grade="1" type="radio" name="q3" value="5"> <label for="q3_1"></label> </td>
+                        <td> <input id="q3_2" class="radio-q" data-grade="1" type="radio" name="q3" value="4"> <label for="q3_2"></label> </td>
+                        <td> <input id="q3_3" class="radio-q" data-grade="1" type="radio" name="q3" value="3"> <label for="q3_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta un marco teórico relacionado con la problemática, en mínimo 2 cuartillas y utilizando al menos 2 referencias de fuentes confiables. </small> </td>
+                        <td> <input id="q4_1" class="radio-q" data-grade="1" type="radio" name="q4" value="5"> <label for="q4_1"></label> </td>
+                        <td> <input id="q4_2" class="radio-q" data-grade="1" type="radio" name="q4" value="4"> <label for="q4_2"></label> </td>
+                        <td> <input id="q4_3" class="radio-q" data-grade="1" type="radio" name="q4" value="3"> <label for="q4_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta una metodología, que integre los procedimientos realizados para la planificación y gestión de los recursos, la coordinación del equipo de trabajo y las etapas de desarrollo del proyecto. </small> </td>
+                        <td> <input id="q5_1" class="radio-q" data-grade="1" type="radio" name="q5" value="5"> <label for="q5_1"></label> </td>
+                        <td> <input id="q5_2" class="radio-q" data-grade="1" type="radio" name="q5" value="4"> <label for="q5_2"></label> </td>
+                        <td> <input id="q5_3" class="radio-q" data-grade="1" type="radio" name="q5" value="3"> <label for="q5_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta un análisis de factibilidad (gráfico e interpretación), donde se muestre las ventajas y desventajas del proyecto. </small> </td>
+                        <td> <input id="q6_1" class="radio-q" data-grade="1" type="radio" name="q6" value="5"> <label for="q6_1"></label> </td>
+                        <td> <input id="q6_2" class="radio-q" data-grade="1" type="radio" name="q6" value="4"> <label for="q6_2"></label> </td>
+                        <td> <input id="q6_3" class="radio-q" data-grade="1" type="radio" name="q6" value="3"> <label for="q6_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta evidencias gráficas del trabajo realizado, como tablas, cuadro comparativo, imágenes, documentos, fotografías, entre otros. </small> </td>
+                        <td> <input id="q7_1" class="radio-q" data-grade="1" type="radio" name="q7" value="5"> <label for="q7_1"></label> </td>
+                        <td> <input id="q7_2" class="radio-q" data-grade="1" type="radio" name="q7" value="4"> <label for="q7_2"></label> </td>
+                        <td> <input id="q7_3" class="radio-q" data-grade="1" type="radio" name="q7" value="3"> <label for="q7_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Incluye un cronograma de trabajo especificando acciones, fechas de inicio y término, tiempo y recursos necesarios. </small> </td>
+                        <td> <input id="q8_1" class="radio-q" data-grade="1" type="radio" name="q8" value="5"> <label for="q8_1"></label> </td>
+                        <td> <input id="q8_2" class="radio-q" data-grade="1" type="radio" name="q8" value="4"> <label for="q8_2"></label> </td>
+                        <td> <input id="q8_3" class="radio-q" data-grade="1" type="radio" name="q8" value="3"> <label for="q8_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta evidencia donde el proyecto represente una solución a una problemática social o industrial. Incluyendo los problemas y retos enfrentados, así como sus formas de solución. </small> </td>
+                        <td> <input id="q9_1" class="radio-q" data-grade="1" type="radio" name="q9" value="5"> <label for="q9_1"></label> </td>
+                        <td> <input id="q9_2" class="radio-q" data-grade="1" type="radio" name="q9" value="4"> <label for="q9_2"></label> </td>
+                        <td> <input id="q9_3" class="radio-q" data-grade="1" type="radio" name="q9" value="3"> <label for="q9_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Incluye elementos puntuales de seguimiento y/o control, conclusiones y recomendaciones. </small> </td>
+                        <td> <input id="q10_1" class="radio-q" data-grade="1" type="radio" name="q10" value="5"> <label for="q10_1"></label> </td>
+                        <td> <input id="q10_2" class="radio-q" data-grade="1" type="radio" name="q10" value="4"> <label for="q10_2"></label> </td>
+                        <td> <input id="q10_3" class="radio-q" data-grade="1" type="radio" name="q10" value="3"> <label for="q10_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Calificación. </small> </td>
+                        <td colspan="3"> <input type="text" class="form-control calif1" readonly> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p> <b> ( E )  Excelente = 5  ( S )  Suficiente =  4  ( I ) Insuficiente = 3 </b> </p>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>
+
+                            <p class="text-left"> <b> Nota: Marque con una X Datos del docente Evaluador </b> </p>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Nombre: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Firma: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br> <p class="text-right small"> Formato de Evaluación </p>
+
+    </div>
+
+    <div id="pi-ing" class="print-page" data-val="2" style="display: none; padding: 0 1cm; margin-top: 180px;">
+
+            <div class="header">
+                <img src="/siscaadministrador/assets/logout.png" alt="Logo" class="logo">
+                <img src="/siscaadministrador/assets/logo_ing.jpg" alt="Logo_LenguaInglesa" class="logo-ing"> <br> <br> <br>
+            </div>
+
+            <h4 class="text-center" style="margin-bottom: 2px;"> <b> Universidad Tecnológica Cadereyta </b> </h4>
+            <p class="text-center small" style="margin-bottom: 2px;"> <b> Presentación de Proyecto Integradores </b> </p>
+            <p class="text-center small"> <b> TSU en Lengua Inglesa </b> </p>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td colspan="16">
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Nombre del proyecto: </span>
+                                <input type="text" class="form-control pi-name" readonly>
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Categoría: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Problema a atender: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" colspan="13"> <h4> <b> Criterios de Evaluación </b> </h4> </td>
+                        <td colspan="3"> <b> Puntuación </b> </td>
+                    </tr>
+                    <tr>
+                        <td> <b> E </b> </td>
+                        <td> <b> S </b> </td>
+                        <td> <b> I </b> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Define el problema, incluyendo un análisis de la problemática. Establece un título de acuerdo a lo que se desea investigar, comprobar y/o resolver y su justificación. </small> </td>
+                        <td> <input id="q12_1" class="radio-q" data-grade="2" type="radio" name="q12" value="5"> <label for="q12_1"></label> </td>
+                        <td> <input id="q12_2" class="radio-q" data-grade="2" type="radio" name="q12" value="4"> <label for="q12_2"></label> </td>
+                        <td> <input id="q12_3" class="radio-q" data-grade="2" type="radio" name="q12" value="3"> <label for="q12_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta un objetivo general (específico, medible, alcanzable, real, con un plazo determinado). Menciona mínimo dos objetivos específicos para el proyecto. </small> </td>
+                        <td> <input id="q13_1" class="radio-q" data-grade="2" type="radio" name="q13" value="5"> <label for="q13_1"></label> </td>
+                        <td> <input id="q13_2" class="radio-q" data-grade="2" type="radio" name="q13" value="4"> <label for="q13_2"></label> </td>
+                        <td> <input id="q13_3" class="radio-q" data-grade="2" type="radio" name="q13" value="3"> <label for="q13_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta antecedentes, que permitan comprender los orígenes del problema, las iniciativas aplicadas y los resultados obtenidos en investigaciones previas. </small> </td>
+                        <td> <input id="q14_1" class="radio-q" data-grade="2" type="radio" name="q14" value="5"> <label for="q14_1"></label> </td>
+                        <td> <input id="q14_2" class="radio-q" data-grade="2" type="radio" name="q14" value="4"> <label for="q14_2"></label> </td>
+                        <td> <input id="q14_3" class="radio-q" data-grade="2" type="radio" name="q14" value="3"> <label for="q14_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta un marco teórico relacionado con la problemática, en mínimo 2 cuartillas. Empleando una correcta citación a partir de los criterios de APA. </small> </td>
+                        <td> <input id="q15_1" class="radio-q" data-grade="2" type="radio" name="q15" value="5"> <label for="q15_1"></label> </td>
+                        <td> <input id="q15_2" class="radio-q" data-grade="2" type="radio" name="q15" value="4"> <label for="q15_2"></label> </td>
+                        <td> <input id="q15_3" class="radio-q" data-grade="2" type="radio" name="q15" value="3"> <label for="q15_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small>  Establece los alcances y delimitaciones del Proyecto Integrador, incluyendo un análisis de factibilidad (gráfico e interpretación), donde se muestre las ventajas y desventajas del proyecto. </small> </td>
+                        <td> <input id="q16_1" class="radio-q" data-grade="2" type="radio" name="q16" value="5"> <label for="q16_1"></label> </td>
+                        <td> <input id="q16_2" class="radio-q" data-grade="2" type="radio" name="q16" value="4"> <label for="q16_2"></label> </td>
+                        <td> <input id="q16_3" class="radio-q" data-grade="2" type="radio" name="q16" value="3"> <label for="q16_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta una metodología, que integre los procedimientos realizados para la planificación y gestión de los recursos, la coordinación del equipo de trabajo y las etapas de desarrollo del proyecto. Incluye elementos puntuales de seguimiento y/o control, un cronograma de trabajo especificando acciones, fechas de inicio y término, tiempo y recursos necesarios. </small> </td>
+                        <td> <input id="q17_1" class="radio-q" data-grade="2" type="radio" name="q17" value="5"> <label for="q17_1"></label> </td>
+                        <td> <input id="q17_2" class="radio-q" data-grade="2" type="radio" name="q17" value="4"> <label for="q17_2"></label> </td>
+                        <td> <input id="q17_3" class="radio-q" data-grade="2" type="radio" name="q17" value="3"> <label for="q17_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Presenta alternativas de solución y resultados conevidencias gráficas del trabajo realizado: tablas, imágenes, documentos, entre otros; Así como conclusiones y recomendaciones donde el proyecto represente una solución a una problemática social o educativa. </small> </td>
+                        <td> <input id="q18_1" class="radio-q" data-grade="2" type="radio" name="q18" value="5"> <label for="q18_1"></label> </td>
+                        <td> <input id="q18_2" class="radio-q" data-grade="2" type="radio" name="q18" value="4"> <label for="q18_2"></label> </td>
+                        <td> <input id="q18_3" class="radio-q" data-grade="2" type="radio" name="q18" value="3"> <label for="q18_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Considera herramientas tecnológicas de la información y la comunicación como recurso para el acceso, distribución, diseño, creación y presentación del Proyecto Integrador. </small> </td>
+                        <td> <input id="q19_1" class="radio-q" data-grade="2" type="radio" name="q19" value="5"> <label for="q19_1"></label> </td>
+                        <td> <input id="q19_2" class="radio-q" data-grade="2" type="radio" name="q19" value="4"> <label for="q19_2"></label> </td>
+                        <td> <input id="q19_3" class="radio-q" data-grade="2" type="radio" name="q19" value="3"> <label for="q19_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small>  El equipo responde concretamente a las preguntas realizadas por los docentes, mostrando dominio del tema. </small> </td>
+                        <td> <input id="q20_1" class="radio-q" data-grade="2" type="radio" name="q20" value="5"> <label for="q20_1"></label> </td>
+                        <td> <input id="q20_2" class="radio-q" data-grade="2" type="radio" name="q20" value="4"> <label for="q20_2"></label> </td>
+                        <td> <input id="q20_3" class="radio-q" data-grade="2" type="radio" name="q20" value="3"> <label for="q20_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Manejo del tiempo y calidad de la presentación (Presentación organizada y formal. El equipo expositor mantiene la atención de los espectadores. Realiza la presentación del equipo y del proyecto en inglés.) </small> </td>
+                        <td> <input id="q21_1" class="radio-q" data-grade="2" type="radio" name="q21" value="5"> <label for="q21_1"></label> </td>
+                        <td> <input id="q21_2" class="radio-q" data-grade="2" type="radio" name="q21" value="4"> <label for="q21_2"></label> </td>
+                        <td> <input id="q21_3" class="radio-q" data-grade="2" type="radio" name="q21" value="3"> <label for="q21_3"></label> </td>
+                    </tr>
+                    <tr class="pi-question">
+                        <td colspan="13"> <small> Calificación. </small> </td>
+                        <td colspan="3"> <input type="text" class="form-control calif2"> </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="col-md-6" style="padding: 0;">
+                <p class="small"> <b> Nota: Marque con una X </b> </p>
+            </div>
+
+            <div class="col-md-6" style="padding: 0;">
+                <p class="small" style="text-align: right;"> <b> ( E )  Excelente = 5  ( S )  Suficiente =  4  ( I ) Insuficiente = 3 </b> </p>
+            </div>
+            
+            <h6> <small> * A partir del tercer cuatrimestre realizar la exposición en inglés, si es solicitado por los docentes. </small> </h6>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>
+
+                            <p style="text-align: left;"> <b> Datos del docente Evaluador </b> </p>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Nombre: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon"> Firma: </span>
+                                <input type="text" class="form-control">
+                            </div>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br> <p class="text-right small"> Formato de Evaluación </p>
+
+    </div>
+
+    <div id="pi-qui" class="print-page" data-val="3" style="display: none; padding: 0 1cm; margin-top: 180px;">
+
+        <div class="header">
+            <img src="/siscaadministrador/assets/logout.png" alt="Logo" class="logo">
+        </div>
+
+        <div style="margin-top: -100px;">
+            <h4 class="text-center" style="margin-bottom: 4px;"> <b> PROYECTO INTEGRADOR </b> </h4>
+            <p class="text-center" style="margin-bottom: 2px;"> <b> FORMATO EVALUACIÓN </b> </p>
+            <p class="text-center"> <b> QUÍMICA </b> </p>
+        </div>
+
+        <br>
+
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td colspan="3"> <b> Nombre del Proyecto: </b> </td>
+                    <td colspan="7"> <input type="text" class="form-control pi-name" style="text-align: left;" readonly> </td>
+                    <td> <b> Grupo </b> </td>
+                    <td> <input type="text" class="form-control"> </td>
+                </tr>
+                <tr class="pi-type">
+                    <td colspan="3"> <b> Tipo de Proyecto: </b> </td>
+                    <td colspan="3"> <input id="pi-qui-type1" type="radio" name="pi-qui-type"> <label for="pi-qui-type1"> a) Investigación </label> </td>
+                    <td colspan="3"> <input id="pi-qui-type2" type="radio" name="pi-qui-type"> <label for="pi-qui-type2"> b) Prototipo </label> </td>
+                    <td colspan="3"> <input id="pi-qui-type3" type="radio" name="pi-qui-type"> <label for="pi-qui-type3"> c) Otros </label> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <table class="table table-bordered table-condensed">
+            <tbody>
+
+                <tr>
+                    <td colspan="12"> <b> Criterios de Evaluación </b> </td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </th>
+                <tr>
+                    <td colspan="12"> <b> Documento del Proyecto </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 1 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Presentación del trabajo </td>
+                    <td> <input id="qui-q-1-1" type="radio" name="qui-q-1" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-1-1"></label> </td>
+                    <td> <input id="qui-q-1-2" type="radio" name="qui-q-1" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-1-2"></label> </td>
+                    <td> <input id="qui-q-1-3" type="radio" name="qui-q-1" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-1-3"></label> </td>
+                    <td> <input id="qui-q-1-4" type="radio" name="qui-q-1" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-1-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 2 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Ortografía y Gramática </td>
+                    <td> <input id="qui-q-2-1" type="radio" name="qui-q-2" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-2-1"></label> </td>
+                    <td> <input id="qui-q-2-2" type="radio" name="qui-q-2" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-2-2"></label> </td>
+                    <td> <input id="qui-q-2-3" type="radio" name="qui-q-2" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-2-3"></label> </td>
+                    <td> <input id="qui-q-2-4" type="radio" name="qui-q-2" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-2-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 3 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Definición de objetivos </td>
+                    <td> <input id="qui-q-3-1" type="radio" name="qui-q-3" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-3-1"></label> </td>
+                    <td> <input id="qui-q-3-2" type="radio" name="qui-q-3" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-3-2"></label> </td>
+                    <td> <input id="qui-q-3-3" type="radio" name="qui-q-3" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-3-3"></label> </td>
+                    <td> <input id="qui-q-3-4" type="radio" name="qui-q-3" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-3-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 4 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Etapas de desarrollo del proyecto </td>
+                    <td> <input id="qui-q-4-1" type="radio" name="qui-q-4" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-4-1"></label> </td>
+                    <td> <input id="qui-q-4-2" type="radio" name="qui-q-4" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-4-2"></label> </td>
+                    <td> <input id="qui-q-4-3" type="radio" name="qui-q-4" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-4-3"></label> </td>
+                    <td> <input id="qui-q-4-4" type="radio" name="qui-q-4" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-4-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 5 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Congruencia entre objetivos y resultados presentados </td>
+                    <td> <input id="qui-q-5-1" type="radio" name="qui-q-5" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-5-1"></label> </td>
+                    <td> <input id="qui-q-5-2" type="radio" name="qui-q-5" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-5-2"></label> </td>
+                    <td> <input id="qui-q-5-3" type="radio" name="qui-q-5" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-5-3"></label> </td>
+                    <td> <input id="qui-q-5-4" type="radio" name="qui-q-5" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-5-4"></label> </td>
+                </tr>
+
+                <tr>
+                    <td colspan="12"></td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </tr>
+                <tr>
+                    <td colspan="12"> <b> Presentación del Proyecto </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 6 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Representación adecuada de las ideas y principios del trabajo </td>
+                    <td> <input id="qui-q-6-1" type="radio" name="qui-q-6" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-6-1"></label> </td>
+                    <td> <input id="qui-q-6-2" type="radio" name="qui-q-6" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-6-2"></label> </td>
+                    <td> <input id="qui-q-6-3" type="radio" name="qui-q-6" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-6-3"></label> </td>
+                    <td> <input id="qui-q-6-4" type="radio" name="qui-q-6" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-6-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 7 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Material de apoyo (fotos, maquetas, gráficos, mapas, entre otros) </td>
+                    <td> <input id="qui-q-7-1" type="radio" name="qui-q-7" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-7-1"></label> </td>
+                    <td> <input id="qui-q-7-2" type="radio" name="qui-q-7" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-7-2"></label> </td>
+                    <td> <input id="qui-q-7-3" type="radio" name="qui-q-7" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-7-3"></label> </td>
+                    <td> <input id="qui-q-7-4" type="radio" name="qui-q-7" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-7-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 8 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Creatividad en la presentación </td>
+                    <td> <input id="qui-q-8-1" type="radio" name="qui-q-8" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-8-1"></label> </td>
+                    <td> <input id="qui-q-8-2" type="radio" name="qui-q-8" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-8-2"></label> </td>
+                    <td> <input id="qui-q-8-3" type="radio" name="qui-q-8" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-8-3"></label> </td>
+                    <td> <input id="qui-q-8-4" type="radio" name="qui-q-8" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-8-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 9 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Metodología del proyecto </td>
+                    <td> <input id="qui-q-9-1" type="radio" name="qui-q-9" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-9-1"></label> </td>
+                    <td> <input id="qui-q-9-2" type="radio" name="qui-q-9" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-9-2"></label> </td>
+                    <td> <input id="qui-q-9-3" type="radio" name="qui-q-9" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-9-3"></label> </td>
+                    <td> <input id="qui-q-9-4" type="radio" name="qui-q-9" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-9-4"></label> </td>
+                </tr>
+
+                <tr>
+                    <td colspan="12"></td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </th>
+                <tr>
+                    <td colspan="12"> <b> Presentación Oral </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 10 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Dominio del tema </td>
+                    <td> <input id="qui-q-10-1" type="radio" name="qui-q-10" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-10-1"></label> </td>
+                    <td> <input id="qui-q-10-2" type="radio" name="qui-q-10" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-10-2"></label> </td>
+                    <td> <input id="qui-q-10-3" type="radio" name="qui-q-10" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-10-3"></label> </td>
+                    <td> <input id="qui-q-10-4" type="radio" name="qui-q-10" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-10-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 11 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Desenvolvimiento del expositor </td>
+                    <td> <input id="qui-q-11-1" type="radio" name="qui-q-11" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-11-1"></label> </td>
+                    <td> <input id="qui-q-11-2" type="radio" name="qui-q-11" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-11-2"></label> </td>
+                    <td> <input id="qui-q-11-3" type="radio" name="qui-q-11" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-11-3"></label> </td>
+                    <td> <input id="qui-q-11-4" type="radio" name="qui-q-11" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-11-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 12 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Formalidad </td>
+                    <td> <input id="qui-q-12-1" type="radio" name="qui-q-12" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-12-1"></label> </td>
+                    <td> <input id="qui-q-12-2" type="radio" name="qui-q-12" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-12-2"></label> </td>
+                    <td> <input id="qui-q-12-3" type="radio" name="qui-q-12" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-12-3"></label> </td>
+                    <td> <input id="qui-q-12-4" type="radio" name="qui-q-12" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-12-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 13 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Presentación adecuada de las ideas </td>
+                    <td> <input id="qui-q-13-1" type="radio" name="qui-q-13" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-13-1"></label> </td>
+                    <td> <input id="qui-q-13-2" type="radio" name="qui-q-13" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-13-2"></label> </td>
+                    <td> <input id="qui-q-13-3" type="radio" name="qui-q-13" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-13-3"></label> </td>
+                    <td> <input id="qui-q-13-4" type="radio" name="qui-q-13" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-13-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 14 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Comprensión del tema </td>
+                    <td> <input id="qui-q-14-1" type="radio" name="qui-q-14" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-14-1"></label> </td>
+                    <td> <input id="qui-q-14-2" type="radio" name="qui-q-14" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-14-2"></label> </td>
+                    <td> <input id="qui-q-14-3" type="radio" name="qui-q-14" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-14-3"></label> </td>
+                    <td> <input id="qui-q-14-4" type="radio" name="qui-q-14" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-14-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 15 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Manejo de lenguaje técnico </td>
+                    <td> <input id="qui-q-15-1" type="radio" name="qui-q-15" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-15-1"></label> </td>
+                    <td> <input id="qui-q-15-2" type="radio" name="qui-q-15" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-15-2"></label> </td>
+                    <td> <input id="qui-q-15-3" type="radio" name="qui-q-15" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-15-3"></label> </td>
+                    <td> <input id="qui-q-15-4" type="radio" name="qui-q-15" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-15-4"></label> </td>
+                </tr>
+
+                <tr>
+                    <td colspan="12"></td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </th>
+                <tr>
+                    <td colspan="12"> <b> Relevancia </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 16 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Proyecto autosustentable </td>
+                    <td> <input id="qui-q-16-1" type="radio" name="qui-q-16" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-16-1"></label> </td>
+                    <td> <input id="qui-q-16-2" type="radio" name="qui-q-16" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-16-2"></label> </td>
+                    <td> <input id="qui-q-16-3" type="radio" name="qui-q-16" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-16-3"></label> </td>
+                    <td> <input id="qui-q-16-4" type="radio" name="qui-q-16" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-16-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 17 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Impacto en el medio ambiente </td>
+                    <td> <input id="qui-q-17-1" type="radio" name="qui-q-17" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-17-1"></label> </td>
+                    <td> <input id="qui-q-17-2" type="radio" name="qui-q-17" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-17-2"></label> </td>
+                    <td> <input id="qui-q-17-3" type="radio" name="qui-q-17" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-17-3"></label> </td>
+                    <td> <input id="qui-q-17-4" type="radio" name="qui-q-17" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-17-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 18 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Aplicación factible de acuerdo al entorno </td>
+                    <td> <input id="qui-q-18-1" type="radio" name="qui-q-18" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-18-1"></label> </td>
+                    <td> <input id="qui-q-18-2" type="radio" name="qui-q-18" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-18-2"></label> </td>
+                    <td> <input id="qui-q-18-3" type="radio" name="qui-q-18" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-18-3"></label> </td>
+                    <td> <input id="qui-q-18-4" type="radio" name="qui-q-18" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-18-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 19 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Presentación de un proyecto innovador </td>
+                    <td> <input id="qui-q-19-1" type="radio" name="qui-q-19" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-19-1"></label> </td>
+                    <td> <input id="qui-q-19-2" type="radio" name="qui-q-19" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-19-2"></label> </td>
+                    <td> <input id="qui-q-19-3" type="radio" name="qui-q-19" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-19-3"></label> </td>
+                    <td> <input id="qui-q-19-4" type="radio" name="qui-q-19" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-19-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 20 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Integración de asignaturas </td>
+                    <td> <input id="qui-q-20-1" type="radio" name="qui-q-20" class="pi-radio-question2 radio-q" data-grade="3" value="0"> <label for="qui-q-20-1"></label> </td>
+                    <td> <input id="qui-q-20-2" type="radio" name="qui-q-20" class="pi-radio-question2 radio-q" data-grade="3" value="3"> <label for="qui-q-20-2"></label> </td>
+                    <td> <input id="qui-q-20-3" type="radio" name="qui-q-20" class="pi-radio-question2 radio-q" data-grade="3" value="4"> <label for="qui-q-20-3"></label> </td>
+                    <td> <input id="qui-q-20-4" type="radio" name="qui-q-20" class="pi-radio-question2 radio-q" data-grade="3" value="5"> <label for="qui-q-20-4"></label> </td>
+                </tr>
+
+                <tr>
+                    <td colspan="10" class="small" style="border-left-color: transparent !important; border-bottom-color: transparent !important; text-align: left;"> <b>*Nota</b>: <b><ins>N</ins></b>ulo=0, <b><ins>I</ins></b>nsuficiente=3, <b><ins>S</ins></b>uficiente=4 y <b><ins>E</ins></b>xcelente=5 </td>
+                    <td colspan="2"> <b> Total </b> </td>
+                    <td> <input type="text" class="form-control pi-radio-total3" data-radio="0" readonly> </td>
+                    <td> <input type="text" class="form-control pi-radio-total3" data-radio="3" readonly> </td>
+                    <td> <input type="text" class="form-control pi-radio-total3" data-radio="4" readonly> </td>
+                    <td> <input type="text" class="form-control pi-radio-total3" data-radio="5" readonly> </td>
+                </tr>
+
+                <tr>
+                    <td colspan="12" class="small" style="border-left-color: transparent !important; border-bottom-color: transparent !important; text-align: left;"> <b>*Nota</b>: Marque con una <b>X</b> </td>
+                    <td colspan="2"> <b> Puntuación: </b> </td>
+                    <td colspan="2"> <b> <input type="text" class="form-control calif3"> </b> </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <br>
+
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td colspan="7"> <b> Docente Evaluador </b> </td>
+                    <td> <b> Fecha: </b> </td>
+                    <td colspan="2"> <input type="date" class="form-control"> </td>
+                </tr>
+                <tr>
+                    <td> <b> Nombre: </b> </td>
+                    <td colspan="9"> <input type="text" class="form-control" style="text-align: left;"> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Firma: </b> </td>
+                    <td colspan="8"> <input type="text" class="form-control" readonly> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Observaciones: </b> </td>
+                    <td colspan="8"> <textarea class="form-control" rows="3"></textarea> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Recomendaciones: </b> </td>
+                    <td colspan="8"> <textarea class="form-control" rows="3"></textarea> </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <br>
+
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td colspan="7"> <b> Asesor del Proyecto </b> </td>
+                    <td> <b> Fecha: </b> </td>
+                    <td colspan="2"> <input type="date" class="form-control"> </td>
+                </tr>
+                <tr>
+                    <td> <b> Nombre: </b> </td>
+                    <td colspan="9"> <input type="text" class="form-control" style="text-align: left;"> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Firma: </b> </td>
+                    <td colspan="8"> <input type="text" class="form-control" readonly> </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <small> <i class="small"> <b>*Nota</b>: La lectura y análisis por parte del Asesor de Proyecto es para fines de retroalimentación al cuerpo estudiantil y no con fines punitivos. </i> </small>
+
+    </div>
+
+    <div id="pi-mec" class="print-page" data-val="4" style="display: none; padding: 0 1cm; margin-top: 180px;">
+
+        <div class="header">
+            <img src="/siscaadministrador/assets/logout.png" alt="Logo" class="logo">
+        </div>
+    
+        <div style="margin-top: -100px;">
+            <h4 class="text-center" style="margin-bottom: 4px;"> <b> PROYECTO INTEGRADOR </b> </h4>
+            <p class="text-center" style="margin-bottom: 2px;"> <b> FORMATO EVALUACIÓN </b> </p>
+            <p class="text-center"> <b> MECATRÓNICA </b> </p>
+        </div>
+    
+        <br>
+    
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td colspan="3"> <b> Nombre del Proyecto: </b> </td>
+                    <td colspan="7"> <input type="text" class="form-control pi-name" style="text-align: left;" readonly> </td>
+                    <td> <b> Grupo </b> </td>
+                    <td> <input type="text" class="form-control"> </td>
+                </tr>
+                <tr class="pi-type">
+                    <td colspan="3"> <b> Tipo de Proyecto: </b> </td>
+                    <td colspan="3"> <input id="pi-mec-type1" type="radio" name="pi-mec-type"> <label for="pi-mec-type1"> a) Investigación </label> </td>
+                    <td colspan="3"> <input id="pi-mec-type2" type="radio" name="pi-mec-type"> <label for="pi-mec-type2"> b) Prototipo </label> </td>
+                    <td colspan="3"> <input id="pi-mec-type3" type="radio" name="pi-mec-type"> <label for="pi-mec-type3"> c) Otros </label> </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <br>
+    
+        <table class="table table-bordered table-condensed">
+            <tbody>
+    
+                <tr>
+                    <td colspan="12"> <b> Criterios de Evaluación </b> </td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </th>
+                <tr>
+                    <td colspan="12"> <b> Documento del Proyecto </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 1 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Presentación del trabajo </td>
+                    <td> <input id="mec-q-1-1" type="radio" name="mec-q-1" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-1-1"></label> </td>
+                    <td> <input id="mec-q-1-2" type="radio" name="mec-q-1" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-1-2"></label> </td>
+                    <td> <input id="mec-q-1-3" type="radio" name="mec-q-1" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-1-3"></label> </td>
+                    <td> <input id="mec-q-1-4" type="radio" name="mec-q-1" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-1-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 2 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Ortografía y Gramática </td>
+                    <td> <input id="mec-q-2-1" type="radio" name="mec-q-2" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-2-1"></label> </td>
+                    <td> <input id="mec-q-2-2" type="radio" name="mec-q-2" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-2-2"></label> </td>
+                    <td> <input id="mec-q-2-3" type="radio" name="mec-q-2" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-2-3"></label> </td>
+                    <td> <input id="mec-q-2-4" type="radio" name="mec-q-2" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-2-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 3 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Definición de objetivos </td>
+                    <td> <input id="mec-q-3-1" type="radio" name="mec-q-3" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-3-1"></label> </td>
+                    <td> <input id="mec-q-3-2" type="radio" name="mec-q-3" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-3-2"></label> </td>
+                    <td> <input id="mec-q-3-3" type="radio" name="mec-q-3" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-3-3"></label> </td>
+                    <td> <input id="mec-q-3-4" type="radio" name="mec-q-3" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-3-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 4 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Etapas de desarrollo del proyecto </td>
+                    <td> <input id="mec-q-4-1" type="radio" name="mec-q-4" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-4-1"></label> </td>
+                    <td> <input id="mec-q-4-2" type="radio" name="mec-q-4" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-4-2"></label> </td>
+                    <td> <input id="mec-q-4-3" type="radio" name="mec-q-4" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-4-3"></label> </td>
+                    <td> <input id="mec-q-4-4" type="radio" name="mec-q-4" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-4-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 5 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Congruencia entre objetivos y resultados presentados </td>
+                    <td> <input id="mec-q-5-1" type="radio" name="mec-q-5" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-5-1"></label> </td>
+                    <td> <input id="mec-q-5-2" type="radio" name="mec-q-5" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-5-2"></label> </td>
+                    <td> <input id="mec-q-5-3" type="radio" name="mec-q-5" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-5-3"></label> </td>
+                    <td> <input id="mec-q-5-4" type="radio" name="mec-q-5" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-5-4"></label> </td>
+                </tr>
+    
+                <tr>
+                    <td colspan="12"></td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </tr>
+                <tr>
+                    <td colspan="12"> <b> Presentación del Proyecto </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 6 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Representación adecuada de las ideas y principios del trabajo </td>
+                    <td> <input id="mec-q-6-1" type="radio" name="mec-q-6" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-6-1"></label> </td>
+                    <td> <input id="mec-q-6-2" type="radio" name="mec-q-6" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-6-2"></label> </td>
+                    <td> <input id="mec-q-6-3" type="radio" name="mec-q-6" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-6-3"></label> </td>
+                    <td> <input id="mec-q-6-4" type="radio" name="mec-q-6" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-6-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 7 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Material de apoyo (fotos, maquetas, gráficos, mapas, entre otros) </td>
+                    <td> <input id="mec-q-7-1" type="radio" name="mec-q-7" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-7-1"></label> </td>
+                    <td> <input id="mec-q-7-2" type="radio" name="mec-q-7" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-7-2"></label> </td>
+                    <td> <input id="mec-q-7-3" type="radio" name="mec-q-7" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-7-3"></label> </td>
+                    <td> <input id="mec-q-7-4" type="radio" name="mec-q-7" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-7-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 8 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Creatividad en la presentación </td>
+                    <td> <input id="mec-q-8-1" type="radio" name="mec-q-8" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-8-1"></label> </td>
+                    <td> <input id="mec-q-8-2" type="radio" name="mec-q-8" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-8-2"></label> </td>
+                    <td> <input id="mec-q-8-3" type="radio" name="mec-q-8" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-8-3"></label> </td>
+                    <td> <input id="mec-q-8-4" type="radio" name="mec-q-8" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-8-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 9 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Metodología del proyecto </td>
+                    <td> <input id="mec-q-9-1" type="radio" name="mec-q-9" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-9-1"></label> </td>
+                    <td> <input id="mec-q-9-2" type="radio" name="mec-q-9" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-9-2"></label> </td>
+                    <td> <input id="mec-q-9-3" type="radio" name="mec-q-9" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-9-3"></label> </td>
+                    <td> <input id="mec-q-9-4" type="radio" name="mec-q-9" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-9-4"></label> </td>
+                </tr>
+    
+                <tr>
+                    <td colspan="12"></td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </th>
+                <tr>
+                    <td colspan="12"> <b> Presentación Oral </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 10 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Dominio del tema </td>
+                    <td> <input id="mec-q-10-1" type="radio" name="mec-q-10" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-10-1"></label> </td>
+                    <td> <input id="mec-q-10-2" type="radio" name="mec-q-10" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-10-2"></label> </td>
+                    <td> <input id="mec-q-10-3" type="radio" name="mec-q-10" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-10-3"></label> </td>
+                    <td> <input id="mec-q-10-4" type="radio" name="mec-q-10" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-10-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 11 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Desenvolvimiento del expositor </td>
+                    <td> <input id="mec-q-11-1" type="radio" name="mec-q-11" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-11-1"></label> </td>
+                    <td> <input id="mec-q-11-2" type="radio" name="mec-q-11" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-11-2"></label> </td>
+                    <td> <input id="mec-q-11-3" type="radio" name="mec-q-11" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-11-3"></label> </td>
+                    <td> <input id="mec-q-11-4" type="radio" name="mec-q-11" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-11-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 12 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Formalidad </td>
+                    <td> <input id="mec-q-12-1" type="radio" name="mec-q-12" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-12-1"></label> </td>
+                    <td> <input id="mec-q-12-2" type="radio" name="mec-q-12" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-12-2"></label> </td>
+                    <td> <input id="mec-q-12-3" type="radio" name="mec-q-12" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-12-3"></label> </td>
+                    <td> <input id="mec-q-12-4" type="radio" name="mec-q-12" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-12-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 13 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Presentación adecuada de las ideas </td>
+                    <td> <input id="mec-q-13-1" type="radio" name="mec-q-13" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-13-1"></label> </td>
+                    <td> <input id="mec-q-13-2" type="radio" name="mec-q-13" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-13-2"></label> </td>
+                    <td> <input id="mec-q-13-3" type="radio" name="mec-q-13" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-13-3"></label> </td>
+                    <td> <input id="mec-q-13-4" type="radio" name="mec-q-13" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-13-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 14 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Comprensión del tema </td>
+                    <td> <input id="mec-q-14-1" type="radio" name="mec-q-14" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-14-1"></label> </td>
+                    <td> <input id="mec-q-14-2" type="radio" name="mec-q-14" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-14-2"></label> </td>
+                    <td> <input id="mec-q-14-3" type="radio" name="mec-q-14" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-14-3"></label> </td>
+                    <td> <input id="mec-q-14-4" type="radio" name="mec-q-14" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-14-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 15 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Manejo de lenguaje técnico </td>
+                    <td> <input id="mec-q-15-1" type="radio" name="mec-q-15" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-15-1"></label> </td>
+                    <td> <input id="mec-q-15-2" type="radio" name="mec-q-15" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-15-2"></label> </td>
+                    <td> <input id="mec-q-15-3" type="radio" name="mec-q-15" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-15-3"></label> </td>
+                    <td> <input id="mec-q-15-4" type="radio" name="mec-q-15" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-15-4"></label> </td>
+                </tr>
+    
+                <tr>
+                    <td colspan="12"></td>
+                    <td colspan="4"> <b> Min ← Puntuación → Máx </b> </td>
+                </th>
+                <tr>
+                    <td colspan="12"> <b> Relevancia </b> </td>
+                    <td> <b> N </b> </td>
+                    <td> <b> I </b> </td>
+                    <td> <b> S </b> </td>
+                    <td> <b> E </b> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 16 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Proyecto autosustentable </td>
+                    <td> <input id="mec-q-16-1" type="radio" name="mec-q-16" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-16-1"></label> </td>
+                    <td> <input id="mec-q-16-2" type="radio" name="mec-q-16" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-16-2"></label> </td>
+                    <td> <input id="mec-q-16-3" type="radio" name="mec-q-16" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-16-3"></label> </td>
+                    <td> <input id="mec-q-16-4" type="radio" name="mec-q-16" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-16-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 17 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Impacto en el medio ambiente </td>
+                    <td> <input id="mec-q-17-1" type="radio" name="mec-q-17" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-17-1"></label> </td>
+                    <td> <input id="mec-q-17-2" type="radio" name="mec-q-17" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-17-2"></label> </td>
+                    <td> <input id="mec-q-17-3" type="radio" name="mec-q-17" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-17-3"></label> </td>
+                    <td> <input id="mec-q-17-4" type="radio" name="mec-q-17" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-17-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 18 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Aplicación factible de acuerdo al entorno </td>
+                    <td> <input id="mec-q-18-1" type="radio" name="mec-q-18" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-18-1"></label> </td>
+                    <td> <input id="mec-q-18-2" type="radio" name="mec-q-18" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-18-2"></label> </td>
+                    <td> <input id="mec-q-18-3" type="radio" name="mec-q-18" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-18-3"></label> </td>
+                    <td> <input id="mec-q-18-4" type="radio" name="mec-q-18" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-18-4"></label> </td>
+                </tr>
+                <tr class="pi-question2" style="background-color: #eef !important;">
+                    <td> <b> 19 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Presentación de un proyecto innovador </td>
+                    <td> <input id="mec-q-19-1" type="radio" name="mec-q-19" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-19-1"></label> </td>
+                    <td> <input id="mec-q-19-2" type="radio" name="mec-q-19" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-19-2"></label> </td>
+                    <td> <input id="mec-q-19-3" type="radio" name="mec-q-19" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-19-3"></label> </td>
+                    <td> <input id="mec-q-19-4" type="radio" name="mec-q-19" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-19-4"></label> </td>
+                </tr>
+                <tr class="pi-question2">
+                    <td> <b> 20 </b> </td>
+                    <td colspan="11" style="text-align: left;"> Integración de asignaturas </td>
+                    <td> <input id="mec-q-20-1" type="radio" name="mec-q-20" class="pi-radio-question2 radio-q" data-grade="4" value="0"> <label for="mec-q-20-1"></label> </td>
+                    <td> <input id="mec-q-20-2" type="radio" name="mec-q-20" class="pi-radio-question2 radio-q" data-grade="4" value="3"> <label for="mec-q-20-2"></label> </td>
+                    <td> <input id="mec-q-20-3" type="radio" name="mec-q-20" class="pi-radio-question2 radio-q" data-grade="4" value="4"> <label for="mec-q-20-3"></label> </td>
+                    <td> <input id="mec-q-20-4" type="radio" name="mec-q-20" class="pi-radio-question2 radio-q" data-grade="4" value="5"> <label for="mec-q-20-4"></label> </td>
+                </tr>
+    
+                <tr>
+                    <td colspan="10" class="small" style="border-left-color: transparent !important; border-bottom-color: transparent !important; text-align: left;"> <b>*Nota</b>: <b><ins>N</ins></b>ulo=0, <b><ins>I</ins></b>nsuficiente=3, <b><ins>S</ins></b>uficiente=4 y <b><ins>E</ins></b>xcelente=5 </td>
+                    <td colspan="2"> <b> Total </b> </td>
+                    <td> <input type="text" class="form-control pi-radio-total4" data-radio="0" readonly> </td>
+                    <td> <input type="text" class="form-control pi-radio-total4" data-radio="3" readonly> </td>
+                    <td> <input type="text" class="form-control pi-radio-total4" data-radio="4" readonly> </td>
+                    <td> <input type="text" class="form-control pi-radio-total4" data-radio="5" readonly> </td>
+                </tr>
+    
+                <tr>
+                    <td colspan="12" class="small" style="border-left-color: transparent !important; border-bottom-color: transparent !important; text-align: left;"> <b>*Nota</b>: Marque con una <b>X</b> </td>
+                    <td colspan="2"> <b> Puntuación: </b> </td>
+                    <td colspan="2"> <b> <input type="text" class="form-control calif4"> </b> </td>
+                </tr>
+    
+            </tbody>
+        </table>
+    
+        <br>
+    
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td colspan="7"> <b> Docente Evaluador </b> </td>
+                    <td> <b> Fecha: </b> </td>
+                    <td colspan="2"> <input type="date" class="form-control"> </td>
+                </tr>
+                <tr>
+                    <td> <b> Nombre: </b> </td>
+                    <td colspan="9"> <input type="text" class="form-control" style="text-align: left;"> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Firma: </b> </td>
+                    <td colspan="8"> <input type="text" class="form-control" readonly> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Observaciones: </b> </td>
+                    <td colspan="8"> <textarea class="form-control" rows="3"></textarea> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Recomendaciones: </b> </td>
+                    <td colspan="8"> <textarea class="form-control" rows="3"></textarea> </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <br>
+    
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td colspan="7"> <b> Asesor del Proyecto </b> </td>
+                    <td> <b> Fecha: </b> </td>
+                    <td colspan="2"> <input type="date" class="form-control"> </td>
+                </tr>
+                <tr>
+                    <td> <b> Nombre: </b> </td>
+                    <td colspan="9"> <input type="text" class="form-control" style="text-align: left;"> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <b> Firma: </b> </td>
+                    <td colspan="8"> <input type="text" class="form-control" readonly> </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <small> <i class="small"> <b>*Nota</b>: La lectura y análisis por parte del Asesor de Proyecto es para fines de retroalimentación al cuerpo estudiantil y no con fines punitivos. </i> </small>
+    
+    </div>
+
+    <div style="width: 10%; display: block; margin: auto; margin-top: 32px; margin-top: 20px;">
+        <div class="impr">
+            <button class="btn btn-lg btn-block bttn" onclick="window.print()">Imprimir</button>
+        </div>
+    </div>
+
+    <br> <br> <br>
+
+    <script>
+        // Código del modo oscuro
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        const toggleSwitch = document.getElementById('darkModeToggle');
+
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Estudios</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="plandeEstudios.css">
+    <link rel="stylesheet" href="plandeestudiosContenido.css">
+    <link rel="stylesheet" href="plandeEstudiosDarkMode.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- Estilos personalizados -->
+    <style>
+
+
+/* Asegurarse de que el contenedor principal ocupe más espacio */
+.container123 {
+    width: 80%;  /* Ocupa el 80% del ancho de la página, puedes ajustarlo */
+    padding: 20px;  /* Agrega más padding para que tenga espacio alrededor */
+    margin: 0 auto;  /* Centra el contenedor horizontalmente */
+}
+
+      
+
+
+
+#contenedor-plantillas {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+#contenedor-plantillas h3 {
+  text-align: center;
+  color: #007c33;
+  margin-bottom: 10px;
+}
+
+.contenedor-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.cabecera-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.tab-plantilla {
+  padding: 8px 12px;
+  background: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tab-plantilla.activa {
+  background: #007c33;
+  color: white;
+}
+
+.cerrar-tab {
+  margin-left: 5px;
+  color: red;
+  cursor: pointer;
+}
+
+.contenido-tabs {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+}
+
+.contenido-tab {
+  display: none;
+}
+
+.contenido-tab.activo {
+  display: block;
+}
+
+.item-plantilla {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  background: white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item-plantilla img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.item-plantilla button {
+  margin-top: 8px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+
+<body>
+     <!-- Barra lateral -->
+     <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+ <!-- Contenedor Inicial -->
+ <div class="customrow">
+    <div class="logos">
+            
+        <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2>  
+</div>
+<br><br><br> 
+    <div class="titleCartaasgn">
+        <h2 class="texto">Plan de Estudios</h2>
+    </div>
+    <!-- Modo oscuro -->
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+    </label>
+
+
+
+    <!-- Contenedor principal -->
+    <div class="container123">
+
+<div id="contenedor-plantillas">
+    <h3>Plantillas Guardadas</h3>
+    <div class="contenedor-tabs">
+        <div class="cabecera-tabs" id="tabs-plantillas">
+            <button id="nueva-tab" class="tab-plantilla">+ Nueva</button>
+        </div>
+        <div class="contenido-tabs" id="contenido-plantillas">
+            <!-- Aquí se mostrará el contenido de cada pestaña -->
+        </div>
+    </div>
+</div>
+
+        
+        <!-- Contenido de la aplicación -->
+        <div class="custom-row justify-content-center" style="max-width: 100%;">
+            <!-- Columna 1: Formulario -->
+            <div class="col-md-4">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label><strong>Periodo:</strong></label>
+                        <select id="periodo">
+                            <option value="">Cargando...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="anio">Año Académico:</label>
+                        <input type="number" id="anio" onchange="actualizarFooter()" placeholder="Ingrese el año académico">
+                    </div>
+                    <div class="form-group">
+                        <label for="nivel">Nivel:</label>
+                        <select id="nivel" onchange="actualizarInformacionCarrera()">
+                            <option value="seleccionar">Selecciona el Nivel</option>
+                            <option value="TSU">TSU</option>
+                            <option value="Ing">Ingeniería</option>
+                            <option value="Lic">Licenciatura</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="turno">Turno:</label>
+                        <select id="turno">
+                            <option value="seleccionar">Selecciona el Turno</option>
+                            <option value="Matutino">Matutino</option>
+                            <option value="Vespertino">Vespertino</option>
+                            <option value="Nocturno">Nocturno</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="programa_educativo">Programa Educativo:</label>
+                        <input type="text" id="programa_educativo" onchange="actualizarInformacionCarrera()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cuatrimestre">Grado:</label>
+                        <select id="cuatrimestre">
+                            <option value="seleccionar">Selecciona el Cuatrimestre</option>
+                            <option value="1">1°</option>
+                            <option value="2">2°</option>
+                            <option value="3">3°</option>
+                            <option value="4">4°</option>
+                            <option value="5">5°</option>
+                            <option value="6">6°</option>
+                            <option value="7">7°</option>
+                            <option value="8">8°</option>
+                            <option value="9">9°</option>
+                            <option value="10">10°</option>
+                            <option value="11">11°</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="programa">Área de Conocimiento:</label>
+                        <input type="text" id="programa">
+                    </div>
+                    <div class="form-group">
+                        <label for="asignatura">Asignatura:</label>
+                        <input type="text" id="asignatura">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horas_total">Total de Horas:</label>
+                        <input type="number" id="horas_total">
+                    </div>
+
+                    <button type="button" id="btn-agregar-asignatura" class="btn btn-primary">Agregar Asignatura</button>
+                    <br><br>
+                    <button class="btn btn-primary" onclick="imprimirPagina()">Imprimir</button>
+                    <br><br>
+                    <!-- Botón "Guardar Plantilla" añadido directamente en HTML -->
+                    <button class="btn btn-primary" id="btn-guardar-plantilla" onclick="guardarPlanDeEstudiosComoImagen()">Guardar Plantilla</button>
+
+
+                </div>
+            </div>
+
+            <!-- Columna 2: Tabla -->
+            <div class="col-md-8">
+                <div class="image123">
+                    <img src="../assets/logout.png" alt="" height="100px" width="190px">
+                </div>
+                <!-- Este es el encabezado donde se muestra la información -->
+                <div class="text-center" id="informacion-carrera">
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead id="tabla-header">
+                            <tr>
+                                <th>Áreas del Conocimiento</th>
+                                <th>1°</th>
+                                <th>2°</th>
+                                <th>3°</th>
+                                <th>4°</th>
+                                <th>5°</th>
+                                <th>6°</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-body"></tbody>
+                    </table>
+                </div>
+
+                <!-- Sección pie de página -->
+                <div id="footer" class="footer d-flex justify-content-between">
+                    <p><strong>PLAN DE ESTUDIOS VIGENTE EN SEPTIEMBRE</strong><span id="anio-footer"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="plandeestudios.js"></script>
+</body>
+</html>

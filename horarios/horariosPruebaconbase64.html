@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir y Buscar PDF</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        input[type="file"] {
+            margin-top: 20px;
+        }
+
+        .search-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #search-input {
+            padding: 12px 40px;
+            width: 100%;
+            max-width: 350px;
+            border-radius: 25px;
+            border: 2px solid #ddd;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #search-input:focus {
+            border-color: #007BFF;
+        }
+
+        .search-icon, .clear-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #search-icon {
+            left: 15px;
+        }
+
+        .clear-icon {
+            right: 15px;
+            display: none;
+        }
+
+        #search-input:focus + #clear-search {
+            display: block;
+        }
+
+        #pdf-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 5px 0;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #e2e2e2;
+        }
+
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+
+        #pdf-viewer {
+            margin-top: 30px;
+            display: none;
+            position: relative;
+        }
+
+        embed {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #close-btn {
+            background-color: red;
+            margin-top: 10px;
+        }
+
+        #close-btn:hover {
+            background-color: darkred;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Subir y Buscar PDF</h1>
+
+        <!-- Formulario para subir el archivo -->
+        <input type="file" id="file-input" accept=".pdf">
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar PDF...">
+            <span id="clear-search" class="clear-icon">&#10006;</span>
+            <span id="search-icon" class="search-icon">&#128269;</span>
+        </div>
+
+        <!-- Área para visualizar los documentos PDF -->
+        <ul id="pdf-list"></ul>
+        <button class="delete-btn" onclick="clearPdfList()">Eliminar todos</button>
+
+
+        <!-- Vista previa del PDF -->
+        <div id="pdf-viewer">
+            <embed id="pdf-preview" type="application/pdf" />
+            <button id="download-btn" style="display:none;">Descargar</button>
+            <button id="close-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function loadFilesFromLocalStorage() {
+        const pdfList = document.getElementById('pdf-list');
+        pdfList.innerHTML = '';
+
+        Object.keys(localStorage).forEach((key) => {
+            if (key.endsWith('.pdf')) {
+                const li = document.createElement('li');
+                
+                // Nombre del archivo con enlace
+                const link = document.createElement('a');
+                link.href = "#";
+                link.textContent = key;
+                link.style.textDecoration = "none";
+                link.style.color = "blue";
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    showPDFFromBase64(key, localStorage.getItem(key));
+                };
+
+                // Botón de eliminar
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Eliminar';
+                deleteBtn.classList.add('delete-btn');
+                deleteBtn.onclick = () => deleteFile(key);
+
+                li.appendChild(link);
+                li.appendChild(deleteBtn);
+                pdfList.appendChild(li);
+            }
+        });
+    }
+
+    function showPDFFromBase64(fileName, base64Data) {
+        const viewer = document.getElementById('pdf-viewer');
+        const pdfPreview = document.getElementById('pdf-preview');
+        const downloadBtn = document.getElementById('download-btn');
+
+        pdfPreview.src = base64Data;
+        viewer.style.display = 'block';
+        downloadBtn.style.display = 'block';
+        downloadBtn.onclick = () => downloadPDF(fileName, base64Data);
+    }
+
+    function deleteFile(fileName) {
+        localStorage.removeItem(fileName);
+        loadFilesFromLocalStorage();
+    }
+
+    function downloadPDF(fileName, base64Data) {
+        const link = document.createElement('a');
+        link.href = base64Data;
+        link.download = fileName;
+        link.click();
+    }
+
+    document.getElementById('file-input').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file && file.type === 'application/pdf') {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                localStorage.setItem(file.name, e.target.result);
+                loadFilesFromLocalStorage();
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Por favor sube un archivo PDF.');
+        }
+    });
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+        document.getElementById('pdf-viewer').style.display = 'none';
+        document.getElementById('download-btn').style.display = 'none';
+    });
+
+    loadFilesFromLocalStorage();
+
+
+        // Función de búsqueda de archivos PDF
+        document.getElementById('search-input').addEventListener('input', () => {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filteredFiles = [];
+            Object.keys(localStorage).forEach((fileName) => {
+                if (fileName.toLowerCase().includes(query)) {
+                    filteredFiles.push(fileName);
+                }
+            });
+            displayFilteredFiles(filteredFiles);
+        });
+
+        // Mostrar los archivos filtrados
+        function displayFilteredFiles(filteredFiles) {
+            const pdfList = document.getElementById('pdf-list');
+            pdfList.innerHTML = ''; // Limpiar la lista de archivos
+            filteredFiles.forEach(fileName => {
+                const base64Data = localStorage.getItem(fileName);
+                const li = document.createElement('li');
+                li.textContent = fileName;
+                li.addEventListener('dblclick', () => showPDFFromBase64(fileName, base64Data));
+                pdfList.appendChild(li);
+            });
+        }
+
+        // Limpiar la búsqueda
+        document.getElementById('clear-search').addEventListener('click', () => {
+            document.getElementById('search-input').value = '';
+            loadFilesFromLocalStorage();
+            document.getElementById('clear-search').style.display = 'none';
+        });
+
+        // Mostrar el botón de limpiar búsqueda
+        document.getElementById('search-input').addEventListener('focus', () => {
+            const clearIcon = document.getElementById('clear-search');
+            clearIcon.style.display = 'block';
+        });
+
+        // Cerrar el visor de PDF
+        document.getElementById('close-btn').addEventListener('click', () => {
+            const viewer = document.getElementById('pdf-viewer');
+            viewer.style.display = 'none';
+            document.getElementById('download-btn').style.display = 'none';
+        });
+
+        // Al cargar la página, mostrar los archivos almacenados
+        loadFilesFromLocalStorage();
+    </script>
+</body>
+</html>

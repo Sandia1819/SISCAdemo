@@ -1,0 +1,357 @@
+
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilos básicos */
+.modal {
+    display: none; /* Por defecto, el modal está oculto */
+    position: fixed;
+    z-index: 1050; /* Se asegura que el modal se muestre encima del contenido */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    overflow: auto; /* Permite desplazarse si el modal es más grande */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    font-size: 1.2rem;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 10px;
+    text-align: right;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.modal-dialog {
+    position: relative;
+    margin: 10% auto;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out;
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilos para los inputs dentro del modal */
+.modal-body .form-control {
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #008f39; /* Borde verde */
+    padding: 12px; /* Relleno adecuado */
+    font-size: 1rem; /* Tamaño de texto adecuado */
+    width: 92%; /* Asegura que los inputs ocupen todo el ancho disponible */
+    transition: border-color 0.2s ease; /* Transición suave al hacer focus */
+}
+
+/* Estilo cuando los inputs están en foco (cuando el usuario hace click en ellos) */
+.modal-body .form-control:focus {
+    border-color: #ff8000; /* Borde naranja al hacer focus */
+    outline: none; /* Elimina el contorno predeterminado */
+}
+
+/* Estilo para las etiquetas */
+.modal-body .form-label {
+    font-size: 1rem; /* Tamaño de texto */
+    color: #333; /* Color de texto */
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
+}
+
+/* Espaciado entre los inputs */
+.modal-body .mb-3 {
+    margin-bottom: 15px; /* Espaciado entre los campos */
+}
+
+/* Botones en el footer del modal */
+.modal-footer .btn {
+    font-size: 1rem;
+    padding: 10px 20px; /* Relleno para que los botones sean más grandes */
+    border-radius: 8px; /* Bordes redondeados */
+    transition: background-color 0.3s, transform 0.2s ease-in-out; /* Efectos suaves en el hover */
+}
+
+/* Botón de cancelar */
+.modal-footer .btn-secondary {
+    background-color: #ff8000; /* Naranja */
+    border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #be5f00; /* Naranja más oscuro */
+    transform: scale(1.05); /* Efecto de expansión al pasar el mouse */
+}
+
+/* Botón de guardar */
+.modal-footer .btn-primary {
+    background-color: #008f39; /* Verde */
+    border: none;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #005a24; /* Verde más oscuro */
+    transform: scale(1.05); /* Efecto de expansión al pasar el mouse */
+}
+
+/* Estilos para el <select> dentro del modal */
+.modal-body select.form-control {
+    width: 98%; /* Asegura que el select ocupe el 95% del ancho disponible */
+    padding: 12px; /* Añade relleno para un mejor aspecto */
+    border-radius: 5px; /* Bordes redondeados */
+    border: 1px solid #008f39; /* Borde verde */
+    font-size: 1rem; /* Tamaño de texto adecuado */
+    transition: border-color 0.2s ease; /* Transición suave al hacer focus */
+}
+
+/* Estilo cuando el <select> está en foco */
+.modal-body select.form-control:focus {
+    border-color: #ff8000; /* Borde naranja al hacer focus */
+    outline: none; /* Elimina el contorno predeterminado */
+}
+
+
+
+/* Estilos básicos */
+.modal-body .input-group {
+    position: relative; /* Necesario para posicionar el botón del ojo dentro del input */
+}
+
+/* El botón con el ojo debe estar dentro del input */
+.modal-body #togglePassword {
+    position: absolute;
+    right: 10px; /* Coloca el botón a la derecha del campo de texto */
+    top: 50%;
+    transform: translateY(-50%); /* Centra el botón verticalmente */
+    background: transparent; /* Hace el fondo transparente */
+    border: none; /* Elimina el borde */
+    color: #000; /* Color del icono */
+    cursor: pointer; /* Cambia el cursor a pointer */
+}
+
+/* Estilo del icono (ojo) */
+.modal-body #togglePassword i {
+    font-size: 18px; /* Ajusta el tamaño del icono */
+}
+
+/* Cambia el estilo de los campos cuando tienen el foco */
+.modal-body .form-control:focus {
+    border-color: #ff8000; /* Borde naranja al hacer focus */
+    outline: none; /* Elimina el contorno predeterminado */
+}
+
+/* Estilos para el input de la contraseña */
+.modal-body #adminPassword {
+    padding-right: 35px; /* Añade espacio a la derecha para que no se solapen el campo de texto y el icono */
+    width: 92%;
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Fondo y diseño del formulario */
+#formDocente {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados para el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Colores para los botones generales */
+.btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-secondary {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    margin-right: 10px; /* Espacio entre los botones */
+}
+
+.btn-primary {
+    background-color: #ff8000; /* Naranja */
+    border: none;
+    text-align: center; /* Centrado */
+}
+
+
+.btn-primary:hover {
+    background-color: #e76f00; /* Naranja más oscuro */
+    transform: scale(1.05);
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Mejoras visuales en la tabla */
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Efecto hover para las filas de la tabla */
+.table-striped tbody tr:hover {
+    background-color: #e9f7e7; /* Fondo suave en hover */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+.main-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #008f39;
+    padding: 40px;
+    max-width: 800px;
+    margin: 80px auto;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-dark {
+    background-color: #008f39;
+    color: white;
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para el botón de cierre */
+.btn-close {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    color: white; /* Cruz blanca */
+    font-size: 2rem; /* Tamaño de la cruz */
+    cursor: pointer;
+    padding: 0.5rem; /* Tamaño del área del botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Hover para el botón de cierre */
+.btn-close:hover {
+    color: #ffc107; /* Color amarillo para la cruz al hacer hover */
+    background-color: rgba(255, 193, 7, 0.2); /* Fondo amarillo claro */
+    border-radius: 50%; /* Redondear los bordes del botón */
+}
+
+
+/* Estilos para el hover en los inputs */
+.form-control:hover,
+.modal-body input:hover,
+.modal-body select:hover {
+    border-color: #28a745; /* Verde cuando se pasa el mouse */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilo para el label */
+.labelPeriodo {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  
+  /* Estilo para el select */
+  .selectPeriodo {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 300px; /* Puedes ajustar el tamaño según prefieras */
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Cambio de color en el borde y fondo al hacer hover */
+  .selectPeriodo:hover {
+    border-color: #007bff;
+    background-color: #eaf4ff;
+  }
+  
+  /* Estilo para el option */
+  .selectPeriodo option {
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Opcional: efecto de enfoque (focus) */
+  .selectPeriodo:focus {
+    border-color: #0056b3;
+    background-color: #eaf4ff;
+    outline: none;
+  }
+  

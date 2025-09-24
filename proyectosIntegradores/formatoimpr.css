@@ -1,0 +1,174 @@
+ /* Estilos de impresión */
+@media print {
+    /* Ocultar todo el contenido excepto el contenedor de impresión */
+    body, .hojaimpresion.no-print {
+        visibility: hidden !important;
+    }
+
+    .impresion, .impresion * {
+        visibility: visible; /* Mostrar solo el contenedor de impresión */
+    }
+
+    /* Estilo para el contenedor de impresión */
+    .impresion {
+
+        width: 100%; /* Ocupar todo el ancho disponible */
+        margin: 0; /* Eliminar márgenes */
+        background-color: white;
+        box-shadow: none;
+        border: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden; /* Evita contenido que desborde la página */
+
+        max-height: 100vh; /* Altura máxima de la vista */
+        page-break-after: avoid; /* Evita saltos de página innecesarios */
+    
+        
+          }
+
+          html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Elimina contenido sobrante */
+        }
+                 
+
+        .signature, .footer, .footer-line-container {
+            margin-top: 0;
+            padding: 0;
+            
+        }
+
+            /* Mostrar solo los elementos dentro de .table-container */
+    .table-container, .table-container * {
+        visibility: visible;  /* Hace visible todo el contenido dentro de la tabla */
+    }
+
+    /* Controlar el tamaño y márgenes de la página de impresión */
+    @page {
+        size: A4; /* Aseguramos que se imprima en tamaño A4 */
+        margin: 0;
+        box-sizing: border-box;
+           }
+
+    /* Ocultar los selects en la impresión */
+    .form-group select {
+        display: none;
+    }
+
+    /* Estilo para mostrar el valor seleccionado */
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2px;
+        margin-left: 50px;
+    }
+
+    .form-group h3 {
+        margin-right: 10px;
+        list-style-type: disc;
+        display: list-item;
+        margin: 0;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    /* Mostrar el valor seleccionado */
+    .form-group span {
+        padding-left: 8px;
+        font-size: 14px;
+    }
+
+ /* Mejorar la presentación de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+td input {
+    text-align: center;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: inherit;
+    background: transparent;
+    height: 100%;
+}
+
+/* Aseguramos que los botones y otros controles de formulario no se impriman */
+button, input, select {
+    display: none;
+}
+
+/* Estilos de impresión */
+@media print {
+    /* Aseguramos que solo el texto de los inputs se imprima, no los campos */
+    td input {
+        display: inline-block;  /* Asegura que el texto se vea como parte del contenido */
+        background: transparent; /* Elimina el fondo del input */
+        border: none;            /* Elimina el borde del input */
+        width: auto;             /* Asegura que el texto no esté restringido */
+        padding: 0;              /* Elimina el padding para que el texto sea lo único visible */
+        font-size: inherit;      /* Usa el mismo tamaño de fuente para el texto */
+        height: auto;            /* Elimina el alto del campo */
+    }
+
+    /* Reemplaza el texto dentro del input por su valor */
+    td input::before {
+        content: attr(value); /* Muestra el valor del campo input como texto */
+    }
+
+    /* Ocultar el botón de impresión */
+    .impr {
+        display: none; /* Oculta el botón de impresión al imprimir */
+    }
+
+    /* Asegúrate de que el contenido esté visible */
+    body * {
+        visibility: hidden;
+    }
+
+    .table-container, .table-container * {
+        visibility: visible; /* Hace visible solo el contenido dentro de la tabla */
+    }
+}
+
+
+
+
+    .signature {
+        margin-top: 90px !important; /* Ajusta este valor según lo necesario */
+    }
+
+    .signature .line {
+        margin-top: 30px; /* Ajusta si necesitas que la línea también baje */
+    }
+
+    .footer {
+        margin-top: 20px; /* Para situar un poco más abajo el footer */
+    }
+
+    .footer-line-container {
+        margin-top: 30px; /* Ajusta el valor según lo necesario */
+    }
+
+
+
+    .impr {
+        display: none; /* Oculta el botón al imprimir */
+    }
+
+}

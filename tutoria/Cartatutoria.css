@@ -1,0 +1,92 @@
+/*¡¡¡FORMATO DIV PADRE: HOJAIMPRESION E HIJO: HOJACONTAINER!!!*/
+.lineorg:after {
+    content: '';                      /* Sin contenido, solo para el efecto */
+    display: block;                   /* Hace que la línea ocupe todo el ancho */
+    width: 100%;                       /* La línea que se distribuye en el ancho de la página */
+    height: 4px;                      /* Altura de la línea */
+    background-color: #ff8000;        /* Color naranja */
+    margin: 10px 0 0;                 /* Espacio encima de la línea */
+}
+
+/* Estilos para el panel de formulario a la izquierda */
+.form-panel {
+    width: 300px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #008f39;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-left: 50px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.program-section{
+    margin-bottom: 25px;
+}
+.program-container {
+    
+    border: 1px solid #008f39;
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #f9f9f9;
+}
+
+.program-container p {
+    margin-bottom: 8px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+.tutores-section {
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.tutor-container {
+    border: 1px solid #008f39;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.tutor-item {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.tutor-item:hover {
+    background-color: #f0f0f0;
+}
+/* Estilos para el contenedor de contenido a la derecha */
+.content-container {
+    margin-left: 50px;
+    flex: 1;
+    padding: 20px;
+    border: 2px solid transparent; /* Borde transparente para mantener la misma estructura */
+    box-sizing: border-box;
+}
+
+/* Estilos para el contenedor principal que envuelve ambos paneles */
+.main-container {
+    margin-left: 30px;
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    align-items: stretch; /* Esto hace que ambos contenedores se estiren para ocupar la misma altura */
+}

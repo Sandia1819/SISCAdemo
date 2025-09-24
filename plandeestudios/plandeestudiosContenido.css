@@ -1,0 +1,172 @@
+/* Estilo para la fila con la clase .custom-row */
+.custom-row {
+    display: flex;                         /* Usa flexbox para la fila */
+    justify-content: center;               /* Centra los elementos horizontalmente */
+    align-items: flex-start;               /* Alinea los elementos verticalmente al principio */
+    padding: 20px;                         /* Añadir espacio alrededor de la fila */
+    height: 100%;                           /* Ocupa todo el alto disponible */
+    max-width: 100%;                        /* Hace que la fila ocupe todo el ancho disponible */
+}
+
+/* Estilo para las columnas */
+.col-md-4, .col-md-8 {
+    display: flex;
+    flex-direction: column;            /* Asegura que los elementos dentro de la columna estén en una columna */
+    justify-content: flex-start;       /* Alinea el contenido al principio de la columna */
+    height: auto;                      /* Elimina el alto fijo */
+    margin: 0 10px;                    /* Añadir margen para separación entre columnas */
+}
+
+.col-md-8{
+    width: 1000px;
+}
+
+/* Estilo para el encabezado h1 */
+h1 {
+    text-align: center;                /* Centra el texto del h1 */
+    font-size: 36px;                   /* Tamaño adecuado para el título */
+    font-weight: bold;                 /* Texto en negrita */
+    color: #008f39;                    /* Color verde */
+    margin-top: 0;                     /* Elimina margen superior */
+}
+
+/* Formulario */
+.form-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 0;                    /* Elimina cualquier margen superior */
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #008f39;
+}
+
+select, button {
+    width: 98%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #008f39;
+}
+
+input{
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #008f39;
+}
+
+button {
+    background-color: #008f39;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #008f39;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff8000;
+    border-color: #ff8000;
+    box-shadow: 0 0 10px #ff8000, 0 0 20px #ff8000;
+}
+
+/* Para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #008f39;
+    color: white;
+}
+
+.total-horas {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+/* Pie de página */
+.footer {
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+#informacion-carrera {
+    display: flex;                       /* Usa flexbox */
+    flex-direction: column;              /* Organiza los elementos en columna */
+    justify-content: center;             /* Centra los elementos verticalmente */
+    align-items: center;                 /* Centra los elementos horizontalmente */
+    text-align: center;                  /* Centra el texto dentro de los elementos */
+    padding: 20px;                       /* Añadir espacio alrededor */
+    padding-left: 100px;                  /* Añadir margen izquierdo */
+    padding-right: 100px;                 /* Añadir margen derecho */
+    margin-top: -100px;
+}
+
+#informacion-carrera p {
+    margin: 5px 0;                       /* Añadir margen entre los párrafos */
+    font-size: 18px;                     /* Ajusta el tamaño del texto si es necesario */
+    color: #000000;                      /* Color negro */
+}
+
+/* Añadimos un margen extra para la línea con el programa educativo */
+#informacion-carrera p:nth-child(2) {
+    margin-top: 0;                      /* Elimina el margen superior en la segunda línea */
+    margin-bottom: 5px;                 /* Añade un pequeño margen inferior */
+}
+
+#informacion-carrera span {
+    margin-left: 1px;                   /* Añadir espacio entre "TÉCNICO SUPERIOR UNIVERSITARIO EN" y el nombre del programa */
+}
+
+
+/* Añadir espacio entre el texto "PLAN DE ESTUDIOS VIGENTE EN SEPTIEMBRE" y el año */
+#anio-footer {
+    margin-left: 5px;                   /* Añadir espacio entre el texto y el año */
+}
+
+/* Si deseas que el borde cambie a naranja también en los botones con la clase .btn-primary */
+.btn-primary {
+    background-color: #008f39;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #008f39;
+    transition: all 0.3s ease;
+    width: 220px;
+}
+
+.btn-primary:hover {
+    background-color: #ff8000;
+    border-color: #ff8000;
+    box-shadow: 0 0 10px #ff8000, 0 0 20px #ff8000;
+}
+

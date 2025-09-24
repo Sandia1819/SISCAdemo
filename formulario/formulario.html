@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="form.css">
+
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #008f39;
+            --primary-light: #D1C4E9;
+          
+            --border-color: #DADCE0;
+            --text-color: #202124;
+            --placeholder-color: #70757A;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #F0EBF8;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .formuu {
+       
+  display: flex;
+  flex-direction: column; /* Organiza los elementos verticalmente */
+  align-items: center;
+  width: 100%;
+  /* Quita height: 100vh si no necesitas que ocupe toda la pantalla */
+}
+
+
+        /* La clase formuu ahora será el contenedor principal del formulario */
+        .formuu {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto; /* Permite desplazamiento vertical */
+            max-height: 100vh; /* Altura máxima para asegurar el scroll */
+        }
+
+        /* Barra de navegación lateral */
+        .side-nav {
+            width: 200px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .side-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .side-nav li {
+            margin-bottom: 10px;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .side-nav a:hover {
+            background-color: #e9ecef;
+        }
+
+        .side-nav a.active {
+            background-color: #4285f4;
+            color: white;
+        }
+
+        /* Contenedor principal que incluye el formulario y la navegación */
+        .main-container {
+            display: flex;
+            width: 100%;
+        }
+
+        
+        .backgrounfondoinicio {
+    position: fixed;
+    top: 22%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('fondoinicio.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.7; /* 50% de opacidad solo en la imagen */
+    z-index: -1;
+}
+
+        .container {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+        
+        .vista-selector {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .btn-switch {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-switch:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            border-top: 10px solid var(--primary);
+            padding: 24px;
+        }
+        
+        .form-title {
+            border: none;
+            font-size: 24px;
+            font-weight: 400;
+            width: 100%;
+            padding: 0 0 8px 0;
+            outline: none;
+        }
+        
+        .form-description {
+            border: none;
+            font-size: 14px;
+            width: 100%;
+            padding: 0;
+            outline: none;
+            color: var(--placeholder-color);
+        }
+        
+        .card-body {
+            padding: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .question-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .required {
+            color: #d93025;
+            margin-left: 4px;
+        }
+        
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 8px 0;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .radio-group, .scale-group {
+            margin-top: 8px;
+        }
+        
+        .radio-option, .scale-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .radio-option input, .scale-option input {
+            margin-right: 10px;
+        }
+        
+        .scale-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 250px;
+        }
+        
+        .builder-controls {
+            margin-top: 24px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 8px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .btn-danger {
+            background-color: #f5f5f5;
+            color: #d93025;
+        }
+        
+        .btn-danger:hover {
+            background-color: #fce8e6;
+        }
+        
+        .builder-section {
+            margin-top: 32px;
+        }
+        
+        .new-question-form {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .option-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .option-input input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            outline: none;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 32px;
+        }
+        
+        .success-message h2 {
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 24px;
+            color: var(--placeholder-color);
+            font-size: 12px;
+        }
+
+        
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+    </style>
+</head>
+<body>
+         <!-- Barra lateral -->
+         <div class="sidebar">
+            <ul> 
+                <li class="logo-item">
+                    <a href="../indexadm.html">
+                        <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                    </a>
+                </li>
+    
+             
+                <!-- Menú de la barra lateral -->
+                <li>
+                    <a href="../periodos/periodos.html">
+                        <i class="fa fa-bookmark"></i>
+                        <span class="menu-item">Periodos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../plandeestudios/plandeEstudios.html">
+                        <i class="fa fa-calendar"></i>
+                        <span class="menu-item">Plan de Estudios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                        <i class="fa fa-file-alt"></i>
+                        <span class="menu-item">Carta de Asignación</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../grupos/grupos.html">
+                        <i class="fa fa-book"></i>
+                        <span class="menu-item">Grupos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../docentes/docentes.html">
+                        <i class="fa fa-user"></i>
+                        <span class="menu-item">Docentes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../carga/carga.html">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="menu-item">Carga</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../tutoria/tutoria.html">
+                        <i class="fa fa-users"></i>
+                        <span class="menu-item">Tutoría</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../reportes/reportes.html">
+                        <i class="fa fa-chart-line"></i>
+                        <span class="menu-item">Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                        <i class="fa fa-folder"></i>
+                        <span class="menu-item">Proyectos Integradores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../horarios/horarios.html">
+                        <i class="fa fa-clock"></i>
+                        <span class="menu-item">Horarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../prefectura/prefectura.html">
+                        <i class="fa fa-shield-alt"></i>
+                        <span class="menu-item">Prefectura</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- Contenedor Inicial -->
+        <div class="customrow">
+            <div class="logos">
+                    
+                <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+                <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+           
+            </div>   
+            <h2 class="texto">Sistema de Carga Académica v1.0</h2>  
+        </div>
+    <br><br><br> 
+        <div class="titleCartaasgn">
+            <h2 class="texto">Formulario</h2>
+        </div>
+        <!-- Modo oscuro -->
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+
+    <div class="container">
+        <div class="vista-selector">
+            <button id="switchViewBtn" class="btn-switch">Cambiar a vista del Receptor</button>
+        </div>
+        
+
+            <br>
+            <div class="backgrounfondoinicio">
+
+                <div class="main-container">
+                    <!-- Tu formulario actual -->
+                    <div class="formuu">
+                        <div class="navbar">
+                            <!-- Tu barra de navegación superior sigue aquí -->
+                        </div>
+            
+                        <!-- Vista del Creador -->
+                        <div id="creadorView">
+                            <!-- Formulario Header -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <input type="text" id="formTitle" class="form-title" value="Formulario sin título" placeholder="Título del formulario">
+                                    <input type="text" id="formDescription" class="form-description" value="Descripción del formulario" placeholder="Descripción del formulario">
+                                </div>
+                            </div>
+                            
+                            <!-- Lista de Preguntas -->
+                            <div id="questionsList"></div>
+                            
+                            <!-- Agregar Nueva Pregunta -->
+                            <div class="new-question-form">
+                                <h3>Agregar nueva pregunta</h3>
+                                <div class="form-group">
+                                    <input type="text" id="newQuestionText" class="form-control" placeholder="Escribe la pregunta">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="question-header">
+                                        <label>Tipo de pregunta:</label>
+                                        <label>
+                                            <input type="checkbox" id="newQuestionRequired"> Obligatorio
+                                        </label>
+                                    </div>
+                                    <select id="newQuestionType" class="form-control">
+                                        <option value="texto">Texto</option>
+                                        <option value="email">Email</option>
+                                        <option value="seleccion">Selección</option>
+                                        <option value="escala">Escala (1-5)</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="optionsContainer" class="form-group hidden">
+                                    <div class="question-header">
+                                        <label>Opciones:</label>
+                                    </div>
+                                    <div id="optionsList"></div>
+                                    <button id="addOptionBtn" class="btn btn-secondary">+ Agregar opción</button>
+                                </div>
+                                
+                                <div class="builder-controls">
+                                    <button id="addQuestionBtn" class="btn btn-primary">Agregar pregunta</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vista del Receptor -->
+                        <div id="receptorView" class="hidden">
+                            <!-- Formulario para completar -->
+                            <div id="formToFill">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1 id="displayTitle" class="form-title">Formulario sin título</h1>
+                                        <p id="displayDescription" class="form-description">Descripción del formulario</p>
+                                    </div>
+                                </div>
+                                
+                                <div id="questionsToAnswer"></div>
+                                
+                                <div class="builder-controls">
+                                    <button id="submitFormBtn" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Mensaje de éxito -->
+                            <div id="successMessage" class="card hidden">
+                                <div class="success-message">
+                                    <h2>¡Respuesta registrada!</h2>
+                                    <p>Gracias por completar este formulario.</p>
+                                    <button id="resetFormBtn" class="btn btn-primary">Completar otro formulario</button>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <footer>
+                            Formulario Estilo Google Forms - Creado con HTML, CSS y JavaScript
+                        </footer>
+                        <br><br><br>
+                    </div>
+          
+                    <!-- Barra de navegación lateral (añadida a la derecha) -->
+                    <div class="side-nav">
+                        <h3>Navegación</h3>
+                        <ul>
+                            <li><a href="#creadorView" class="active">Creador de formulario</a></li>
+                            <li><a href="#questionsList">Lista de preguntas</a></li>
+                            <li><a href="#newQuestionText">Añadir pregunta</a></li>
+                            <li><a href="#submitFormBtn">Enviar formulario</a></li>
+                        </ul>
+                        <hr>
+                        <h4>Tipos de preguntas</h4>
+                        <ul>
+                            <li><a href="#newQuestionType">Texto</a></li>
+                            <li><a href="#newQuestionType">Email</a></li>
+                            <li><a href="#newQuestionType">Selección</a></li>
+                            <li><a href="#newQuestionType">Escala (1-5)</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+</div>
+</div>
+<script>
+    // JavaScript para activar los enlaces de la navegación lateral
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.side-nav a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Remover clase active de todos los enlaces
+                navLinks.forEach(l => l.classList.remove('active'));
+                
+                // Añadir clase active al enlace clickeado
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
+    <script>
+
+
+        // Código del modo oscuro
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        const toggleSwitch = document.getElementById('darkModeToggle');
+
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+    </script>
+    <script>
+        // Estructura para almacenar el formulario
+        const formulario = {
+            titulo: 'Formulario sin título',
+            descripcion: 'Descripción del formulario',
+            preguntas: [
+                { id: 1, tipo: 'texto', pregunta: 'Nombre completo', requerido: true, opciones: [] },
+                { id: 2, tipo: 'email', pregunta: 'Correo electrónico', requerido: true, opciones: [] },
+                { id: 3, tipo: 'seleccion', pregunta: '¿Cómo nos conociste?', requerido: false, 
+                  opciones: ['Redes sociales', 'Amigos', 'Búsqueda web', 'Otro'] },
+                { id: 4, tipo: 'escala', pregunta: 'Califica nuestro servicio (1-5)', requerido: false, opciones: [] }
+            ]
+        };
+        
+        // Respuestas del formulario
+        let respuestas = {};
+        
+        // Vista actual
+        let vistaActual = 'creador';
+        
+        // Referencias a elementos del DOM
+        const creadorView = document.getElementById('creadorView');
+        const receptorView = document.getElementById('receptorView');
+        const switchViewBtn = document.getElementById('switchViewBtn');
+        const formTitle = document.getElementById('formTitle');
+        const formDescription = document.getElementById('formDescription');
+        const questionsList = document.getElementById('questionsList');
+        const questionsToAnswer = document.getElementById('questionsToAnswer');
+        const displayTitle = document.getElementById('displayTitle');
+        const displayDescription = document.getElementById('displayDescription');
+        const newQuestionText = document.getElementById('newQuestionText');
+        const newQuestionType = document.getElementById('newQuestionType');
+        const newQuestionRequired = document.getElementById('newQuestionRequired');
+        const addQuestionBtn = document.getElementById('addQuestionBtn');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const optionsList = document.getElementById('optionsList');
+        const addOptionBtn = document.getElementById('addOptionBtn');
+        const submitFormBtn = document.getElementById('submitFormBtn');
+        const formToFill = document.getElementById('formToFill');
+        const successMessage = document.getElementById('successMessage');
+        const resetFormBtn = document.getElementById('resetFormBtn');
+        
+        // Inicialización
+        function init() {
+            renderCreadorView();
+            setupEventListeners();
+        }
+        
+        // Configurar listeners de eventos
+        function setupEventListeners() {
+            // Cambiar vista
+            switchViewBtn.addEventListener('click', toggleView);
+            
+            // Actualizar título y descripción
+            formTitle.addEventListener('input', updateFormTitle);
+            formDescription.addEventListener('input', updateFormDescription);
+            
+            // Tipo de pregunta cambia
+            newQuestionType.addEventListener('change', toggleOptionsContainer);
+            
+            // Agregar opción
+            addOptionBtn.addEventListener('click', addOption);
+            
+            // Agregar pregunta
+            addQuestionBtn.addEventListener('click', addQuestion);
+            
+            // Enviar formulario
+            submitFormBtn.addEventListener('click', submitForm);
+            
+            // Resetear formulario
+            resetFormBtn.addEventListener('click', resetForm);
+        }
+        
+        // Cambiar entre vistas
+        function toggleView() {
+            if (vistaActual === 'creador') {
+                vistaActual = 'receptor';
+                creadorView.classList.add('hidden');
+                receptorView.classList.remove('hidden');
+                switchViewBtn.textContent = 'Cambiar a vista del Creador';
+                renderReceptorView();
+                formToFill.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+            } else {
+                vistaActual = 'creador';
+                creadorView.classList.remove('hidden');
+                receptorView.classList.add('hidden');
+                switchViewBtn.textContent = 'Cambiar a vista del Receptor';
+            }
+        }
+        
+        // Actualizar título del formulario
+        function updateFormTitle(e) {
+            formulario.titulo = e.target.value;
+            displayTitle.textContent = formulario.titulo;
+        }
+        
+        // Actualizar descripción del formulario
+        function updateFormDescription(e) {
+            formulario.descripcion = e.target.value;
+            displayDescription.textContent = formulario.descripcion;
+        }
+        
+        // Mostrar/ocultar contenedor de opciones
+        function toggleOptionsContainer() {
+            if (newQuestionType.value === 'seleccion') {
+                optionsContainer.classList.remove('hidden');
+                // Limpiar opciones existentes
+                optionsList.innerHTML = '';
+                // Agregar al menos una opción
+                addOption();
+            } else {
+                optionsContainer.classList.add('hidden');
+            }
+        }
+        
+        // Agregar una opción a la pregunta de selección
+        function addOption() {
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option-input';
+            
+            const optionInput = document.createElement('input');
+            optionInput.type = 'text';
+            optionInput.placeholder = `Opción ${optionsList.children.length + 1}`;
+            
+            optionDiv.appendChild(optionInput);
+            optionsList.appendChild(optionDiv);
+        }
+        
+        // Obtener opciones del formulario
+        function getOptions() {
+            const options = [];
+            const optionInputs = optionsList.querySelectorAll('input');
+            
+            optionInputs.forEach(input => {
+                if (input.value.trim() !== '') {
+                    options.push(input.value.trim());
+                }
+            });
+            
+            return options;
+        }
+        
+        // Agregar una nueva pregunta
+        function addQuestion() {
+            const questionText = newQuestionText.value.trim();
+            if (questionText === '') return;
+            
+            const newId = formulario.preguntas.length > 0 
+                ? Math.max(...formulario.preguntas.map(p => p.id)) + 1 
+                : 1;
+            
+            const newQuestion = {
+                id: newId,
+                tipo: newQuestionType.value,
+                pregunta: questionText,
+                requerido: newQuestionRequired.checked,
+                opciones: newQuestionType.value === 'seleccion' ? getOptions() : []
+            };
+            
+            // Validar que haya opciones para preguntas de selección
+            if (newQuestion.tipo === 'seleccion' && newQuestion.opciones.length === 0) {
+                alert('Debes agregar al menos una opción para preguntas de selección.');
+                return;
+            }
+            
+            formulario.preguntas.push(newQuestion);
+            renderCreadorView();
+            
+            // Limpiar formulario
+            newQuestionText.value = '';
+            newQuestionRequired.checked = false;
+            newQuestionType.value = 'texto';
+            optionsContainer.classList.add('hidden');
+            optionsList.innerHTML = '';
+        }
+        
+        // Eliminar una pregunta
+        function deleteQuestion(id) {
+            formulario.preguntas = formulario.preguntas.filter(p => p.id !== id);
+            renderCreadorView();
+        }
+        
+        // Renderizar vista del creador
+        function renderCreadorView() {
+            questionsList.innerHTML = '';
+            
+            formulario.preguntas.forEach(pregunta => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-body">
+                        <div class="question-header">
+                            <div class="question-text">
+                                ${pregunta.pregunta}
+                                ${pregunta.requerido ? '<span class="required">*</span>' : ''}
+                            </div>
+                            <button class="btn btn-danger" onclick="deleteQuestion(${pregunta.id})">
+                                Eliminar
+                            </button>
+                        </div>
+                        <div>
+                            <small>Tipo: ${pregunta.tipo}</small>
+                        </div>
+                        ${pregunta.tipo === 'seleccion' ? renderOptionsPreview(pregunta.opciones) : ''}
+                    </div>
+                `;
+                questionsList.appendChild(card);
+            });
+        }
+        
+        // Renderizar vista previa de opciones
+        function renderOptionsPreview(opciones) {
+            if (!opciones || opciones.length === 0) return '';
+            
+            let html = '<div class="radio-group">';
+            opciones.forEach(opcion => {
+                html += `
+                    <div class="radio-option">
+                        <input type="radio" disabled>
+                        <label>${opcion}</label>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            return html;
+        }
+        
+        // Renderizar vista del receptor
+        function renderReceptorView() {
+            displayTitle.textContent = formulario.titulo;
+            displayDescription.textContent = formulario.descripcion;
+            questionsToAnswer.innerHTML = '';
+            respuestas = {};
+            
+            formulario.preguntas.forEach(pregunta => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                let inputHtml = '';
+                
+                switch (pregunta.tipo) {
+                    case 'texto':
+                        inputHtml = `
+                            <input type="text" class="form-control" 
+                                id="respuesta-${pregunta.id}" 
+                                ${pregunta.requerido ? 'required' : ''} 
+                                onchange="updateRespuesta(${pregunta.id}, this.value)">
+                        `;
+                        break;
+                    case 'email':
+                        inputHtml = `
+                            <input type="email" class="form-control" 
+                                id="respuesta-${pregunta.id}" 
+                                ${pregunta.requerido ? 'required' : ''} 
+                                onchange="updateRespuesta(${pregunta.id}, this.value)">
+                        `;
+                        break;
+                    case 'seleccion':
+                        inputHtml = `<div class="radio-group">`;
+                        pregunta.opciones.forEach((opcion, idx) => {
+                            inputHtml += `
+                                <div class="radio-option">
+                                    <input type="radio" name="respuesta-${pregunta.id}" 
+                                        id="option-${pregunta.id}-${idx}" 
+                                        value="${opcion}" 
+                                        ${pregunta.requerido ? 'required' : ''} 
+                                        onchange="updateRespuesta(${pregunta.id}, '${opcion}')">
+                                    <label for="option-${pregunta.id}-${idx}">${opcion}</label>
+                                </div>
+                            `;
+                        });
+                        inputHtml += `</div>`;
+                        break;
+                    case 'escala':
+                        inputHtml = `
+                            <div class="scale-container">
+                                ${[1, 2, 3, 4, 5].map(num => `
+                                    <div class="scale-option">
+                                        <input type="radio" name="respuesta-${pregunta.id}" 
+                                            id="scale-${pregunta.id}-${num}" 
+                                            value="${num}" 
+                                            ${pregunta.requerido ? 'required' : ''} 
+                                            onchange="updateRespuesta(${pregunta.id}, ${num})">
+                                        <label for="scale-${pregunta.id}-${num}">${num}</label>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        break;
+                }
+                
+                card.innerHTML = `
+                    <div class="card-body">
+                        <div class="question-text">
+                            ${pregunta.pregunta}
+                            ${pregunta.requerido ? '<span class="required">*</span>' : ''}
+                        </div>
+                        ${inputHtml}
+                    </div>
+                `;
+                
+                questionsToAnswer.appendChild(card);
+            });
+        }
+        
+        // Actualizar respuesta
+        function updateRespuesta(id, valor) {
+            respuestas[id] = valor;
+        }
+        
+        // Enviar formulario
+        function submitForm(e) {
+            e.preventDefault();
+            
+            // Validar campos requeridos
+            let isValid = true;
+            formulario.preguntas.forEach(pregunta => {
+                if (pregunta.requerido && (!respuestas[pregunta.id] || respuestas[pregunta.id] === '')) {
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                alert('Por favor completa todos los campos requeridos.');
+                return;
+            }
+            
+            // Mostrar respuestas en consola (simulando envío)
+            console.log('Respuestas enviadas:', respuestas);
+            
+            // Mostrar mensaje de éxito
+            formToFill.classList.add('hidden');
+            successMessage.classList.remove('hidden');
+        }
+        
+        // Resetear formulario
+        function resetForm() {
+            renderReceptorView();
+            formToFill.classList.remove('hidden');
+            successMessage.classList.add('hidden');
+        }
+        
+        // Función global para eliminar pregunta (accesible desde HTML)
+        window.deleteQuestion = deleteQuestion;
+        
+        // Función global para actualizar respuesta (accesible desde HTML)
+        window.updateRespuesta = updateRespuesta;
+        
+        // Iniciar app
+        init();
+    </script>
+</body>
+</html>

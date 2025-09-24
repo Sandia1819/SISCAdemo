@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docentes</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="docentes.css">
+    <link rel="stylesheet" href="docentesform.css">
+    <link rel="stylesheet" href="docentesDarkMode.css">
+
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+</head>
+<style>
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Modo claro (predeterminado) */
+body {
+    color: black;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+/* Fondo para elementos específicos en modo oscuro */
+body.dark-mode .dark-container {
+    background-color: black;
+    color: white;
+}
+
+/* Fondo para elementos específicos en modo claro */
+body .light-container {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
+
+/* Asegurar que ciertos elementos no cambien */
+body.dark-mode .no-change-color {
+    color: black !important;
+}
+
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+
+body.dark-mode .modal-dialog {
+    background-color: #222; /* Fondo negro del modal */
+    color: white; /* Texto blanco en el modal */
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .modal-header {
+    background-color: #28a745; /* Verde para el header */
+    color: white;
+}
+
+body.dark-mode .modal-footer {
+    background-color: #333; /* Fondo negro en el footer */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .modal-body {
+    background-color: #222; /* Fondo negro para el cuerpo del modal */
+    color: white; /* Texto blanco */
+}
+
+/* Estilos para los inputs dentro del modal */
+body.dark-mode .modal-body .form-control {
+    background-color: #222; /* Fondo más oscuro para los inputs */
+    color: white; /* Texto blanco en los inputs */
+    border: 1px solid #555; /* Borde gris oscuro */
+}
+
+body.dark-mode .modal-body .form-control:focus {
+    border-color: #ff8000; /* Borde naranja al hacer foco */
+}
+
+/* Estilo para los botones en modo oscuro */
+body.dark-mode .modal-footer .btn-secondary {
+    background-color: #ff8000; /* Naranja */
+}
+
+body.dark-mode .modal-footer .btn-primary {
+    background-color: #28a745; /* Verde */
+}
+
+/* Estilo cuando los inputs o selects están en foco */
+body.dark-mode .modal-body .form-control:focus,
+body.dark-mode .modal-body select.form-control:focus {
+    border-color: #ff8000; /* Borde naranja */
+    outline: none;
+}
+
+/* Estilos para el <select> dentro del modal */
+body.dark-mode .modal-body select.form-control {
+    background-color: #222; /* Fondo negro para el select */
+    color: white; /* Texto blanco */
+    border: 1px solid #555; /* Borde gris oscuro */
+}
+
+/* Estilo para el select en foco */
+body.dark-mode .modal-body select.form-control:focus {
+    border-color: #ff8000; /* Borde naranja */
+    outline: none;
+}
+
+
+/* Fondo gris en modo oscuro */
+body.dark-mode #formDocente {
+    background-color: #333; /* Gris oscuro en modo oscuro */
+    color: white; /* Asegura que el texto sea blanco en modo oscuro */
+}
+
+/* Estilos para los labels en modo oscuro */
+body.dark-mode .modal-body label {
+    color: white; /* Texto blanco para los labels */
+}
+
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Tabla en modo oscuro con fondo negro, bordes blancos y texto blanco */
+body.dark-mode .table {
+    background-color: #000; /* Fondo negro para la tabla */
+    color: white; /* Texto blanco */
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+body.dark-mode .table th, body.dark-mode .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ffffff; /* Bordes blancos */
+}
+
+body.dark-mode .table th {
+    background-color: #008f39; /* Encabezado verde */
+}
+
+body.dark-mode .table-striped tbody tr:nth-child(odd) {
+    background-color: #333; /* Fondo oscuro para filas impares */
+}
+
+body.dark-mode .table-striped tbody tr:hover {
+    background-color: #555; /* Fondo más claro al pasar el mouse */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Botones con colores originales en modo oscuro */
+body.dark-mode .btn-primary, 
+body.dark-mode .btn-success, 
+body.dark-mode .btn-warning, 
+body.dark-mode .btn-danger, 
+body.dark-mode .btn-secondary {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    margin-right: 10px; /* Espacio entre los botones */
+}
+
+body.dark-mode .btn-primary {
+    background-color: #ff8000; /* Naranja */
+    border: none;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: #e76f00; /* Naranja más oscuro */
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+body.dark-mode .btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+body.dark-mode .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+body.dark-mode .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Mejoras visuales para las filas de la tabla en modo oscuro */
+body.dark-mode .table th, 
+body.dark-mode .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Fondo para el contenedor principal */
+body.dark-mode .main-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #008f39;
+    padding: 40px;
+    max-width: 800px;
+    margin: 80px auto;
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilos para el hover en los inputs en modo oscuro */
+body.dark-mode .form-control:hover,
+body.dark-mode .modal-body input:hover,
+body.dark-mode .modal-body select:hover {
+    border-color: #28a745; /* Verde cuando se pasa el mouse */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilo para el botón de cierre en modo oscuro */
+body.dark-mode .btn-close {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    color: white; /* Cruz blanca */
+    font-size: 2rem; /* Tamaño de la cruz */
+    cursor: pointer;
+    padding: 0.5rem; /* Tamaño del área del botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Hover para el botón de cierre en modo oscuro */
+body.dark-mode .btn-close:hover {
+    color: #ffc107; /* Color amarillo para la cruz al hacer hover */
+    background-color: rgba(255, 193, 7, 0.2); /* Fondo amarillo claro */
+    border-radius: 50%; /* Redondear los bordes del botón */
+}
+
+</style>
+<body>
+    <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    
+ <!-- Contenedor Inicial -->
+ <div class="customrow">
+    <div class="logos">
+            
+        <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2> <hr> 
+</div>
+<br><br><br> 
+   
+    <div class="titleCartaasgn">
+        <h2 class="texto">Docentes</h2>
+    </div>
+    <!-- Modo oscuro -->
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+    </label>
+
+    
+
+    <div class="main-container">
+        <h2 class="text-center mb-4">Gestión de Docentes</h2>
+
+
+
+        <!-- Aquí se carga el select de periodos dinámicamente -->
+<label><strong>Periodo:</strong></label>
+<select id="periodo" class="selectPeriodo">
+<option value="">Cargando...</option>
+</select><br><br>
+
+
+
+
+        <button class="btn btn-primary w-100 mb-3" data-bs-toggle="modal" data-bs-target="#docenteModal" onclick="resetForm()">+</button>
+        
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre Completo</th>
+                    <th>Régimen</th>
+                    <th>Horas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaDocentes"></tbody>
+            
+        </table>
+    </div>
+
+    <div class="modal" id="docenteModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title" id="docenteModalLabel">Registrar Docente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>                
+            </div>
+            <div class="modal-body">
+                <form id="formDocente">
+                    <input type="hidden" id="docenteId">
+                    <div class="mb-3">
+                        <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombreCompleto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regimen" class="form-label">Régimen</label>
+                        <select id="regimen" class="form-control">
+                            <option value="Selecciona el Régimen">Selecciona el Régimen</option>
+                            <option value="PTC">PTC</option>
+                            <option value="PA">PA</option>
+                            <option value="HP">HP</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="horas" class="form-label">Horas</label>
+                        <input type="number" class="form-control" id="horas" min="1" max="40" required>
+                        <small class="form-text text-muted">Ingrese un valor entre 1 y 40 horas.</small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="docentes.js"></script>
+    
+    
+    <script>
+        // Código del modo oscuro
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Verifica si el modo oscuro está activado previamente en localStorage
+    if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+        toggle.checked = true;
+    }
+
+    // Maneja el evento de cambio del interruptor
+    toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'false');
+        }
+    });
+    </script>
+</body>
+</html>

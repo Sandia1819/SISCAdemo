@@ -1,0 +1,200 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    background-color: #f4f4f4;
+}
+
+/* Barra superior (si es necesario, puedes agregarla más tarde) */
+.navbar .logo img {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 60px;
+    background-color: #008f39;  /* Verde */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s;
+    z-index: 999;
+    padding-top: 20px;  /* Ajuste del espacio superior para el logo */
+}
+
+/* Aumento del tamaño del sidebar al hacer hover */
+.sidebar:hover {
+    width: 220px; /* Expande el menú */
+}
+
+/* Lista de elementos de la barra lateral */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    position: relative;
+}
+
+/* Estilos de los enlaces */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;  /* Esto elimina el subrayado */
+    padding: 15px 10px;
+}
+
+
+/* Estilo para los iconos */
+.sidebar i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Nombre de los elementos del menú (invisible inicialmente) */
+.menu-item {
+    opacity: 0;
+    font-size: 16px;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+/* Mostrar texto cuando se hace hover en el sidebar */
+.sidebar:hover .menu-item {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Estilo al pasar el cursor sobre los enlaces */
+.sidebar a:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semi-translúcido */
+    color: #ff8000;  /* Cambiar color del texto a naranja */
+}
+
+/* Contenido principal */
+.content {
+    margin-left: 60px;
+    padding: 20px;
+    padding-top: 80px; /* Espacio para la barra lateral */
+}
+
+/* Cuando el sidebar se expande */
+.sidebar:hover ~ .content {
+    margin-left: 200px; /* Ajusta el margen */
+}
+
+
+/* Animación de rotación tipo moneda */
+@keyframes rotateCoin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Diseño para los botones dentro de la barra lateral */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-container .btn {
+    width: 300px;
+    height: 180px;
+    margin: 15px;
+    font-size: 25px;
+    background-color: #fff;
+    border-radius: 10px;  /* Bordes redondeados */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    color: #008f39;  /* Color verde */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.btn-container .btn:hover {
+    transform: translateY(-5px);  /* Efecto de elevación */
+    box-shadow: 0px 6px 12px rgba(255, 128, 24, 0.3); /* Sombra más fuerte */
+}
+
+.btn-container .btn i {
+    font-size: 60px;  /* Iconos más grandes */
+    color: #008f39;  /* Color de los iconos */
+}
+
+.btn-container .btn span {
+    display: block;
+    font-size: 18px;  /* Aumentar tamaño del texto */
+    margin-top: 10px;
+}
+
+
+/* Para dispositivos pequeños */
+@media (max-width: 768px) {
+    .btn-container .btn {
+        font-size: 22px;
+        height: 180px; /* Reducir altura en pantallas pequeñas */
+    }
+}
+
+/* Asegúrate de que el logo se muestre correctamente */
+.sidebar .logo-item {
+    text-align: center;
+    margin-bottom: 20px;  /* Separación entre el logo y el menú */
+}
+
+.sidebar .logo-img {
+    width: 100%;  /* Ancho del 100% para que se ajuste al contenedor */
+    max-width: 100px; /* Ajuste máximo para el tamaño */
+    height: auto;    /* Mantener la proporción de la imagen */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre la imagen */
+    object-fit: contain;  /* Asegurarse de que la imagen se ajuste adecuadamente */
+}
+
+/* Asegura que no haya margen en el body ni en el html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Asegura que el contenido ocupe toda la altura */
+}
+
+.titlePeriodos {
+    text-align: center;               /* Centra el texto horizontalmente */
+    font-size: 36px;                  /* Tamaño grande para el título */
+    font-weight: bold;                /* Texto en negrita */
+    color: #008f39;                   /* Color verde */
+    padding: 0 0;                  /* Espacio solo arriba y abajo del texto */
+    margin: 0;                        /* Elimina márgenes adicionales */
+    position: absolute;               /* Posiciona el título en la parte superior */
+    top: 0;                           /* Coloca el título en la parte superior de la página */
+    left: 50%;                        /* Centra horizontalmente el título */
+    transform: translateX(-50%);      /* Ajusta la posición para centrarlo perfectamente */
+    width: 100%;                      /* Asegura que el título ocupe todo el ancho */
+    box-sizing: border-box;           /* Asegura que el padding no afecte el ancho */
+}
+
+/* Línea debajo del título que ocupa todo el ancho */
+.titlePeriodos::after {
+    content: '';                      /* Sin contenido, solo para el efecto */
+    display: block;                   /* Hace que la línea ocupe todo el ancho */
+    width: 100%;                       /* La línea ocupará todo el ancho de la página */
+    height: 4px;                      /* Altura de la línea */
+    background-color: #ff8000;        /* Color naranja */
+    margin: 10px 0 0;                 /* Espacio encima de la línea */
+}
+
+/* Efecto cuando pasas el cursor sobre el título */
+.titlePeriodos:hover {
+    color: #ff8000;                   /* Cambia el color del texto al pasar el cursor */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);  /* Agrega sombra al texto */
+}
+
+

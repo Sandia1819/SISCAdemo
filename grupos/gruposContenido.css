@@ -1,0 +1,286 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Contenedor principal, centrado y más ancho */
+.main-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center; /* Centra los contenedores dentro del contenedor principal */
+    align-items: flex-start;
+    width: 90%; /* Controla el ancho general del contenedor */
+    max-width: 1500px; /* Máximo ancho */
+    margin: 20px auto; /* Centra el contenedor en la página */
+}
+
+/* Contenedor del formulario */
+.form-container {
+    flex: 1;
+    min-width: 350px;
+    max-width: 600px; /* Ancho máximo */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #28a745; /* Borde verde */
+    background: transparent; /* Fondo transparente (quita el blanco) */
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    flex: 2;
+    min-width: 1000px;
+    max-width: 1200px; /* Ancho máximo */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    border: 2px solid #28a745; /* Borde verde */
+}
+
+.table-container, h3{
+    text-align: center;
+}
+
+/* Estilos de inputs y selects */
+select {
+    width: 95%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos de inputs y selects */
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Estilo de los botones */
+.btnGuardar {
+    margin-top: 10px;
+    padding: 10px;
+    width: 40%;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+.btnGuardar:hover {
+    background-color: rgba(255, 123, 0, 0.8);
+    box-shadow: 0 0 15px 5px rgba(255, 123, 0, 0.8);
+    transform: scale(1.05);
+}
+
+/* Botones más pequeños */
+.btnGuardar2 {
+    margin-top: 10px;
+    padding: 8px;
+    width: 20%;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnGuardar2:hover {
+    background-color: rgba(255, 123, 0, 0.8);
+    box-shadow: 0 0 15px 5px rgba(255, 123, 0, 0.8);
+    transform: scale(1.05);
+}
+
+
+
+/* Modal en modo normal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: white; /* Fondo blanco para el contenido */
+    padding: 30px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 1000px; /* Máximo ancho para evitar que el modal sea demasiado grande */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra suave alrededor */
+}
+
+/* Filtros dentro del modal */
+.modal-filters {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-filters input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Borde claro para los filtros */
+    border-radius: 5px;
+    width: 98%;
+    background-color: #f9f9f9; /* Fondo claro */
+    color: black; /* Texto negro */
+}
+
+
+.modal-filters select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Borde claro para los filtros */
+    border-radius: 5px;
+    width: 100%;
+    background-color: #f9f9f9; /* Fondo claro */
+    color: black; /* Texto negro */
+}
+
+
+
+.modal-filters input:focus,
+.modal-filters select:focus {
+    border-color: #ff8000; /* Borde naranja al enfocar */
+    outline: none;
+}
+
+/* Tabla dentro del modal */
+.modal-table {
+    flex: 2;
+    overflow-y: auto;
+    max-height: 400px; /* Limitamos la altura para que no se desborde */
+    border: 1px solid #ddd; /* Borde de la tabla */
+    border-radius: 5px;
+    background-color: #fff; /* Fondo blanco */
+    color: black; /* Texto negro */
+}
+
+.modal-table th,
+.modal-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd; /* Bordes de las celdas */
+}
+
+.modal-table th {
+    background-color: #28a745; /* Color verde para el encabezado */
+    color: white;
+}
+
+.modal-table tr:nth-child(odd) {
+    background-color: #f1f1f1; /* Filas alternas con un fondo gris claro */
+}
+
+.modal-table tr:hover {
+    background-color: #e9e9e9; /* Cambia el color de la fila al pasar el mouse */
+}
+
+/* Estilo de los botones dentro del modal */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    grid-column: span 2;
+    align-self: flex-end;
+}
+
+.modal-buttons button {
+    padding: 12px 20px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #28a745; /* Color verde para los botones */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    width: 48%; /* Ajuste el tamaño de los botones */
+}
+
+.modal-buttons button:hover {
+    background-color: rgba(255, 123, 0, 0.8); /* Fondo naranja cuando se pasa el cursor */
+    box-shadow: 0 0 15px 5px rgba(255, 123, 0, 0.8); /* Sombra suave */
+    transform: scale(1.05); /* Efecto de aumento en el tamaño */
+}
+
+.modal-table h3{
+    text-align: center;
+}
+
+
+/* Estilo para el botón de eliminar */
+.btnEliminar {
+    background-color: #e74c3c; /* Rojo fuerte */
+    color: white; /* Texto blanco */
+    font-size: 16px; /* Tamaño de la fuente */
+    padding: 10px 15px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor cuando pasa sobre el botón */
+    transition: all 0.3s ease; /* Animación suave para cambios */
+    display: flex; /* Alinear el icono y el texto */
+    align-items: center; /* Centrar el contenido verticalmente */
+    gap: 5px; /* Espacio entre el icono y el texto */
+}
+
+/* Efecto cuando el mouse pasa por encima del botón */
+.btnEliminar:hover {
+    background-color: #c0392b; /* Rojo más oscuro */
+    transform: scale(1.05); /* Aumentar ligeramente el tamaño */
+}
+
+/* Efecto cuando el botón está presionado */
+.btnEliminar:active {
+    background-color: #b03a2e; /* Rojo más oscuro al presionar */
+    transform: scale(0.98); /* Efecto de compresión */
+}
+
+/* Estilo para el icono dentro del botón */
+.btnEliminar i {
+    font-size: 18px; /* Aumentar el tamaño del icono */
+}

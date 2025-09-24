@@ -1,0 +1,86 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* DARK MODE */
+body.dark-mode {
+    background-color: #121212; /* Fondo oscuro */
+    color: #e0e0e0; /* Texto claro */
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e; /* Fondo oscuro para el contenedor */
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    border-top: 5px solid #1e7e34; /* Verde oscuro */
+}
+
+body.dark-mode h1 {
+    color: #1e7e34; /* Color de texto más claro */
+}
+
+body.dark-mode .action-btn {
+    background-color: #ff8000;
+    color: #ffffff;
+}
+
+body.dark-mode .action-btn:hover {
+    background-color: #1e7e34;
+    box-shadow: 0 0 15px 5px #1e7e34;
+}
+
+/* Para el borde inferior del título en dark mode */
+body.dark-mode h1:after {
+    background-color: #ff8000; /* Mantenemos el color de la línea del título */
+}

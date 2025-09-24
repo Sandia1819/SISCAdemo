@@ -1,0 +1,237 @@
+/*¡¡¡FORMATO DIV PADRE: HOJAIMPRESION E HIJO: HOJACONTAINER!!!*/
+
+.tablastutores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1630px; /* Adjust based on your needs */
+    margin: 0 auto;
+}
+
+
+.hojaimpresion, .hojaimpresion2, .hojaimpresion3, .hojaimpresion4  {
+  
+    border: 2px solid red;
+    width: 794px;
+    height: 1080px;
+    margin: 20px auto; /* Centra en la pantalla */
+    padding: 0px;
+    box-sizing: border-box;
+    position: relative; /* Cambio importante: ahora es relativo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*DIV PARA MOSTRAR EN LA IMPRESIÓN*/
+.hojacontainer, .hojacontainer2, .hojacontainer3, .hojacontainer4  {
+    border: none;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: url('../assets/fondout.png') no-repeat center center;
+    background-size: cover;
+   
+}
+
+.impr   {
+    display: flex;
+    gap: 40px;      
+    justify-content: center;
+    margin-top: 20px; /* Ajusta el espacio entre la hoja y el botón */
+}
+
+
+.bttn {
+    
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #008f39;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.bttn:hover {
+    background-color: #ff8000;
+    box-shadow: 0 0 10px rgba(255, 128, 0, 0.8);
+    box-shadow: 0 0 10px #ff8000, 0 0 20px #ff8000;
+}
+
+/* Efecto al hacer clic */
+.bttn:active {
+    background-color: #cc6600; /* Un tono más oscuro de #ff8000 */
+    box-shadow: 0 0 5px rgba(255, 128, 0, 0.9);
+}
+
+.bttn impr {
+    font-size: 60px;
+    color: #008f39;
+}
+
+.bttn span {
+    display: block;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.textbutton {
+    color: #008f39;
+}
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: -10px;
+ 
+}
+
+.header img {
+    height: 100px;
+    margin-right: 10px;
+
+  
+}
+
+.header .logo {
+    filter: contrast(100%) brightness(100%) opacity(100%);
+    margin-top: 15px;
+    margin-left: 50px;
+    margin-top: 10px;
+    
+}   
+
+.title {
+   
+    background: none;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;  /* Alinea los elementos en columna */
+    align-items: center;     /* Centra los elementos horizontalmente */
+}
+
+.title p {
+    margin-left: -35px;
+    text-align: center;
+    font-size: 20px;
+    font-family: "Arial Narrow", Arial, sans-serif;
+    line-height: 1.0;
+    margin-top: -60px;  /* Ajusta el margen superior e inferior */
+    
+}
+
+.title .grd {
+    /* Aquí puedes agregar estilos específicos para .grd */
+       margin-top: -18px;
+}
+
+.PEperiodo {
+    margin-left: -5px;
+    display: flex;         /* Usamos flexbox para centrar el contenido */
+    justify-content: center;  /* Centra horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    width: 100%;             /* Asegura que el contenedor ocupe toda la altura disponible */
+    margin-top: -20px;
+}
+
+
+.PEperiodo input {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    border: 2px solid transparent; /* Borde por defecto transparente */
+    width: 50%; /* Ajusta este valor según el tamaño que desees */
+    box-sizing: border-box;
+    background: transparent;
+    height: 100%;
+    outline: none; /* Elimina el borde predeterminado al hacer clic */
+    transition: border-color 0.3s ease; /* Animación suave al cambiar el borde */
+    
+}
+
+/* Cambia el borde a azul cuando el cursor pasa sobre el input o cuando se enfoca */
+.PEperiodo input:hover,
+.PEperiodo input:focus {
+    border-color: red; /* Borde azul al hacer hover o focus */
+}
+
+
+
+
+.signature {
+    position: absolute; 
+    bottom: 20px; 
+    left: 22px;
+    right: 10px;
+    width: 100%;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0;
+    transform: none;
+
+}
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: gray;
+    margin-left: -40px;
+    margin: 0;
+}
+
+
+.fmt {
+
+    display: flex; /* Activa flexbox */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Espacia uniformemente entre extremos */
+    font-size: 10px;
+    font-weight: bold;
+    color: #707070;
+    line-height: 1.5;
+    margin: 0 50px; /* Márgenes de izquierda y derecha */
+    gap: 0px; /* Espacio uniforme entre cada palabra e input */
+    white-space: nowrap; /* Evita que se rompa en varias líneas */
+    margin-left: 50px;
+}
+
+.fmt input {
+    text-align: left;
+    font-size: 10px;
+    border: none;
+    background-color: transparent;
+    color: #555555;
+    height: 20px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+    width: auto; /* Deja que se ajuste al contenido */
+    
+    max-width: 100px; /* Limita el ancho máximo */
+    flex-shrink: 0; /* Evita que se reduzca en tamaños pequeños */
+}
+
+.fmt input.SGC {
+    text-align: center;
+    padding: 0;
+    width: auto; /* Deja que este input también sea flexible */
+    min-width: 90px; /* Asegura un tamaño mínimo mayor */
+    margin-left: -28px;
+
+}
+
+.fmt input:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+

@@ -1,0 +1,84 @@
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Contenedor exterior para centrado completo */
+.outer-container {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    min-height: 40vh; /* Asegura que el contenedor exterior ocupe toda la altura de la ventana */
+}
+
+/* Contenedor principal */
+.container {
+    background-color: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.15);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 5px solid #28a745;
+    margin-top: 100px; /* Espacio en la parte superior */
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en una columna */
+    justify-content: center; /* Centra los elementos en el eje vertical */
+    min-height: 300px; /* Asegura suficiente espacio vertical dentro del contenedor */
+}
+
+/* Estilos del título */
+h1 {
+    font-size: 40px;
+    color: #1e7e34;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #ff8000;
+    border-radius: 3px;
+}
+
+/* Contenedor de botones */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 25px; /* Aumenté el gap para más separación entre los botones */
+    margin-top: -25px;
+    flex-grow: 1; /* Asegura que el contenedor de botones ocupe el espacio disponible y se centre */
+    align-items: center; /* Centra los elementos en el eje vertical */
+}
+
+/* Estilos de los botones */
+.action-btn {
+    padding: 20px 40px; /* Aumenté el padding para que los botones sean más grandes */
+    font-size: 24px; /* Aumenté el tamaño de la fuente */
+    font-weight: 600; /* Hice que el texto sea más audaz */
+    border: none;
+    border-radius: 12px; /* Aumenté el radio de las esquinas para un diseño más redondeado */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #28a745;
+    color: white;
+    min-width: 180px; /* Aumenté el tamaño mínimo del botón */
+}
+
+.action-btn:hover {
+    background-color: rgba(255, 123, 0, 0.8);
+    box-shadow: 0 0 15px 5px rgba(255, 123, 0, 0.8);
+    transform: scale(1.05);
+}

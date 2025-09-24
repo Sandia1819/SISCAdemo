@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupos</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="tablas.css">
+
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+    <style>
+        :root {
+            --primary-color: #008f39;
+            --secondary-color: #007a0a;
+            --light-bg: #ffffff;
+            --dark-bg: #000000;
+            --light-text: #333333;
+            --dark-text: #f0f0f0;
+            --button-bg: #f0f0f0;
+            --button-hover: #e0e0e0;
+            --border-color: #cccccc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .contenedortablas {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: var(--light-bg);
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .contenedortablas {
+            background-color: #0f0f0f;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        
+
+
+/* Contenedor del botón */
+.btncont {
+    display: flex;               /* Usamos flexbox para el contenedor */
+    justify-content: center;     /* Centrado horizontal */
+    align-items: center;         /* Centrado vertical */
+           }
+
+/* Estilos del botón */
+.bttn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #008f39; /* Color verde inicial */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; /* Transición para un cambio suave de color */
+}
+        .bttn:hover {
+            background-color: #ff8000; /* Naranja brillante al pasar el ratón */
+            box-shadow: 0 0 10px rgba(255, 128, 0, 0.8), 0 0 20px #ff8000; /* Resplandor más fuerte */
+        }
+
+        /* Efecto de resplandor al hacer clic */
+        .bttn:active {
+            background-color: #ff8000; /* Naranja brillante al hacer clic */
+            box-shadow: 0 0 5px rgba(255, 128, 0, 0.9), 0 0 10px #ff8000; /* Resplandor al presionar */
+        }
+
+
+
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .toolbar-section {
+            display: flex;
+            gap: 5px;
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            padding-right: 10px;
+            padding-left: 5px;
+        }
+
+        .toolbar-section:last-child {
+            border-right: none;
+        }
+
+        .toolbar-section button, 
+        .toolbar-section select {
+            background-color: var(--button-bg);
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--light-text);
+            transition: background-color 0.2s;
+        }
+
+        .toolbar-section button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .toolbar-section button.active {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .toolbar-section button.format-button {
+            font-weight: bold;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 4px;
+        }
+
+        body.dark-mode .size-controls {
+            background-color: #444;
+        }
+
+        .size-controls input {
+            width: 80px;
+            padding: 5px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .size-controls button,
+        .content button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .size-controls button:hover,
+        .content button:hover {
+            background-color: #006b2a;
+        }
+
+        .content {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .drawing-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+
+
+
+/* Estilo cuando está en modo oscuro */
+body.dark-mode .tablaimpresion {
+    background-color: #333333;  /* Fondo oscuro para la tabla */
+    border: 1px solid #ff8000;  /* Borde naranja */
+    color: white;  /* Texto blanco */
+    text-align: center;  /* Centrar el texto */
+    font-size: 14px;  /* Tamaño de texto legible */
+}
+
+body.dark-mode #editorTable {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+body.dark-mode #editorTable td, body.dark-mode #editorTable th {
+    border: 1px solid #ff8000;  /* Bordes naranjas en las celdas */
+    color: white;  /* Texto blanco en las celdas */
+    padding: 10px;
+}
+
+body.dark-mode #editorTable td {
+    background-color: #444444;  /* Fondo oscuro en las celdas */
+}
+
+body.dark-mode #editorTable th {
+    background-color: #555555;  /* Fondo un poco más claro para los encabezados */
+    font-weight: bold;  /* Negrita para los encabezados */
+}
+
+
+        .tablaimpresion {
+    width: 80%; /* Ancho del contenedor ajustado para que no sea tan grande */
+    max-width: 1000px; /* Limita el ancho máximo para pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor en la página */
+    background-color: #ffffff; /* Color de fondo */
+    border: 2px solid #008f39; /* Borde sutil */
+    border-radius: 10px; /* Bordes redondeados */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Espaciado interno equilibrado */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    overflow: hidden; /* Evita que el contenido se desborde del contenedor */
+}
+
+#editorTable {
+    width: 100%; /* Asegura que la tabla ocupe todo el ancho del contenedor */
+    border-collapse: collapse;
+    table-layout: fixed; /* Asegura que las celdas tengan un tamaño fijo */
+}
+
+#editorTable td {
+    padding: 10px; /* Espaciado interno en cada celda */
+    border: 1px solid #ddd; /* Borde sutil para las celdas */
+    text-align: center; /* Centra el texto en las celdas */
+    font-size: 14px; /* Tamaño de texto legible */
+    color: #333; /* Color de texto suave */
+}
+
+#editorTable th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2; /* Color de fondo diferente para los encabezados */
+    text-align: center; /* Centrado del texto en los encabezados */
+    font-weight: bold; /* Resaltar el texto de los encabezados */
+    color: #555; /* Color de texto de los encabezados */
+}
+
+#editorTable tr:nth-child(even) {
+    background-color: #f9f9f9; /* Fila con fondo alterno para mejorar la legibilidad */
+}
+
+#editorTable tr:hover {
+    background-color: #f1f1f1; /* Color al pasar el ratón sobre la fila */
+}
+
+    
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--secondary-color);
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--secondary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        body.dark-mode .title {
+            color: var(--secondary-color);
+        }
+
+        .status-bar {
+            background-color: #f8f8f8;
+            padding: 8px;
+            border-radius: 0 0 8px 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        body.dark-mode .status-bar {
+            background-color: #444;
+            color: #ddd;
+        }
+
+        /* Tooltips for buttons */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 5px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
+    </style>
+<body>
+     <!-- Barra lateral -->
+     <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="../indexadm.html">
+                    <img src="../assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+
+         
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="../periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="../grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="../docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="../tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="../proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="../horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="../prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+ <!-- Contenedor Inicial -->
+ <div class="customrow">
+    <div class="logos">
+            
+        <img src="../assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="../assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2>  
+</div>
+<br><br><br> 
+    <br>
+
+    <div class="titletablas">
+        <h2 class="texto">Tablas</h2>
+    </div>
+  
+    
+    <div class="contenedortablas">
+        
+        
+        <div class="toolbar">
+            <div class="toolbar-section">
+
+                <button id="drawLineBtn" class="tooltip">📏 Línea
+                    <span class="tooltiptext">Dibujar línea</span>
+                </button>
+            </div>
+            
+            <div class="toolbar-section">
+                <select id="fontSelect">
+                    <option value="">Fuente</option>
+                    <option value="Arial">Arial</option>
+                    <!-- <option value="Times New Roman">Times New Roman</option>-->
+                   <!--  <option value="Courier">Courier</option>-->
+                  <!--   <option value="Georgia">Georgia</option>-->
+                    <!-- <option value="Verdana">Verdana</option> -->
+                </select>
+                <select id="fontSizeSelect">
+                <!--      <option value="">Tamaño</option>-->
+                   <!--   <option value="12px">Pequeño</option> -->
+                    <option value="16px">Normal</option>
+                   <!--   <option value="24px">Grande</option>-->
+                  <!--    <option value="32px">Muy Grande</option>-->
+                </select>
+            </div>
+            
+            <div class="toolbar-section">
+                <button id="addRowBtn" class="tooltip">➕ Fila
+                    <span class="tooltiptext">Agregar fila</span>
+                </button>
+                <button id="addColumnBtn" class="tooltip">➕ Columna
+                    <span class="tooltiptext">Agregar columna</span>
+                </button>
+                <button id="addSumRowBtn" class="tooltip">🧮 Sumatoria
+                    <span class="tooltiptext">Agregar fila de suma</span>
+                </button>
+            </div>
+    
+            <div class="toolbar-section">
+                <button id="boldBtn" class="format-button tooltip">B
+                    <span class="tooltiptext">Negrita</span>
+                </button>
+                <button id="italicBtn" class="format-button tooltip"><i>I</i>
+                    <span class="tooltiptext">Cursiva</span>
+                </button>
+                <button id="underlineBtn" class="format-button tooltip"><u>U</u>
+                    <span class="tooltiptext">Subrayado</span>
+                </button>
+            </div>
+    
+            <div class="toolbar-section">
+                <label class="switch tooltip">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                    <span class="tooltiptext">Modo oscuro</span>
+                </label>
+            </div>
+        </div>
+    
+        <div class="size-controls">
+            <label for="tableWidth">Ancho de Tabla:</label>
+            <input type="number" id="tableWidth" placeholder="Ancho" min="100" max="2000">
+            <label for="tableHeight">Alto de Tabla:</label>
+            <input type="number" id="tableHeight" placeholder="Alto" min="100" max="2000">
+            <button id="adjustSizeBtn">Ajustar Tamaño</button>
+        </div>
+    
+        <div class="content">
+            <div style="position: relative; width: 100%;">
+                <canvas id="drawingCanvas" class="drawing-canvas"></canvas>
+               
+                <div class="tablaimpresion">
+
+               
+                <table id="editorTable">
+                    <tr>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true"></td>
+                        <td contenteditable="true"></td>
+                    </tr>
+                </table>
+            </div>
+<br>                <div class="btncont">
+    <button  class="bttn" id="printBtn" >Imprimir</button>
+           
+                    </div>
+               </div>
+        </div>
+        
+        <div id="statusBar" class="status-bar">
+            Listo
+        </div>
+    </div>
+<script>
+document.getElementById("printBtn").addEventListener("click", function() {
+    var printContents = document.querySelector(".tablaimpresion").innerHTML; // Obtiene el contenido del contenedor
+    var originalContents = document.body.innerHTML; // Guarda el contenido original de la página
+
+    // Crea una ventana para la impresión
+    var printWindow = window.open('', '', 'height=650,width=900');
+    
+    // Configuración de la página de impresión con márgenes
+    printWindow.document.write('<html><head><title>Imprimir</title>');
+    printWindow.document.write('<style>');
+    printWindow.document.write('body { font-family: Arial, sans-serif; margin: 0; padding: 0; }');
+    printWindow.document.write('.tablaimpresion { width: 100%; max-width: 100%; margin: 0 auto; padding: 20px; box-sizing: border-box; }'); // Margen interno
+    printWindow.document.write('#editorTable { width: 100%; border-collapse: collapse; page-break-before: auto; }');
+    printWindow.document.write('#editorTable th, #editorTable td { padding: 10px; border: 1px solid #ddd; text-align: center; font-size: 14px; }');
+    printWindow.document.write('table { page-break-before: always; }');
+    printWindow.document.write('@page { size: 8.5in 11in; margin: 1.5in 1in 1in 1in; }'); // Márgenes personalizados: 1.5in arriba y 1in a los lados
+    printWindow.document.write('</style>');
+    printWindow.document.write('</head><body>');
+    
+    // Escribe el contenido a imprimir
+    printWindow.document.write(printContents);
+    
+    printWindow.document.write('</body></html>');
+    
+    printWindow.document.close(); // Cierra el documento de la ventana de impresión
+    printWindow.print(); // Llama a la función de impresión
+});
+
+
+</script>
+
+
+    <script>
+        // Elementos DOM
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const canvas = document.getElementById('drawingCanvas');
+        const table = document.getElementById('editorTable');
+        const statusBar = document.getElementById('statusBar');
+        const drawLineBtn = document.getElementById('drawLineBtn');
+
+        const boldBtn = document.getElementById('boldBtn');
+        const italicBtn = document.getElementById('italicBtn');
+        const underlineBtn = document.getElementById('underlineBtn');
+        const addRowBtn = document.getElementById('addRowBtn');
+        const addColumnBtn = document.getElementById('addColumnBtn');
+        const addSumRowBtn = document.getElementById('addSumRowBtn');
+        const printBtn = document.getElementById('printBtn');
+        const adjustSizeBtn = document.getElementById('adjustSizeBtn');
+        const fontSelect = document.getElementById('fontSelect');
+
+
+
+        const fontSizeSelect = document.getElementById('fontSizeSelect');
+
+        // Estado de la aplicación
+        let isDrawingMode = false;
+        let startCell = null;
+        let lines = [];
+
+        // Inicializar
+        initializeApp();
+
+        function initializeApp() {
+            // Ajustar tamaño del canvas
+            adjustCanvasSize();
+            
+            // Cargar configuración de modo oscuro
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            // Inicializar eventos
+            setupEventListeners();
+            
+            // Mostrar mensaje de bienvenida
+            updateStatus('Editor de tablas listo para usar');
+        }
+
+        function setupEventListeners() {
+            // Eventos para botones de la barra de herramientas
+            darkModeToggle.addEventListener('change', toggleDarkMode);
+            drawLineBtn.addEventListener('click', toggleDrawingMode);
+       
+            boldBtn.addEventListener('click', applyBold);
+            italicBtn.addEventListener('click', applyItalic);
+            underlineBtn.addEventListener('click', applyUnderline);
+            addRowBtn.addEventListener('click', addRow);
+            addColumnBtn.addEventListener('click', addColumn);
+            addSumRowBtn.addEventListener('click', addSumRow);
+            printBtn.addEventListener('click', printTable);
+            adjustSizeBtn.addEventListener('click', adjustTableSize);
+            fontSelect.addEventListener('change', changeFont);
+            fontSizeSelect.addEventListener('change', changeFontSize);
+            
+            // Eventos de ventana
+            window.addEventListener('resize', adjustCanvasSize);
+            
+            // Evento para actualizar el canvas cuando se edita la tabla
+            table.addEventListener('input', drawAllLines);
+        }
+
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode', darkModeToggle.checked);
+            localStorage.setItem('darkMode', darkModeToggle.checked.toString());
+            drawAllLines(); // Redibujar líneas con el nuevo color
+            updateStatus(darkModeToggle.checked ? 'Modo oscuro activado' : 'Modo claro activado');
+        }
+
+        function toggleDrawingMode() {
+            isDrawingMode = !isDrawingMode;
+            
+            // Actualizar estado visual del botón
+            drawLineBtn.classList.toggle('active', isDrawingMode);
+            
+            if (isDrawingMode) {
+                // Preparar para dibujar
+                adjustCanvasSize();
+                addCellClickListeners();
+                updateStatus('Haga clic en una celda para iniciar la línea');
+            } else {
+                // Desactivar el modo de dibujo
+                removeCellClickListeners();
+                updateStatus('Modo de dibujo desactivado');
+                resetSelectedCells();
+            }
+        }
+
+        function addCellClickListeners() {
+            table.querySelectorAll('td').forEach(cell => {
+                cell.addEventListener('click', handleCellClick);
+                cell.classList.add('selectable');
+            });
+        }
+
+        function removeCellClickListeners() {
+            table.querySelectorAll('td').forEach(cell => {
+                cell.removeEventListener('click', handleCellClick);
+                cell.classList.remove('selectable');
+            });
+        }
+
+        function handleCellClick(event) {
+            if (!isDrawingMode) return;
+            
+            if (!startCell) {
+                // Primera celda seleccionada
+                startCell = event.target;
+                startCell.classList.add('selecting');
+                updateStatus('Ahora haga clic en otra celda para completar la línea');
+            } else {
+                // Segunda celda seleccionada
+                const endCell = event.target;
+                
+                // Crear línea
+                const newLine = {
+                    start: getCellCoordinates(startCell),
+                    end: getCellCoordinates(endCell),
+                    startCell: startCell,
+                    endCell: endCell
+                };
+                
+                lines.push(newLine);
+                drawAllLines();
+                
+                // Reiniciar selección
+                resetSelectedCells();
+                updateStatus('Línea creada. Puede dibujar otra o desactivar el modo de dibujo');
+            }
+        }
+
+        function getCellCoordinates(cell) {
+            const rect = cell.getBoundingClientRect();
+            const tableRect = table.getBoundingClientRect();
+            
+            return {
+                x: rect.left - tableRect.left + rect.width / 2,
+                y: rect.top - tableRect.top + rect.height / 2
+            };
+        }
+
+        function resetSelectedCells() {
+            if (startCell) {
+                startCell.classList.remove('selecting');
+                startCell = null;
+            }
+            table.querySelectorAll('.selecting').forEach(cell => {
+                cell.classList.remove('selecting');
+            });
+        }
+
+        function drawAllLines() {
+            adjustCanvasSize();
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            lines.forEach(line => {
+                // Actualizar las coordenadas porque las celdas pueden haber cambiado
+                const start = getCellCoordinates(line.startCell);
+                const end = getCellCoordinates(line.endCell);
+                
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.strokeStyle = body.classList.contains('dark-mode') ? '#FF8000' : '#008f39';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            });
+        }
+
+        function adjustCanvasSize() {
+            canvas.width = table.offsetWidth;
+            canvas.height = table.offsetHeight;
+            canvas.style.width = `${table.offsetWidth}px`;
+            canvas.style.height = `${table.offsetHeight}px`;
+        }
+
+        function addRow() {
+            const rowCount = table.rows.length;
+            const row = table.insertRow(rowCount);
+            const cellCount = table.rows[0].cells.length;
+
+            for (let i = 0; i < cellCount; i++) {
+                const cell = row.insertCell(i);
+                cell.contentEditable = 'true';
+                cell.innerHTML = '';
+            }
+            
+            // Si estamos en modo dibujo, actualizar los listeners
+            if (isDrawingMode) {
+                removeCellClickListeners();
+                addCellClickListeners();
+            }
+            
+            updateStatus('Nueva fila agregada');
+        }
+
+        function addColumn() {
+            const rowCount = table.rows.length;
+
+            for (let i = 0; i < rowCount; i++) {
+                const cell = table.rows[i].insertCell(-1);
+                cell.contentEditable = 'true';
+                cell.innerHTML = '';
+            }
+            
+            // Si estamos en modo dibujo, actualizar los listeners
+            if (isDrawingMode) {
+                removeCellClickListeners();
+                addCellClickListeners();
+            }
+            
+            updateStatus('Nueva columna agregada');
+        }
+
+        function addSumRow() {
+            const rowCount = table.rows.length;
+            const columnCount = table.rows[0].cells.length;
+            const sumRow = table.insertRow(rowCount);
+            sumRow.classList.add('total-row');
+
+            for (let j = 0; j < columnCount; j++) {
+                const cell = sumRow.insertCell(j);
+                
+                if (j === 0) {
+                    cell.textContent = 'Total';
+                    cell.contentEditable = 'true';
+                } else {
+                    let columnSum = 0;
+                    // Calcular la suma de la columna
+                    for (let i = 0; i < rowCount; i++) {
+                        const cellValue = parseFloat(table.rows[i].cells[j].textContent) || 0;
+                        columnSum += cellValue;
+                    }
+                    cell.textContent = columnSum.toFixed(2);
+                    // Hacer editable para permitir correcciones manuales
+                    cell.contentEditable = 'true';
+                }
+            }
+            
+            updateStatus('Fila de sumatoria agregada');
+        }
+
+        function insertImage() {
+            const activeCell = document.activeElement;
+            if (activeCell && activeCell.tagName === 'TD') {
+                activeCell.innerHTML = '<img src="/api/placeholder/200/150" alt="Imagen" style="max-width:100%;">';
+                updateStatus('Imagen insertada en la celda');
+            } else {
+                updateStatus('Seleccione una celda primero', true);
+            }
+        }
+
+
+function changeFont() {
+    const font = fontSelect.value; // Obtén el valor seleccionado del menú de fuentes
+    const activeCell = document.activeElement; // Obtén el elemento con el foco (en este caso, una celda <td>)
+
+    // Verifica si el elemento activo es una celda y si una fuente ha sido seleccionada
+    if (activeCell && activeCell.tagName === 'TD' && font) {
+        activeCell.style.fontFamily = font; // Cambia la fuente de la celda
+        updateStatus(`Fuente cambiada a ${font}`); // Opcional: Actualiza un estado o mensaje
+    }
+}
+
+// Función opcional para mostrar un mensaje o estado (si quieres hacerlo visible en la página)
+function updateStatus(message) {
+    console.log(message); // Simplemente imprime en la consola, pero puedes mostrarlo en algún lugar de tu página.
+}
+
+        function changeFontSize() {
+            const size = fontSizeSelect.value;
+            const activeCell = document.activeElement;
+            if (activeCell && activeCell.tagName === 'TD' && size) {
+                activeCell.style.fontSize = size;
+                updateStatus(`Tamaño de fuente cambiado a ${size}`);
+            }
+        }
+
+        function applyBold() {
+            document.execCommand('bold', false, null);
+            updateStatus('Negrita aplicada');
+        }
+
+        function applyItalic() {
+            document.execCommand('italic', false, null);
+            updateStatus('Cursiva aplicada');
+        }
+
+        function applyUnderline() {
+            document.execCommand('underline', false, null);
+            updateStatus('Subrayado aplicado');
+        }
+
+        function adjustTableSize() {
+            const width = document.getElementById('tableWidth').value;
+            const height = document.getElementById('tableHeight').value;
+
+            if (width) {
+                table.style.width = `${width}px`;
+                updateStatus(`Ancho de tabla ajustado a ${width}px`);
+            }
+            
+            if (height) {
+                table.style.height = `${height}px`;
+                updateStatus(`Alto de tabla ajustado a ${height}px`);
+            }
+
+            adjustCanvasSize();
+            drawAllLines();
+        }
+
+        function printTable() {
+            updateStatus('Preparando para imprimir...');
+            window.print();
+        }
+
+        function updateStatus(message, isError = false) {
+            statusBar.textContent = message;
+            statusBar.style.color = isError ? 'red' : '';
+            
+            // Restablecer color después de un tiempo si es un error
+            if (isError) {
+                setTimeout(() => {
+                    statusBar.style.color = '';
+                }, 3000);
+            }
+        }
+    </script>
+
+
+
+
+    
+
+</body>
+</html>

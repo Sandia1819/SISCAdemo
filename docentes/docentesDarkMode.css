@@ -1,0 +1,306 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Modo claro (predeterminado) */
+body {
+    color: black;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+/* Fondo para elementos específicos en modo oscuro */
+body.dark-mode .dark-container {
+    background-color: black;
+    color: white;
+}
+
+/* Fondo para elementos específicos en modo claro */
+body .light-container {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
+
+/* Asegurar que ciertos elementos no cambien */
+body.dark-mode .no-change-color {
+    color: black !important;
+}
+
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+
+body.dark-mode .modal-dialog {
+    background-color: #222; /* Fondo negro del modal */
+    color: white; /* Texto blanco en el modal */
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .modal-header {
+    background-color: #28a745; /* Verde para el header */
+    color: white;
+}
+
+body.dark-mode .modal-footer {
+    background-color: #222; /* Fondo negro en el footer */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .modal-body {
+    background-color: #222; /* Fondo negro para el cuerpo del modal */
+    color: white; /* Texto blanco */
+}
+
+/* Estilos para los inputs dentro del modal */
+body.dark-mode .modal-body .form-control {
+    background-color: #222; /* Fondo más oscuro para los inputs */
+    color: white; /* Texto blanco en los inputs */
+    border: 1px solid #555; /* Borde gris oscuro */
+}
+
+body.dark-mode .modal-body .form-control:focus {
+    border-color: #ff8000; /* Borde naranja al hacer foco */
+}
+
+/* Estilo para los botones en modo oscuro */
+body.dark-mode .modal-footer .btn-secondary {
+    background-color: #ff8000; /* Naranja */
+}
+
+body.dark-mode .modal-footer .btn-primary {
+    background-color: #28a745; /* Verde */
+}
+
+/* Estilo cuando los inputs o selects están en foco */
+body.dark-mode .modal-body .form-control:focus,
+body.dark-mode .modal-body select.form-control:focus {
+    border-color: #ff8000; /* Borde naranja */
+    outline: none;
+}
+
+/* Estilos para el <select> dentro del modal */
+body.dark-mode .modal-body select.form-control {
+    background-color: #222; /* Fondo negro para el select */
+    color: white; /* Texto blanco */
+    border: 1px solid #555; /* Borde gris oscuro */
+}
+
+/* Estilo para el select en foco */
+body.dark-mode .modal-body select.form-control:focus {
+    border-color: #ff8000; /* Borde naranja */
+    outline: none;
+}
+
+
+/* Fondo gris en modo oscuro */
+body.dark-mode #formDocente {
+    background-color: #333; /* Gris oscuro en modo oscuro */
+    color: white; /* Asegura que el texto sea blanco en modo oscuro */
+}
+
+/* Estilos para los labels en modo oscuro */
+body.dark-mode .modal-body label {
+    color: white; /* Texto blanco para los labels */
+}
+
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Tabla en modo oscuro con fondo negro, bordes blancos y texto blanco */
+body.dark-mode .table {
+    background-color: #000; /* Fondo negro para la tabla */
+    color: white; /* Texto blanco */
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+body.dark-mode .table th, body.dark-mode .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ffffff; /* Bordes blancos */
+}
+
+body.dark-mode .table th {
+    background-color: #008f39; /* Encabezado verde */
+}
+
+body.dark-mode .table-striped tbody tr:nth-child(odd) {
+    background-color: #333; /* Fondo oscuro para filas impares */
+}
+
+body.dark-mode .table-striped tbody tr:hover {
+    background-color: #555; /* Fondo más claro al pasar el mouse */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Botones con colores originales en modo oscuro */
+body.dark-mode .btn-primary, 
+body.dark-mode .btn-success, 
+body.dark-mode .btn-warning, 
+body.dark-mode .btn-danger, 
+body.dark-mode .btn-secondary {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    margin-right: 10px; /* Espacio entre los botones */
+}
+
+body.dark-mode .btn-primary {
+    background-color: #ff8000; /* Naranja */
+    border: none;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: #e76f00; /* Naranja más oscuro */
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+body.dark-mode .btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+body.dark-mode .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+body.dark-mode .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #e0a800;
+    border: none;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Mejoras visuales para las filas de la tabla en modo oscuro */
+body.dark-mode .table th, 
+body.dark-mode .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Fondo para el contenedor principal */
+body.dark-mode .main-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #008f39;
+    padding: 40px;
+    max-width: 800px;
+    margin: 80px auto;
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilos para el hover en los inputs en modo oscuro */
+body.dark-mode .form-control:hover,
+body.dark-mode .modal-body input:hover,
+body.dark-mode .modal-body select:hover {
+    border-color: #28a745; /* Verde cuando se pasa el mouse */
+}
+
+/*--------------------------------------------------------------------------------------------------- */
+
+/* Estilo para el botón de cierre en modo oscuro */
+body.dark-mode .btn-close {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    color: white; /* Cruz blanca */
+    font-size: 2rem; /* Tamaño de la cruz */
+    cursor: pointer;
+    padding: 0.5rem; /* Tamaño del área del botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Hover para el botón de cierre en modo oscuro */
+body.dark-mode .btn-close:hover {
+    color: #ffc107; /* Color amarillo para la cruz al hacer hover */
+    background-color: rgba(255, 193, 7, 0.2); /* Fondo amarillo claro */
+    border-radius: 50%; /* Redondear los bordes del botón */
+}

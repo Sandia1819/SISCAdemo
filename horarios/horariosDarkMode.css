@@ -1,0 +1,184 @@
+
+/* Estilos para el interruptor */
+.switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+
+
+/* Estilo para el modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Estilos del contenedor principal */
+body.dark-mode .container {
+    background-color: #333333;
+    color: #e0e0e0;
+    border-top: 5px solid #ff8000;
+}
+
+/* Estilos del título */
+body.dark-mode h1 {
+    color: #ff8000;
+}
+
+/* Estilos del contenedor de búsqueda */
+body.dark-mode .search-container {
+    background-color: #444444;
+    border-color: #888888;
+}
+
+body.dark-mode .search-container input {
+    color: #e0e0e0;
+}
+
+/* Estilo para el input de selección de archivo PDF */
+body.dark-mode .file-container label {
+    background-color: #ff8000;
+}
+
+/* Estilo para el input de selección de archivo PDF */
+body.dark-mode .file-container:hover label {
+    background-color: #28a745;
+    box-shadow: 0 0 15px 5px #28a745;
+    transform: scale(1.05);
+}
+
+/* Estilo para la lista de PDFs */
+body.dark-mode #pdf-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo para la lista de PDFs */
+body.dark-mode #pdf-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+body.dark-mode .li2 {
+    background-color: #444444; /* Fondo gris */
+    color: #ffffff; /* Texto blanco */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #ff8000;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .li2:hover {
+    background-color: #555555; /* Fondo gris más claro */
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(255, 128, 0, 0.2);
+}
+
+/* Estilo del enlace dentro de la lista */
+body.dark-mode .li2 a {
+    color: #ffffff; /* Asegura que el texto sea blanco */
+    text-decoration: none; /* Eliminar subrayado */
+    font-size: 16px;
+}
+
+/* Estilo para el enlace cuando se pasa el ratón */
+body.dark-mode .li2 a:hover {
+    color: #ff8000; /* Color naranja al pasar el ratón */
+}
+
+/* Asegurar que los enlaces no cambien de color cuando sean visitados */
+body.dark-mode .li2 a:visited {
+    color: #ffffff; /* Mantener color blanco en enlaces visitados */
+}
+
+
+/* Botón para eliminar PDF de la lista */
+body.dark-mode .delete-btn {
+    background-color: #c82333;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .delete-btn:hover {
+    background-color: #dc3545;
+}
+
+/* Estilo para el visor de PDF */
+body.dark-mode #pdf-viewer {
+    background-color: #444444;
+    color: #e0e0e0;
+}
+
+/* Botones */
+body.dark-mode .download-btn {
+    background-color: #ff8000;
+}
+
+body.dark-mode .close-btn {
+    background-color: #ff8000;
+}
+
+body.dark-mode .download-btn:hover {
+    background-color: #28a745;
+    box-shadow: 0 0 15px 5px #28a745;
+    transform: scale(1.05);
+}
+
+body.dark-mode .close-btn:hover {
+    background-color: #28a745;
+    box-shadow: 0 0 15px 5px #28a745;
+    transform: scale(1.05);
+}

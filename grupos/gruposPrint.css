@@ -1,0 +1,73 @@
+@media print {
+    /* Ocultar todo primero */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* Solo mostrar el contenedor de la tabla y sus elementos */
+    .table-container, .table-container * {
+        visibility: visible;
+    }
+    
+    /* Ocultar explícitamente el formulario y otros elementos */
+    .form-container {
+        display: none;
+    }
+    
+    /* Posicionar el contenedor de tabla para impresión */
+    .table-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        border: none;
+        margin: 0;
+        overflow: visible;
+    }
+    
+    /* Estilos para la tabla */
+    .table-container table {
+        width: 90%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-size: 8px;
+        margin: 0 auto;
+        page-break-inside: avoid; /* Prevenir cortes dentro de la tabla */
+    }
+    
+    .table-container th, 
+    .table-container td {
+        padding: 3px;
+        font-size: 9px;
+        text-align: center;
+    }
+    
+    .table-container h3 {
+        text-align: center;
+        margin-bottom: 5mm;
+        font-size: 12px;
+    }
+    
+    /* Controlar márgenes de página */
+    @page {
+        size: auto;
+        margin: 10mm;
+    }
+    
+    /* Ocultar botón de eliminar en la impresión */
+    .table-container th:last-child,
+    .table-container td:last-child {
+        display: none;
+    }
+    
+    /* Asegurar que la tabla-contenedor sea reconocida como un bloque independiente */
+    .main-container {
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+}

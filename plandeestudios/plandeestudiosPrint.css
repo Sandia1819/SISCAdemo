@@ -1,0 +1,135 @@
+/* Estilo para la impresión */
+@media print {
+    @page {
+        size: A4 landscape; /* Tamaño de la página en formato horizontal */
+        margin-top: 0mm; /* Ajustar margen superior dentro de la página */
+        margin-left: 10mm; /* Ajustar margen izquierdo */
+        margin-right: 10mm; /* Ajustar margen derecho */
+        margin-bottom: 10mm; /* Ajustar margen inferior */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        visibility: hidden;
+    }
+
+    /* Contenedor principal visible durante la impresión */
+    .col-md-8 {
+        visibility: visible;
+        position: absolute;
+        top: 20px;
+        left: 50%; /* Centrado horizontal */
+        transform: translateX(-50%); /* Ajuste para centrar horizontalmente */
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    .col-md-8 * {
+        visibility: visible;
+    }
+
+    /* Ocultar elementos no requeridos en la impresión */
+    .col-md-4, .btn-primary {
+        display: none !important;
+    }
+
+    #informacion-carrera {
+        display: flex;                       /* Usa flexbox */
+        flex-direction: column;              /* Organiza los elementos en columna */
+        justify-content: center;             /* Centra los elementos verticalmente */
+        align-items: center;                 /* Centra los elementos horizontalmente */
+        text-align: center;                  /* Centra el texto dentro de los elementos */
+        padding: 20px;                       /* Añadir espacio alrededor */
+        padding-left: 100px;                  /* Añadir margen izquierdo */
+        padding-right: 100px;                 /* Añadir margen derecho */
+        margin-top: -100px;
+    }
+    
+    #informacion-carrera p {
+        margin: 5px 0;                       /* Añadir margen entre los párrafos */
+        font-size: 18px;                     /* Ajusta el tamaño del texto si es necesario */
+        color: #000000;                      /* Color negro */
+    }
+
+    
+
+    /* Ajuste del contenedor de la tabla */
+    .table-container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        clear: both; /* Asegura que la tabla aparezca debajo de la información de carrera */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-size: 9px;
+        margin: 0 auto;
+    }
+
+    th, td {
+        padding: 4px;
+        font-size: 9px;
+        text-align: center;
+    }
+
+    .col-md-8, .table-container, table, th, td {
+        page-break-inside: avoid;
+    }
+
+    /* Mejoras en el footer para impresión */
+    #footer {
+        font-size: 7px;
+        width: 98%;
+        margin-top: 20px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #footer div {
+        width: auto;
+    }
+
+    .footer p {
+        font-size: 7px;
+        margin: 0;
+        text-align: left;
+    }
+
+    /* Alineación de elementos del footer */
+    #footer div:last-child {
+        text-align: right;
+    }
+
+    /* Establecer el tamaño de la fuente fuera de la tabla */
+    body * {
+        font-size: 9px !important;
+    }
+
+    /* Excepciones para el tamaño de fuente */
+    #informacion-carrera * {
+        font-size: 12px !important;
+    }
+
+    table, th, td {
+        font-size: 9px !important;
+    }
+
+    .image123 img {
+        display: block;
+        width: 160px;
+        height: 80px;
+        object-fit: contain;
+        margin-top: 40px; /* Espaciado superior */
+        margin-bottom: 15px; /* Agrega margen debajo de la imagen */
+    }
+    
+    
+}

@@ -1,0 +1,285 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Modo claro (predeterminado) */
+body {
+    color: black;
+}
+
+/* Modo oscuro */
+body.dark-mode {
+    background-color: black;  /* Fondo oscuro */
+    color: white; /* Texto blanco */
+}
+
+/* Contenedor principal */
+body.dark-mode .main-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center; /* Centra los contenedores dentro del contenedor principal */
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1500px;
+    margin: 20px auto;
+    background-color: black; /* Fondo oscuro */
+}
+
+/* Contenedor del formulario */
+body.dark-mode .form-container {
+    flex: 1;
+    min-width: 350px;
+    max-width: 600px; /* Ancho máximo */
+    background: black; /* Fondo oscuro */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black; /* Sombra más pronunciada */
+    color: white; /* Texto blanco */
+    border: 2px solid #ff8000; /* Borde naranja */
+}
+
+
+/* Contenedor de la tabla */
+body.dark-mode .table-container {
+    flex: 2;
+    min-width: 800px;
+    max-width: 1000px; /* Ancho máximo */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    overflow-x: auto;
+    background: black; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    border: 2px solid #ff8000; /* Borde naranja */
+
+}
+
+/* Estilos de inputs y selects */
+body.dark-mode select, body.dark-mode input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #555; /* Bordes grises en modo oscuro */
+    border-radius: 5px;
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+}
+
+/* Estilos de la tabla */
+body.dark-mode table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #333; /* Fondo oscuro de la tabla */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode th, body.dark-mode td {
+    border: 1px solid #555; /* Bordes más oscuros */
+    padding: 10px;
+    text-align: center;
+}
+
+body.dark-mode th {
+    background-color: #ff8000; /* Fondo verde para encabezado */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .table-striped tbody tr:nth-child(odd) {
+    background-color: #444; /* Fondo más oscuro para filas impares */
+}
+
+body.dark-mode .table-striped tbody tr:hover {
+    background-color: #555; /* Fondo más claro al pasar el mouse */
+}
+
+/* Estilo de los botones */
+body.dark-mode .btnGuardar {
+    margin-top: 10px;
+    padding: 10px;
+    width: 40%;
+    border: none;
+    background-color: #ff8000; /* Color verde */
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .btnGuardar:hover {
+    background-color: #28a745;
+    box-shadow: 0 0 15px 5px #28a745;
+    transform: scale(1.05);
+}
+
+/* Botones más pequeños */
+body.dark-mode .btnGuardar2 {
+    margin-top: 10px;
+    padding: 8px;
+    width: 20%;
+    border: none;
+    background-color: #ff8000;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .btnGuardar2:hover {
+    background-color: #28a745;
+    box-shadow: 0 0 15px 5px #28a745;
+    transform: scale(1.05);
+}
+
+
+/* Modal en modo oscuro */
+body.dark-mode .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro del modal */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que el modal esté por encima de otros elementos */
+}
+
+/* Contenido del modal en modo oscuro */
+body.dark-mode .modal-content {
+    background-color: #222; /* Fondo oscuro del modal */
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1000px; /* Máximo ancho para evitar que el modal sea demasiado grande */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Filtros dentro del modal en modo oscuro */
+body.dark-mode .modal-filters {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+body.dark-mode .modal-filters input,
+body.dark-mode .modal-filters select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #444; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .modal-filters input:focus,
+body.dark-mode .modal-filters select:focus {
+    border-color: #ff8000; /* Borde naranja al enfocar */
+    outline: none;
+}
+
+/* Tabla dentro del modal en modo oscuro */
+body.dark-mode .modal-table {
+    flex: 2;
+    overflow-y: auto;
+    max-height: 400px; /* Limitamos la altura para que no se desborde */
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333; /* Fondo oscuro para la tabla */
+    color: white; /* Texto blanco */
+}
+
+body.dark-mode .modal-table th,
+body.dark-mode .modal-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #444;
+}
+
+body.dark-mode .modal-table th {
+    background-color: #008f39; /* Color verde para el encabezado */
+}
+
+body.dark-mode .modal-table tr:nth-child(odd) {
+    background-color: #444;
+}
+
+body.dark-mode .modal-table tr:hover {
+    background-color: #555;
+}
+
+/* Estilo de los botones dentro del modal en modo oscuro */
+body.dark-mode .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    grid-column: span 2;
+    align-self: flex-end;
+}
+
+body.dark-mode .modal-buttons button {
+    padding: 12px 20px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    width: 48%; /* Ajuste el tamaño de los botones */
+}
+
+body.dark-mode .modal-buttons button:hover {
+    background-color: rgba(255, 123, 0, 0.8);
+    box-shadow: 0 0 15px 5px rgba(255, 123, 0, 0.8);
+    transform: scale(1.05);
+}
+
+
+body.dark-mode .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+body.dark-mode .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+body.dark-mode input:checked + .slider {
+    background-color: #ff8000;
+}
+
+body.dark-mode input:checked + .slider:before {
+    transform: translateX(26px);
+}

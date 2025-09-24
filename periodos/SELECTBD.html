@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Segundo select para periodos creados -->
+    <div class="form-group">
+        <label for="periodo-creado">Seleccionar Periodo Creado</label>
+        <select id="periodo-creado" class="form-control">
+            <option value="">Seleccione un periodo creado</option>
+            <!-- Aquí se cargarán los periodos creados dinámicamente -->
+        </select>
+    </div>
+
+    <script>
+// Función para transformar el nombre de la base de datos en formato amigable
+function formatearNombrePeriodo(nombreBaseDatos) {
+    let nombreFormateado = nombreBaseDatos.replace('periodo_', '').replace(/_/g, ' ').trim();
+
+    nombreFormateado = nombreFormateado.split(' ').map(function(palabra) {
+        return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
+    }).join(' ');
+
+    const partes = nombreFormateado.split(' ');
+    const año = partes.pop();
+    const periodo = partes.join(' ');
+
+    return `${periodo} - ${año}`;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    obtenerPeriodosDesdeBaseDeDatos();
+});
+
+function obtenerPeriodosDesdeBaseDeDatos() {
+    fetch('obtener_periodos.php')  // Llamamos al script PHP que lista las bases de datos de los periodos
+        .then(response => response.json())
+        .then(periodos => {
+            if (periodos.length > 0) {
+                // Cargar periodos en el select de periodos creados
+                const selectElement = document.getElementById("periodo-creado"); // El select donde vamos a insertar las opciones
+
+                // Limpiar el select antes de agregar los nuevos periodos
+                selectElement.innerHTML = '<option value="">Seleccione un periodo creado</option>';
+
+                // Recorrer la lista de periodos y agregar cada uno como una opción en el select
+                periodos.forEach(periodo => {
+                    const nombreFormateado = formatearNombrePeriodo(periodo);
+
+                    // Crear una nueva opción (option) para el select
+                    const option = document.createElement("option");
+                    option.value = periodo;  // El valor será el nombre de la base de datos (ej. periodo_2023)
+                    option.textContent = nombreFormateado;  // El texto mostrado será el nombre formateado del periodo
+                    selectElement.appendChild(option);  // Agregar la opción al select
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener los periodos:', error);
+        });
+}
+
+
+
+
+// Función para agregar la nueva opción al select de periodos creados
+function agregarOpcionSelect(nombreBaseDatos, nombreFormateado) {
+    const selectElement = document.getElementById("periodo-creado");
+
+    const option = document.createElement("option");
+    option.value = nombreBaseDatos;  // Usamos el nombre de la base de datos como el valor
+    option.textContent = nombreFormateado;  // Mostramos el nombre formateado
+
+    selectElement.appendChild(option);  // Agregar la opción al select
+}
+
+
+
+
+
+    </script>
+</body>
+</html>

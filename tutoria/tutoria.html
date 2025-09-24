@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📃Tutoría</title>
+    <!-- Enlace al archivo de estilos -->
+    <link rel="stylesheet" href="plantillaformat.css">
+    <link rel="stylesheet" href="tutodark.css">
+    <link rel="stylesheet" href="contenedortutoria.css">
+    <link rel="stylesheet" href="Cartatutoria.css">
+    <link rel="stylesheet" href="distribucionperiodos.css">
+    <link rel="stylesheet" href="inputsytablas.css">
+ 
+
+    
+    <!-- Íconos de FontAwesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <script src="/siscaadministrador/js/jquery.min.js"></script>
+    <script src="/siscaadministrador/js/jquery.dataTables.min.js"></script>
+    <script src="/siscaadministrador/js/bootstrap.min.js"></script>
+    <script src="/siscaadministrador/js/sweetalert2.min.js"></script>
+  
+    
+</head>
+<style>
+
+/* Diseño de las filas */
+.customrow {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 20px;
+    width: 100%;
+    perspective: 1000px; /* Necesario para dar profundidad al giro */
+    margin-left: 80px;
+    margin-top: 5px;
+}
+
+/* Logo 1 (Izquierda) */
+.logo-icon {
+    margin-right: auto;
+    animation: rotateCoin 5s linear infinite; /* Animación de giro tipo moneda */
+    transform-origin: center; /* Fija el punto de rotación en el centro */
+}
+
+/* Logo 2 (Derecha) */
+.logo-text {
+    margin-left: auto;
+}
+
+/* Animación de rotación tipo moneda */
+@keyframes rotateCoin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+
+
+
+    @media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .form-panel {
+        display: none !important;
+    }
+    
+    /* Ajuste para tamaño A4 */
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    
+    /* Configuración específica para cada contenedor */
+    .hojaimpresion, .hojaimpresion2, .hojaimpresion3 {
+        
+        visibility: hidden;
+        width: 275mm;
+        height: 390mm;
+        position: absolute;
+        border: none;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Solo se mostrará el contenedor activo */
+    .contenedor-activo, .contenedor-activo .hojacontainer * {
+        visibility: visible !important;
+    }
+    
+    /* Estilo para el contenedor interno */
+    .hojacontainer {
+        font-family: "Arial Narrow", Arial, sans-serif;
+        width: calc(100% - 20mm);
+        height: calc(100% - 20mm);
+        margin: 10mm;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: url('../assets/fondout.png') no-repeat center center ; 
+        background-size: cover;
+        border: none;
+     
+    }
+    
+    /* Ajustes para tablas */
+    .hojacontainer table {
+        width: 95%;
+        border-collapse: collapse;
+    }
+    
+    /* Ocultar botones al imprimir */
+    .impr {
+        display: none;
+    }
+    
+    /* Ajuste del logo */
+    .header .logo {
+        display: block;
+        margin: 0 auto;
+        filter: contrast(100%) brightness(100%) opacity(100%);
+        margin-top: 10px;
+        margin-left: 50px;
+    }
+}
+
+    
+</style>
+
+
+<body> 
+
+    <div class="sidebar">
+        <ul> 
+            <li class="logo-item">
+                <a href="/siscaadministrador/indexadm.html">
+                    <img src="/siscaadministrador/assets/logout.png" alt="Logo" class="logo-img">
+                </a>
+            </li>
+           
+            <!-- Menú de la barra lateral -->
+            <li>
+                <a href="/siscaadministrador/periodos/periodos.html">
+                    <i class="fa fa-bookmark"></i>
+                    <span class="menu-item">Periodos</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/plandeestudios/plandeEstudios.html">
+                    <i class="fa fa-calendar"></i>
+                    <span class="menu-item">Plan de Estudios</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/cartadeAsignacion/cartadeAsignacion.html">
+                    <i class="fa fa-file-alt"></i>
+                    <span class="menu-item">Carta de Asignación</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/grupos/grupos.html">
+                    <i class="fa fa-book"></i>
+                    <span class="menu-item">Grupos</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/docentes/docentes.html">
+                    <i class="fa fa-user"></i>
+                    <span class="menu-item">Docentes</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/carga/carga.html">
+                    <i class="fa fa-list-alt"></i>
+                    <span class="menu-item">Carga</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/tutoria/tutoria.html">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-item">Tutoría</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/reportes/reportes.html">
+                    <i class="fa fa-chart-line"></i>
+                    <span class="menu-item">Reportes</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/proyectosIntegradores/proyectosIntegradores.html">
+                    <i class="fa fa-folder"></i>
+                    <span class="menu-item">Proyectos Integradores</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/horarios/horarios.html">
+                    <i class="fa fa-clock"></i>
+                    <span class="menu-item">Horarios</span>
+                </a>
+            </li>
+            <li>
+                <a href="/siscaadministrador/prefectura/prefectura.html">
+                    <i class="fa fa-shield-alt"></i>
+                    <span class="menu-item">Prefectura</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+ <!-- Contenedor Inicial -->
+ <div class="customrow">
+    <div class="logos">
+            
+        <img src="/siscaadministrador/assets/siscalogo1.png" alt="Icono Logo" class="logo-icon" height="100px" width="100px">
+        <img src="/siscaadministrador/assets/siscalogo2.png" alt="Texto Logo" class="logo-text" height="100px" width="180px">
+   
+    </div>   
+    <h2 class="texto">Sistema de Carga Académica v1.0</h2> 
+</div>
+<br><br><br> 
+    <div class="titleCartaasgn">
+        <h2 class="texto">Tutores de Acompañamiento</h2>
+    </div>
+ <!-- grupo nombrecompleto -->
+<br>
+<!--  <div class="program-section">
+        <div class="program-container">
+            <div class="prd1"id="programa_educativoTSUM"><p>TSU en Mercadotecnia</p></div>
+            <div class="prd2"id="programa_educativoTSUD"><p>TSU en Desarrollo de Negocios área Mercadotecnia</p></div>
+            <div class="prd3"id="programa_educativoTSUE"><p>TSU en Enseñanza del Idioma Inglés</p></div>
+            <div class="prd4"id="programa_educativoTSUL"><p>TSU en Lengua Inglesa</p></div>
+            <div class="prd5"id="programa_educativoTSUA"><p>TSU en Automatización</p></div>
+            <div class="prd6"id="programa_educativoTSUMA"><p>TSU en Mercadotecnia área Automatización</p></div>
+            <div class="prd7"id="programa_educativoTSUMI"><p>TSU en Mantenimiento Industrial</p></div>
+            <div class="prd8"id="programa_educativoTSUMAI"><p>TSU en Mantenimiento área Industrial</p></div>
+            <div class="prd9"id="programa_educativoTSUEVND"><p>TSU en Entornos Virtuales y Negocios Digitales</p></div>
+            <div class="prd10"id="programa_educativoTSUTIAEVND"><p>TSU en Mercadotecnia</p></div>
+            <div class="prd11"id="programa_educativoTSUQI"><p>TSU en Química Industrial</p></div>
+            <div class="prd12"id="programa_educativoTSUQAI"><p>TSU en Química área Industrial</p></div>
+
+            <div class="prd13"id="programa_educativoLINM"><p>Licenciatura en Innovación de Negocios y Mercadotecnia</p></div>
+            <div class="prd14"id="programa_educativoTSUGIEC"><p>Licenciatura en Gestión Institucional, Educativa y Curricular </p></div>
+            <div class="prd15"id="programa_educativoIM"><p>Ingeniería en Mecatrónica</p></div>
+            <div class="prd16"id="programa_educativoIMI"><p>Ingeniería en Mantenimiento Industrial </p></div>
+            <div class="prd17"id="programa_educativoIEVND"><p>Ingeniería en Entornos Visuales y Negocios Digitales</p></div>
+            <div class="prd18"id="programa_educativoIQPI"><p>Ingeniería en Química en Procesos Industriales</p></div>
+
+        </div>
+          </div>
+    -->
+<div class="main-container">
+
+<div class="form-panel">
+    <h2>Tutores de Acompañamiento</h2>
+    
+   
+
+    <div class="tutores-section">
+        <div class="form-group" id="listtsu">
+            <h3>Técnico Superior Universitario:</h3>
+            <div class="tutor-container">
+                <!-- TSU en Mercadotecnia -->
+<div id="programa_educativoTSUM">
+    <p>TSU en Mercadotecnia</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUM 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUM 1B</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Desarrollo de Negocios área Mercadotecnia -->
+  <div id="programa_educativoTSUD">
+    <p>TSU en Desarrollo de Negocios área Mercadotecnia</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUD 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUD 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Enseñanza del Idioma Inglés -->
+  <div id="programa_educativoTSUE">
+    <p>TSU en Enseñanza del Idioma Inglés</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUE 1A</p>
+      <p id="nombrecompleto">Lic. Yaretzy A. Carrillo Páez/p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUE 1B</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+        <p id="grupo">70 TSUE 1N</p>
+        <p id="nombrecompleto">Lic. Katerin Alejandra Chavez Rodriguez</p>
+      </div>
+      <div class="tutor-item">
+        <p id="grupo">70 TSUE 1N</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+  </div>
+  
+  <!-- TSU en Lengua Inglesa -->
+  <div id="programa_educativoTSUL">
+    <p>TSU en Lengua Inglesa</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUL 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUL 1B</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Automatización -->
+  <div id="programa_educativoTSUA">
+    <p>TSU en Automatización</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUA 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUA 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+        <p id="grupo">70 TSUA 1N</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+      <div class="tutor-item">
+        <p id="grupo">70 TSUA 1N</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+  </div>
+  
+  <!-- TSU en Mercadotecnia área Automatización -->
+  <div id="programa_educativoTSUMA">
+    <p>TSU en Mercadotecnia área Automatización</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUMA 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUMA 1B</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Mantenimiento Industrial -->
+  <div  id="programa_educativoTSUMI">
+    <p>TSU en Mantenimiento Industrial</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUMI 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUMI 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Mantenimiento área Industrial -->
+  <div id="programa_educativoTSUMAI">
+    <p>TSU en Mantenimiento área Industrial</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUMAI 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUMAI 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Entornos Virtuales y Negocios Digitales -->
+  <div id="programa_educativoTSUEVND">
+    <p>TSU en Entornos Virtuales y Negocios Digitales</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUEVND 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUEVND 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Mercadotecnia -->
+  <div id="programa_educativoTSUTIAEVND">
+    <p>TSU en Mercadotecnia</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUTIAEVND 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUTIAEVND 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Química Industrial -->
+  <div id="programa_educativoTSUQI">
+    <p>TSU en Química Industrial</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUQI 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUQI 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- TSU en Química área Industrial -->
+  <div id="programa_educativoTSUQAI">
+    <p>TSU en Química área Industrial</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUQAI 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUQAI 1N</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+     
+            </div>
+        </div>
+        
+        <div class="form-group" id="listlicenciatura">
+            <h3>Continuación a Licenciatura e Ingeniería</h3>
+            <div class="tutor-container">
+<!-- Licenciatura en Innovación de Negocios y Mercadotecnia -->
+<div id="programa_educativoLINM">
+    <p>Licenciatura en Innovación de Negocios y Mercadotecnia</p>
+    <div class="tutor-item">
+      <p id="grupo">67 DNAM 4A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">67 DNAM 4B</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+    <div class="tutor-item">
+      <p id="grupo">67 DNAM 4C</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- Licenciatura en Gestión Institucional, Educativa y Curricular -->
+  <div id="programa_educativoTSUGIEC">
+    <p>Licenciatura en Gestión Institucional, Educativa y Curricular</p>
+    <div class="tutor-item">
+        <p id="grupo">70 TSUM 1A</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+      <div class="tutor-item">
+        <p id="grupo">70 TSUM 1A</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+  </div>
+  
+  <!-- Ingeniería en Mecatrónica -->
+  <div id="programa_educativoIM">
+    <p>Ingeniería en Mecatrónica</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUM 1A</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- Ingeniería en Mantenimiento Industrial -->
+  <div id="programa_educativoIMI">
+    <p>Ingeniería en Mantenimiento Industrial</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUM 1B</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  <!-- Ingeniería en Entornos Visuales y Negocios Digitales -->
+  <div id="programa_educativoIEVND">
+    <p>Ingeniería en Entornos Visuales y Negocios Digitales</p>
+    <div class="tutor-item">
+        <p id="grupo">70 TSUM 1A</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+      <div class="tutor-item">
+        <p id="grupo">70 TSUM 1A</p>
+        <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+      </div>
+  </div>
+  
+  <!-- Ingeniería en Química en Procesos Industriales -->
+  <div id="programa_educativoIQPI">
+    <p>Ingeniería en Química en Procesos Industriales</p>
+    <div class="tutor-item">
+      <p id="grupo">70 TSUM 1C</p>
+      <p id="nombrecompleto">Lic. Jonathan Alejandro Moreno Lozano</p>
+    </div>
+  </div>
+  
+  
+            </div>
+        </div>
+        
+
+    </div>
+    
+
+</div>
+
+
+
+
+<div class="content-container">
+
+    <div class="impr">
+        <button class="bttn" onclick="imprimirContenido('hojaimpresion')">TSU1</button>
+        <button class="bttn" onclick="imprimirContenido('hojaimpresion2')">TSU2</button>
+        <button class="bttn" onclick="imprimirContenido('hojaimpresion3')">LIC</button>
+          </div>
+    
+
+    <div class="hojaimpresion" id="hojaimpresion">
+        <div class="hojacontainer" id="conttsu">
+        <!-- Encabezado -->
+        <div class="header">
+            <img src="../assets/logout.png" alt="Logo" class="logo">
+        </div>
+        
+        <div class="title">
+             
+                <p style="font-weight: bold;">Tutores de Acompañamiento</p> 
+                <p class="grd">Técnico Superior Universitario</p> 
+            </div>
+
+                <div class="PEperiodo" >
+                    <input type="text"  placeholder="Periodo" id="periodo"> 
+                </div>
+            
+
+                <div class="table-container"> 
+                <div class="prd1">
+                    <input id="programa_educativoTSUM" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls1">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Segunda tabla -->
+                    <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <td><input id="grupo" type="text" value=""></td>
+                            <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <td><input id="grupo" type="text" value=""></td>
+                            <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="prd2">
+                    <input id="programa_educativoTSUD" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls2">
+                <!-- Primera tabla -->
+                <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+
+                <!-- Segunda tabla -->
+                <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+                </div>
+
+                <div class="prd3">
+                    <input id="programa_educativoTSUE" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls3">
+                <!-- Primera tabla -->
+                <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+
+                <!-- Segunda tabla -->
+                <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+                </div>
+
+                <div class="prd4">
+                    <input id="programa_educativoTSUL" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls4">
+                <!-- Primera tabla -->
+                <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+
+                <!-- Segunda tabla -->
+                <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+                </div>
+                
+
+                <div class="prd5">
+                    <input id="programa_educativoTSUA" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls5">
+                <!-- Primera tabla -->
+                <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+
+                <!-- Segunda tabla -->
+                <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+                </div>
+                    
+
+                <div class="prd6">
+                    <input id="programa_educativoTSUMA" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls6">
+                <!-- Primera tabla -->
+                <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+
+                <!-- Segunda tabla -->
+                <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                <table>
+                <tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                <td><input id="grupo" type="text" value=""></td>
+                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                </tr>
+                </table>
+                </div>
+                </div>
+
+
+
+
+
+
+
+</div>
+           
+    <br>     <br>
+
+                               
+
+      
+        <div class="signature">
+                     <p class="fmt"> 
+                            Clave: <input type="text" placeholder="R-10-8.5.1-FA" style="margin-left: -30px;">
+                            Fecha Elab: <input type="text" placeholder="20/01/2023" style="margin-left: -30px;">
+                            Revisión: <input type="text" size="1"  placeholder="01" style="margin-left: -30px;">
+                            Fecha Rev: <input type="text" placeholder="29/04/2024" style="margin-left: -30px;">
+                            <input class=" SGC" type="text" placeholder="UT CADEREYTA SGC" style="margin-left: -30px;">
+                      
+            
+            </p>
+        
+            <p class="footer">La presente publicación se plantea de manera incluyente y libre de estereotipos de género, por lo que al referirse a una persona como "él" significa "él o ella".</p>
+            
+        </div>
+  
+    </div> 
+</div> 
+<div class="hojaimpresion2" id="hojaimpresion2">
+    <div class="hojacontainer" id="conttsu1">
+        <!-- Encabezado -->
+        <div class="header">
+            <img src="../assets/logout.png" alt="Logo" class="logo">
+        </div>
+        
+        <div class="title">
+             
+                <p style="font-weight: bold;">Tutores de Acompañamiento</p> 
+                <p class="grd">Técnico Superior Universitario</p> 
+            </div>
+
+                <div class="PEperiodo" >
+                    <input type="text" placeholder="Periodo" id="periodo"> 
+                </div>
+            
+
+                <div class="table-container"> 
+
+                    <div class="prd7">
+                        <input id="programa_educativoTSUMI" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                    </div>
+    
+                    <div class="rowtbls7">
+                        <!-- Primera tabla -->
+                        <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                            <table>
+                                <tr>
+                                    <td><input id="grupo" type="text" value=""></td>
+                                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="grupo" type="text" value=""></td>
+                                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                                </tr>
+                                <tr>
+                                    <td><input id="grupo" type="text" value=""></td>
+                                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                                </tr>
+                            </table>
+                        </div>
+    
+                        <!-- Segunda tabla -->
+                        <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                            <table>
+                                <tr>
+                                    <td><input id="grupo" type="text" value=""></td>
+                                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                                </tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                                </tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+    
+                    <div class="prd8">
+                        <input id="programa_educativoTSUMAI" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                    </div>
+    
+                    <div class="rowtbls8">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+    
+                    <!-- Segunda tabla -->
+                    <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    </div>
+    
+                    <div class="prd9">
+                        <input id="programa_educativoTSUEVND" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                    </div>
+    
+                    <div class="rowtbls9">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+    
+                    <!-- Segunda tabla -->
+                    <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    </div>
+    
+                    <div class="prd10">
+                        <input id="programa_educativoTSUTIAEVND" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                    </div>
+    
+                    <div class="rowtbls10">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+    
+                    <!-- Segunda tabla -->
+                    <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    </div>
+                    
+    
+                    <div class="prd11">
+                        <input id="programa_educativoTSUQI" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                    </div>
+    
+                    <div class="rowtbls11">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+    
+                    <!-- Segunda tabla -->
+                    <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    </div>
+                        
+    
+                    <div class="prd12">
+                        <input id="programa_educativoTSUQAI" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                    </div>
+    
+                    <div class="rowtbls12">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+    
+                    <!-- Segunda tabla -->
+                    <div  class="second-table" style="  font-family: 'Arial Narrow'; display: inline-block; margin-left: 20px;">
+                    <table>
+                    <tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    <td><input id="grupo" type="text" value=""></td>
+                    <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                    </tr>
+                    </table>
+                    </div>
+                    </div>
+    
+      
+</div>
+           
+    <br>     <br>
+
+                               
+
+      
+        <div class="signature">
+                     <p class="fmt"> 
+                            Clave: <input type="text" placeholder="R-10-8.5.1-FA" style="margin-left: -30px;">
+                            Fecha Elab: <input type="text" placeholder="20/01/2023" style="margin-left: -30px;">
+                            Revisión: <input type="text" size="1"  placeholder="01" style="margin-left: -30px;">
+                            Fecha Rev: <input type="text" placeholder="29/04/2024" style="margin-left: -30px;">
+                            <input class=" SGC" type="text" placeholder="UT CADEREYTA SGC" style="margin-left: -30px;">
+                      
+            
+            </p>
+        
+            <p class="footer">La presente publicación se plantea de manera incluyente y libre de estereotipos de género, por lo que al referirse a una persona como "él" significa "él o ella".</p>
+            
+        </div>
+  
+    </div> 
+</div> 
+<div class="hojaimpresion3" id="hojaimpresion3">
+    <div class="hojacontainer" id="contlicenciatura">
+        <!-- Encabezado -->
+        <div class="header">
+            <img src="../assets/logout.png" alt="Logo" class="logo">
+        </div>
+        
+        <div class="title">
+             
+                <p style="font-weight: bold;">Tutores de Acompañamiento</p> 
+                <p class="grd">Continuidad a Licenciatura e Ingeniería </p> 
+            </div>
+
+                <div class="PEperiodo" >
+                    <input type="text" placeholder="Periodo" id="periodo"> 
+                </div>
+            <br>
+
+                <div class="table-container"> 
+                <div class="prd13">
+                    <input id="programa_educativoLINM" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls13">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+                <div class="prd14">
+                    <input id="programa_educativoGIEC" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls14">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+                <div class="prd15">
+                    <input id="programa_educativoIM" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls15">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+                <div class="prd16">
+                    <input id="programa_educativoIMI" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls16">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+                <div class="prd17">
+                    <input id="programa_educativoIEVND" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls17">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="prd18">
+                    <input id="programa_educativoIQPI" type="text" style="font-weight: bold; text-align: center; font-family: 'Arial Narrow', Arial, sans-serif;">
+                </div>
+
+                <div class="rowtbls18">
+                    <!-- Primera tabla -->
+                    <div class="first-table" style=" font-family: 'Arial Narrow'; display: inline-block; vertical-align: top;">
+                        <table>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                            <tr>
+                                <td><input id="grupo" type="text" value=""></td>
+                                <td><input id="nombrecompleto" type="text" value="" style="text-align: left;"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+
+      
+</div>
+           
+    <br>     <br>
+
+                               
+
+      
+        <div class="signature">
+                     <p class="fmt"> 
+                            Clave: <input type="text" placeholder="R-10-8.5.1-FA" style="margin-left: -30px;">
+                            Fecha Elab: <input type="text" placeholder="20/01/2023" style="margin-left: -30px;">
+                            Revisión: <input type="text" size="1"  placeholder="01" style="margin-left: -30px;">
+                            Fecha Rev: <input type="text" placeholder="29/04/2024" style="margin-left: -30px;">
+                            <input class=" SGC" type="text" placeholder="UT CADEREYTA SGC" style="margin-left: -30px;">
+                      
+            
+            </p>
+        
+            <p class="footer">La presente publicación se plantea de manera incluyente y libre de estereotipos de género, por lo que al referirse a una persona como "él" significa "él o ella".</p>
+            
+        </div>
+  
+    </div> 
+</div> 
+
+
+
+
+
+</div> 
+
+
+
+</div>
+
+
+
+
+
+
+<label class="switch">
+    <input type="checkbox" id="darkModeToggle">
+    <span class="slider"></span>
+</label>
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function() {
+  // Obtener todos los programas del panel de tutores
+  const programasTSU = document.querySelectorAll('#listtsu .tutor-container > div[id^="programa_educativo"]');
+  const programasLicenciatura = document.querySelectorAll('#listlicenciatura .tutor-container > div[id^="programa_educativo"]');
+  
+  // Mapeo de IDs de programas a los IDs de divs en las plantillas
+  const mapeoIDProgramas = {
+    // Mapeo para TSU (ajustar según tus necesidades)
+    'programa_educativoTSUM': 'prd1',
+    'programa_educativoTSUD': 'prd2',
+    'programa_educativoTSUE': 'prd3',
+    'programa_educativoTSUL': 'prd4',
+    'programa_educativoTSUA': 'prd5',
+    'programa_educativoTSUMA': 'prd6',
+    'programa_educativoTSUMI': 'prd7',
+    'programa_educativoTSUMAI': 'prd8',
+    'programa_educativoTSUEVND': 'prd9',
+    'programa_educativoTSUTIAEVND': 'prd10',
+    'programa_educativoTSUQI': 'prd11',
+    'programa_educativoTSUQAI': 'prd12',
+    
+    // Mapeo para Licenciatura/Ingeniería
+    'programa_educativoLINM': 'prd13',
+    'programa_educativoTSUGIEC': 'prd14',
+    'programa_educativoIM': 'prd15',
+    'programa_educativoIMI': 'prd16',
+    'programa_educativoIEVND': 'prd17',
+    'programa_educativoIQPI': 'prd18'
+    // El prd14 y prd17 parecen ser 'programa_educativoGIEC' y 'programa_educativoIEVND' respectivamente
+  };
+  
+  // Procesar todos los programas
+  procesarProgramas(programasTSU, mapeoIDProgramas, true);
+  procesarProgramas(programasLicenciatura, mapeoIDProgramas, false);
+  
+
+});
+
+/**
+ * Procesa los programas y distribuye los tutores en las plantillas
+ * @param {NodeList} programas - Lista de elementos de programa
+ * @param {Object} mapeoIDs - Mapeo de IDs de programas a IDs de divs
+ * @param {boolean} esTSU - Indica si se trata de programas TSU
+ */
+function procesarProgramas(programas, mapeoIDs, esTSU) {
+  programas.forEach(programa => {
+    const programaId = programa.id;
+    const programaNombre = programa.querySelector('p').textContent.trim();
+    const tutores = programa.querySelectorAll('.tutor-item');
+    
+    if (tutores.length === 0) return;
+    
+    // Obtener el ID del div correspondiente en la plantilla
+    const divId = mapeoIDs[programaId];
+    
+    if (!divId) {
+      console.warn(`No se encontró mapeo para el programa: ${programaId}`);
+      return;
+    }
+    
+    // Buscar el div en la plantilla
+    const divPrograma = document.querySelector(`div.${divId}`);
+    
+    if (divPrograma) {
+      // Buscar el input dentro del div y establecer el nombre del programa
+      const inputPrograma = divPrograma.querySelector('input');
+      if (inputPrograma) {
+        inputPrograma.value = programaNombre;
+      }
+      
+      // Buscar el div de tablas correspondiente
+      const divFilaTabla = document.querySelector(`div.rowtbls${divId.replace('prd', '')}`);
+      
+      if (divFilaTabla) {
+        const tablaRegular = divFilaTabla.querySelector('.first-table table');
+        const tablaNocturna = divFilaTabla.querySelector('.second-table table');
+        
+        if (tablaRegular) {
+          // Limpiar la tabla primero
+          limpiarTabla(tablaRegular);
+          
+          // Separar tutores en regulares y nocturnos
+          const tutoresRegulares = [];
+          const tutoresNocturnos = [];
+          
+          tutores.forEach(tutor => {
+            const grupo = tutor.querySelector('#grupo').textContent.trim();
+            // Si el grupo termina en N, es nocturno
+            if (grupo.endsWith('N')) {
+              tutoresNocturnos.push(tutor);
+            } else {
+              tutoresRegulares.push(tutor);
+            }
+          });
+          
+          // Agregar tutores regulares a la primera tabla
+          tutoresRegulares.forEach((tutor, index) => {
+            if (index < tablaRegular.rows.length) {
+              // Usar fila existente
+              actualizarFilaTutor(tablaRegular.rows[index], tutor);
+            } else {
+              // Agregar una nueva fila
+              agregarTutorATabla(tablaRegular, tutor);
+            }
+          });
+          
+          // Agregar tutores nocturnos a la segunda tabla si existe
+          if (tablaNocturna && tutoresNocturnos.length > 0 && esTSU) {
+            limpiarTabla(tablaNocturna);
+            
+            tutoresNocturnos.forEach((tutor, index) => {
+              if (index < tablaNocturna.rows.length) {
+                // Usar fila existente
+                actualizarFilaTutor(tablaNocturna.rows[index], tutor);
+              } else {
+                // Agregar una nueva fila
+                agregarTutorATabla(tablaNocturna, tutor);
+              }
+            });
+          } else if (tutoresNocturnos.length > 0) {
+            // Si no hay segunda tabla pero hay grupos nocturnos, agregar a la primera tabla
+            tutoresNocturnos.forEach(tutor => {
+              agregarTutorATabla(tablaRegular, tutor);
+            });
+          }
+        }
+      } else {
+        console.warn(`No se encontró div de tablas para la sección: ${divId.replace('prd', '')}`);
+      }
+    } else {
+      console.warn(`No se encontró div con clase: ${divId}`);
+    }
+  });
+}
+
+/**
+ * Actualiza una fila existente con la información del tutor
+ * @param {HTMLTableRowElement} fila - Fila a actualizar
+ * @param {HTMLElement} tutor - Elemento tutor con la información
+ */
+function actualizarFilaTutor(fila, tutor) {
+  const grupo = tutor.querySelector('#grupo').textContent.trim();
+  const nombre = tutor.querySelector('#nombrecompleto').textContent.trim();
+  
+  // Verificar si la fila tiene los inputs necesarios
+  const inputGrupo = fila.cells[0]?.querySelector('input');
+  const inputNombre = fila.cells[1]?.querySelector('input');
+  
+  if (inputGrupo && inputNombre) {
+    inputGrupo.value = grupo;
+    inputNombre.value = nombre;
+  }
+}
+
+/**
+ * Limpia los valores de los inputs en la tabla pero mantiene las filas
+ * @param {HTMLTableElement} tabla - Tabla a limpiar
+ */
+function limpiarTabla(tabla) {
+  const filas = tabla.rows;
+  for (let i = 0; i < filas.length; i++) {
+    const inputs = filas[i].querySelectorAll('input');
+    inputs.forEach(input => {
+      input.value = '';
+    });
+  }
+}
+
+/**
+ * Agrega un tutor a una tabla
+ * @param {HTMLTableElement} tabla - Tabla donde agregar el tutor
+ * @param {HTMLElement} tutor - Elemento tutor a agregar
+ */
+function agregarTutorATabla(tabla, tutor) {
+  const grupo = tutor.querySelector('#grupo').textContent.trim();
+  const nombre = tutor.querySelector('#nombrecompleto').textContent.trim();
+  
+  const fila = tabla.insertRow();
+  
+  // Crear celda de grupo
+  const celdaGrupo = fila.insertCell();
+  const inputGrupo = document.createElement('input');
+  inputGrupo.id = 'grupo';
+  inputGrupo.type = 'text';
+  inputGrupo.value = grupo;
+  celdaGrupo.appendChild(inputGrupo);
+  
+  // Crear celda de nombre
+  const celdaNombre = fila.insertCell();
+  const inputNombre = document.createElement('input');
+  inputNombre.id = 'nombrecompleto';
+  inputNombre.type = 'text';
+  inputNombre.value = nombre;
+  inputNombre.style.textAlign = 'left';
+  celdaNombre.appendChild(inputNombre);
+}
+
+</script>
+
+
+<script src="funciontabls.js"></script>
+
+<script>
+
+    function imprimirContenido(id) {
+    // Ocultar todos los contenedores
+    document.getElementById('hojaimpresion').classList.remove('contenedor-activo');
+    document.getElementById('hojaimpresion2').classList.remove('contenedor-activo');
+    document.getElementById('hojaimpresion3').classList.remove('contenedor-activo');
+
+    // Activar solo el contenedor seleccionado
+    document.getElementById(id).classList.add('contenedor-activo');
+    
+    // Imprimir
+    window.print();
+}
+
+
+
+    // Código del modo oscuro
+    const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+
+        const toggleSwitch = document.getElementById('darkModeToggle');
+
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        });
+
+        document.addEventListener("input", function () {
+    document.querySelectorAll("td").forEach(td => {
+        let input = td.querySelector("input");
+        let span = td.querySelector("span");
+        if ((input && input.value.trim() !== "") || (span && span.textContent.trim() !== "")) {
+            td.style.border = "1px solid black";
+        } else {
+            td.style.border = "none";
+        }
+    });
+});
+
+
+
+</script>
+
+    </body>
+    </html>
+
+
